@@ -1,0 +1,2 @@
+class ConsultationsController < ApplicationController
+end
