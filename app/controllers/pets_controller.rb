@@ -1,6 +1,9 @@
 class PetsController < ApplicationController
   before_action :find_user
-  before_action :set_pet, only: %i[show]
+
+  def my_pets
+    @pets = Pet.where(user: @user)
+  end
 
   def new
     @pet = Pet.new
@@ -17,13 +20,7 @@ class PetsController < ApplicationController
     end
   end
 
-  def show; end
-
   private
-
-  def set_pet
-    @pet = Pet.find(params[:id])
-  end
 
   def pet_params
     params.require(:pet).permit(:name, :species, :breed, :photo)
