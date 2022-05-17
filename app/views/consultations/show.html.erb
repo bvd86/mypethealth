@@ -1,0 +1,28 @@
+<h1>Consultation</h1>
+
+<%# Chatroom window %>
+<div class="container chatroom"
+     data-controller="consultation-subscription"
+     data-consultation-subscription-consultation-id-value="<%= @consultation.id %>" >
+
+  <h1>#<%= @consultation.name %></h1>
+
+  <div class="messages" data-consultation-subscription-target="messages">
+    <% @consultation.messages.each do |message| %>
+      <%= render "messages/message", message: message %>
+    <% end %>
+  </div>
+</div>
+
+<%# New message from %>
+<%= simple_form_for [@consultation, @message],
+  remote: true,
+  html: {data: {action: "ajax:success->chatroom-subscription#resetForm"}, class: "d-flex" } do |f|
+%>
+  <%= f.input :content,
+    label: false,
+    placeholder: "Message ##{@consultation.name}",
+    wrapper_html: {class: "flex-grow-1"}
+  %>
+  <%= f.submit "Send", class: "btn btn-primary" %>
+<% end %>
