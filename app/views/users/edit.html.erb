@@ -1,0 +1,21 @@
+<h1>My profile</h1>
+
+<%= simple_form_for [@user] do |f| %>
+    <div class="row g2">
+      <div class="col-6">
+        <%= f.input :name %>
+      </div>
+      <div class="col-6">
+        <%= f.input :email %>
+      </div>
+      <div class="col-6">
+        <%= f.input :address,
+                    input_html: { data: { geocoder_target: "address" }, class: "d-none" },
+                    wrapper_html: { data: { controller: "geocoder", geocoder_api_key_value: ENV['MAPBOX_API_KEY'] } } %>
+      </div>
+      <div class="col-6">
+        <%= f.input :vet_specialty, placeholder: "If you are a vet, what is your specialty?" %>
+      </div>
+    </div>
+  <%= f.button :submit, class: "btn btn-primary" %>
+<% end %>
