@@ -6,5 +6,7 @@ Rails.application.routes.draw do
     # Message route
     resources :messages, only: :create
   end
+  get '/my-consultations/', to: 'consultations#my_consultations'
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

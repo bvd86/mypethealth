@@ -1,0 +1,8 @@
+<%= simple_form_for @consultation do |f| %>
+      <%= f.input :pet %>
+      <%= f.input :concern_category %>
+      <%= f.input :additional_info %>
+      <%= f.input :photo, as: :file %>
+      <%= f.submit class: "btn btn-grad" %>
+    </div>
+  <% end %>
