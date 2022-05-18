@@ -15,7 +15,7 @@ class UsersController < ApplicationController
     @user = current_user
   end
 
-  def host_params
+  def user_params
     params.require(:user).permit(:email, :password, :name, :address, :specialty, :available)
   end
 end
