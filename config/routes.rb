@@ -9,5 +9,10 @@ Rails.application.routes.draw do
   patch '/my-pets/:id/', to: 'pets#update'
   delete '/my-pets/:id/', to: 'pets#destroy'
 
+  # Routes for consultations
+  resources :consultations do
+    # Message route
+    resources :messages, only: :create
+  end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
