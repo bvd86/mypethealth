@@ -31,6 +31,9 @@ gem 'bootsnap', '>= 1.4.4', require: false
 # Devise for authentication
 gem 'devise'
 
+# Geocoder for user address
+gem "geocoder"
+
 # Front end gems
 gem 'autoprefixer-rails', '10.2.5'
 gem 'font-awesome-sass', '~> 5.6.1'
