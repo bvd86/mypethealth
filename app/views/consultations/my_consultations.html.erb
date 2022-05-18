@@ -1,0 +1,10 @@
+<div style="display:flex; justify-content: space-between;">
+  <h1>My consultations</h1>
+  <%= link_to "➕ Add a consultation", new_consultation_path %>
+</div>
+
+<% @consultations.each do |c| %>
+<%= c.pet.name %>
+<%= c.concern_category %>
+<%= c.additional_info %>
+<% end %>

@@ -1,8 +1,9 @@
+<% types_of_concern = ["Behavior", "Dental", "End of Life", "Physical Activity", "Medication Nutrition Welfare"] %>
+
 <%= simple_form_for @consultation do |f| %>
-      <%= f.input :pet %>
-      <%= f.input :concern_category %>
+      <%= f.association :pet %>
+      <%= f.input :concern_category, collection: types_of_concern %>
       <%= f.input :additional_info %>
-      <%= f.input :photo, as: :file %>
       <%= f.submit class: "btn btn-grad" %>
     </div>
-  <% end %>
+<% end %>

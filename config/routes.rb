@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   delete '/my-pets/:id/', to: 'pets#destroy'
 
   # Routes for consultations
-  resources :consultations do
+  resources :consultations, only: [:new, :create, :edit, :update, :destroy] do
     # Message route
     resources :messages, only: :create
   end
