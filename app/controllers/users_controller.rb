@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :find_user, only: [:edit, :update]
+  before_action :find_user, only: [:edit, :update, :my_profile]
 
   def edit; end
 
@@ -8,6 +8,8 @@ class UsersController < ApplicationController
 
     redirect_to edit_user_path(@user)
   end
+
+  def my_profile; end
 
   private
 

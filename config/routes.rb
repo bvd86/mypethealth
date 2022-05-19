@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   devise_for :users, path: 'users'
   resources :users, only: [:edit, :update]
+  get '/my-profile/', to: 'users#my_profile'
 
   # Routes for pets
   resources :pets, only: [:new, :create]
