@@ -1,6 +1,6 @@
 class PetsController < ApplicationController
   before_action :find_user
-  before_action :find_pet, only: [:edit, :update, :destroy]
+  before_action :find_pet, only: [ :edit, :update, :destroy ]
 
   def new
     @pet = Pet.new

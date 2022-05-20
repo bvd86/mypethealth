@@ -7,9 +7,8 @@ Rails.application.routes.draw do
     # Routes for pets
     resources :pets, except: :show
   end
+
   get '/my-profile/', to: 'users#my_profile'
-
-
 
   # Routes for consultations
   resources :consultations, only: [:new, :create, :edit, :update, :destroy] do
