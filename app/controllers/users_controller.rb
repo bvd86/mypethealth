@@ -4,8 +4,9 @@ class UsersController < ApplicationController
   def edit; end
 
   def update
-    @user.update(user_params)
-
+    params[:user][:specialty_ids] = params[:user][:specialty_ids].select {|s| !s.empty? } if params[:user][:specialty_ids] != nil
+    @user.update!(user_params)
+    raise
     redirect_to edit_user_path(@user)
   end
 
@@ -16,6 +17,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:email, :password, :name, :address, :specialty, :available)
+    params.require(:user).permit(:email, :password, :name, :address, :specialty_ids, :available)
   end
 end

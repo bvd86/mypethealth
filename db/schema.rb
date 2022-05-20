@@ -10,15 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 2022_05_17_235524) do
-=======
-ActiveRecord::Schema.define(version: 2022_05_17_225032) do
->>>>>>> 127f499cf63c1016c50ae0a1de1531c377206a79
-=======
-ActiveRecord::Schema.define(version: 2022_05_17_235524) do
->>>>>>> fe596a402d28073c6cd5d767baa3b7f4df73a484
+ActiveRecord::Schema.define(version: 2022_05_20_010803) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -73,6 +65,21 @@ ActiveRecord::Schema.define(version: 2022_05_17_235524) do
     t.index ["consultation_id"], name: "index_receipts_on_consultation_id"
   end
 
+  create_table "specialties", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "user_specialties", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "specialty_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["specialty_id"], name: "index_user_specialties_on_specialty_id"
+    t.index ["user_id"], name: "index_user_specialties_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -83,7 +90,6 @@ ActiveRecord::Schema.define(version: 2022_05_17_235524) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "name"
     t.string "address"
-    t.string "vet_specialty"
     t.boolean "available"
     t.float "latitude"
     t.float "longitude"
@@ -98,4 +104,6 @@ ActiveRecord::Schema.define(version: 2022_05_17_235524) do
   add_foreign_key "messages", "users"
   add_foreign_key "pets", "users"
   add_foreign_key "receipts", "consultations"
+  add_foreign_key "user_specialties", "specialties"
+  add_foreign_key "user_specialties", "users"
 end

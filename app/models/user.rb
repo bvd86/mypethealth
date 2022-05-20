@@ -3,6 +3,8 @@ class User < ApplicationRecord
   has_many :consultations
   has_many :feedbacks
   has_many :messages
+  has_many :user_specialties # Have to be specified in a end-to-end relation
+  has_many :specialties, through: :user_specialties
 
   # Geocoder
   geocoded_by :address
