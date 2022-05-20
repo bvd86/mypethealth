@@ -1,0 +1,12 @@
+<div style="display:flex; justify-content: space-between;">
+  <h1>My pets</h1>
+  <%= link_to "➕ Add a pet", new_user_pet_path(@user) %>
+</div>
+
+<% @user.pets.each do |p| %>
+<p>Name: <%= p.name %></p>
+<p>Species: <%= p.species %></p>
+<p>Breed: <%= p.breed %></p>
+<%= link_to "Edit", edit_user_pet_path(@user, p.id) %>
+<p>----------------------------</p>
+<% end %>
