@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
-  before_action :find_user, only: [:edit, :update]
+  before_action :find_user, only: [:edit, :update, :my_profile]
+
+  def my_profile; end
 
   def edit; end
 

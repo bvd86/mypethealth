@@ -1,15 +1,14 @@
 Rails.application.routes.draw do
   root to: 'pages#home'
 
+  # Routes for users
   devise_for :users, path: 'users'
-  resources :users, only: [:edit, :update]
+  resources :users, only: [:edit, :update] do
+    # Routes for pets
+    resources :pets, except: :show
+  end
 
-  # Routes for pets
-  resources :pets, only: [:new, :create]
-  get '/my-pets/', to: 'pets#my_pets'
-  get '/my-pets/:id/edit', to: 'pets#edit'
-  patch '/my-pets/:id/', to: 'pets#update'
-  delete '/my-pets/:id/', to: 'pets#destroy'
+  get '/my-profile/', to: 'users#my_profile'
 
   # Routes for consultations
   resources :consultations, only: [:new, :create, :edit, :update, :destroy] do
