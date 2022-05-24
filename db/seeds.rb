@@ -11,7 +11,7 @@ vet_1 = User.create!({ email: "drfraisse@mypethealth.ca", password: "123456", na
 
 client_1 = User.create!({ email: "jeff@ilovecats.com", password: "123456", name: "Jeff Trempe", address: "1940 Jolicoeur Street, Montreal QC" })
 
-client_2 = User.create!({ email: "krystina@ilovecats.com", password: "123456", name: "Krystina Dierstein", address: "596 Blou Bourg-Neuf, Repentigny, QC" })
+client_2 = User.create!({ email: "krystina@ilovedogs.com", password: "123456", name: "Krystina Dierstein", address: "596 Blou Bourg-Neuf, Repentigny, QC" })
 
 # Adding 3 cats for client_1
 3.times do
