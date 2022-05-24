@@ -13,11 +13,11 @@
                     input_html: { data: { geocoder_target: "address" }, class: "d-none" },
                     wrapper_html: { data: { controller: "geocoder", geocoder_api_key_value: ENV['MAPBOX_API_KEY'] } } %>
       </div>
-      <div class="col-6">
+      <%# <div class="col-6">
         <%= f.input :specialty_ids,
                     collection: Specialty.all.order(:name),
                     input_html: { multiple: true, data: { controller: 'select2', select2_options_value: { tags: true } } } %>
-      </div>
+      <%# </div> %>
     </div>
   <%= f.button :submit, class: "btn btn-primary" %>
 <% end %>
