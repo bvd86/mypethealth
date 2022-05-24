@@ -1,7 +1,12 @@
 $spacing-containter-right: 20px;
 $spacing-containter-left: 20px;
 
-.container {
-  padding-right: $spacing-containter-right;
-  padding-left: $spacing-containter-left;
+@media only screen
+  and (min-device-width: 375px)
+  and (max-device-width: 812px)
+  and (-webkit-min-device-pixel-ratio: 3) {
+    .container {
+      padding-right: $spacing-containter-right;
+      padding-left: $spacing-containter-left;
+    }
 }
