@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  has_many :pets, dependent: :destroy
+  has_many :pets
   has_many :consultations
   has_many :feedbacks
   has_many :messages
