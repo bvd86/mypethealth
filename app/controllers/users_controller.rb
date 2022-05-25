@@ -14,7 +14,6 @@ class UsersController < ApplicationController
 
     # Saving user
     @user.update!(user_params)
-    raise
 
     redirect_to edit_user_path(@user)
   end
