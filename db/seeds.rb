@@ -60,7 +60,7 @@ end
   Pet.create!({ user: client_2, name: Faker::Creature::Dog.name, species: "Dog", breed: Faker::Creature::Dog.breed})
 end
 
-types_of_concern = ["Behavior", "Dental", "End of Life", "Physical Activity", "Medication Nutrition Welfare"]
+types_of_concern = ["Behavior", "Dental", "End of Life", "Physical Activity", "Medication", "Nutrition", "Welfare"]
 
 # Seeding consultations for vet with client 1
 3.times do
