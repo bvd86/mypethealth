@@ -7,7 +7,15 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'faker'
 
-vet_1 = User.create!({ email: "drfraisse@mypethealth.ca", password: "123456", name: "Nicolas Fraisse", address: "391 Rue de la Congrégation, Montreal QC", vet_specialty: "TBD"})
+User.destroy_all
+Consultation.destroy_all
+
+vet_1 = User.create!({
+  email: "drfraisse@mypethealth.ca",
+  password: "123456",
+  name: "Nicolas Fraisse",
+  address: "391 Rue de la Congrégation, Montreal QC",
+  vet_specialty: "TBD"})
 
 client_1 = User.create!({ email: "jeff@ilovecats.com", password: "123456", name: "Jeff Trempe", address: "1940 Jolicoeur Street, Montreal QC" })
 
@@ -25,4 +33,24 @@ end
 # Adding 4 dogs for client_2
 4.times do
   Pet.create!({ user: client_2, name: Faker::Creature::Dog.name, species: "Dog", breed: Faker::Creature::Dog.breed})
+end
+
+types_of_concern = ["Behavior", "Dental", "End of Life", "Physical Activity", "Medication Nutrition Welfare"]
+
+3.times do
+  Consultation.create!({
+    user: vet_1,
+    pet: client_1.pets[rand(1..5)],
+    concern_category: types_of_concern.sample,
+    additional_info: Faker::Marketing.buzzwords
+  })
+end
+
+2.times do
+  Consultation.create!({
+    user: vet_1,
+    pet: client_2.pets[rand(1..4)],
+    concern_category: types_of_concern.sample,
+    additional_info: Faker::Marketing.buzzwords
+  })
 end
