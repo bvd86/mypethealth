@@ -1,6 +1,6 @@
 <h1>My Profile</h1>
 
-<% if @user.vet_specialty != nil %>
+<% if @user.specialties.count > 0 %>
   <h2>Dr. <%= @user.name %></h2>
 <% else %>
   <h2><%= @user.name %></h2>
