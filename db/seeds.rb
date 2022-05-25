@@ -7,8 +7,8 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'faker'
 
-User.destroy_all
 Consultation.destroy_all
+User.destroy_all
 
 vet_1 = User.create!({
   email: "drfraisse@mypethealth.ca",
@@ -40,7 +40,7 @@ types_of_concern = ["Behavior", "Dental", "End of Life", "Physical Activity", "M
 3.times do
   Consultation.create!({
     user: vet_1,
-    pet: client_1.pets[rand(1..5)],
+    pet: client_1.pets.sample,
     concern_category: types_of_concern.sample,
     additional_info: Faker::Marketing.buzzwords
   })
@@ -49,7 +49,7 @@ end
 2.times do
   Consultation.create!({
     user: vet_1,
-    pet: client_2.pets[rand(1..4)],
+    pet: client_2.pets.sample,
     concern_category: types_of_concern.sample,
     additional_info: Faker::Marketing.buzzwords
   })
