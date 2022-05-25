@@ -6,9 +6,16 @@ class UsersController < ApplicationController
   def edit; end
 
   def update
-    params[:user][:specialty_ids] = params[:user][:specialty_ids].select {|s| !s.empty? } if params[:user][:specialty_ids] != nil
+    # Cleaning empty specialty
+    specialty_ids = params[:user][:specialty_ids].select {|s| !s.empty? }
+
+    # Updating user specialties associations
+    @user.specialties = specialty_ids.map { |id| Specialty.find(id) }
+
+    # Saving user
     @user.update!(user_params)
     raise
+
     redirect_to edit_user_path(@user)
   end
 
