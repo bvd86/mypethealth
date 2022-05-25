@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     resources :pets, except: :show
   end
 
-  get '/my-profile/', to: 'users#my_profile'
+  get '/my-profile/', to: 'users#my_profile', as: 'my-profile'
 
   # Routes for consultations
   resources :consultations, only: [:new, :create, :edit, :update, :destroy] do
@@ -16,6 +16,6 @@ Rails.application.routes.draw do
     resources :messages, only: :create
   end
 
-  get '/my-consultations/', to: 'consultations#my_consultations'
+  get '/my-consultations/', to: 'consultations#my_consultations', as: 'my-consultations'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
