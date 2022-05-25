@@ -7,8 +7,8 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'faker'
 
-User.destroy_all
 Consultation.destroy_all
+User.destroy_all
 
 vet_1 = User.create!({
   email: "drfraisse@mypethealth.ca",
