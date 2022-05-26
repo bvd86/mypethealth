@@ -1,0 +1,14 @@
+<h1>My Profile</h1>
+
+<% if @user.specialties.count > 0 %>
+  <h2>Dr. <%= @user.name %></h2>
+<% else %>
+  <h2><%= @user.name %></h2>
+<% end %>
+
+<h2><%= @user.email %></h2>
+<%= link_to "Edit my profile", edit_user_path(@user) %>
+
+<%= render 'shared/my_pets' %>
+
+<%= render 'shared/footer' %>

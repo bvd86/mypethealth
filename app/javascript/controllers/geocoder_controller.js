@@ -3,8 +3,7 @@ import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder"
 
 export default class extends Controller {
   static values = { apiKey: String }
-
-  static targets = ["address"]
+  static targets = ["address", "other"]
 
   connect() {
     this.geocoder = new MapboxGeocoder({
@@ -14,6 +13,14 @@ export default class extends Controller {
     this.geocoder.addTo(this.element)
     this.geocoder.on("result", event => this.#setInputValue(event))
     this.geocoder.on("clear", () => this.#clearInputValue())
+
+    // We wanted to make sure that the current user address
+    // appears in the geocoder search field as an initial value
+
+    // Targeting the right children in the DOM
+    const input = this.otherTarget.children[2].children[1]
+    // Setting value to the geocoder field
+    input.value = this.addressTarget.value
   }
 
   #setInputValue(event) {
