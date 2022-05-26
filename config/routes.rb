@@ -7,6 +7,8 @@ Rails.application.routes.draw do
     # Routes for pets
     resources :pets, except: :show
   end
+  patch '/make_available/', to: 'users#make_available'
+  patch '/make_unavailable/', to: 'users#make_unavailable'
 
   get '/my-profile/', to: 'users#my_profile', as: 'my-profile'
 
