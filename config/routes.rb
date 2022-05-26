@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   devise_for :users, path: 'users'
   resources :users, only: [:edit, :update] do
     # Routes for pets
-    resources :pets, except: :show
+    resources :pets, except: :show do
+      get '/consultations', to: 'consultations#pet_consultations'
+    end
   end
 
   # Users custom routes
@@ -14,7 +16,7 @@ Rails.application.routes.draw do
   get '/my-profile/', to: 'users#my_profile', as: 'my-profile'
 
   # Routes for consultations
-  resources :consultations, only: [:new, :create, :edit, :update, :destroy] do
+  resources :consultations, only: [:show, :new, :create, :edit, :update, :destroy] do
     # Message route
     resources :messages, only: :create
   end
