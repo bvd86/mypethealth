@@ -5,6 +5,11 @@ class ConsultationsController < ApplicationController
     @consultations = Consultation.where(user: @user)
   end
 
+  def pet_consultations
+    @pet = Pet.find(params[:pet_id])
+    @consultations = Consultation.where(pet: @pet)
+  end
+
   def new
     @consultation = Consultation.new
   end

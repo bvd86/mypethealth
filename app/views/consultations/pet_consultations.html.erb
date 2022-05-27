@@ -4,6 +4,7 @@
 </div>
 
 <% @consultations.each do |c| %>
+Consultation with Dr. <%= c.user.name %> <br>
 Name: <%= c.pet.name %> <br>
 Species: <%= c.pet.species %> <br>
 Concern: <%= c.concern_category %> <br>

@@ -1,13 +1,41 @@
 <h1>My Profile</h1>
 
-<% if @user.specialties.count > 0 %>
-  <h2>Dr. <%= @user.name %></h2>
-<% else %>
-  <h2><%= @user.name %></h2>
-<% end %>
+<div class="row g2">
+  <%# Email %>
+  <p class="col-4"><strong>Email:</strong> <%= @user.email %></p>
 
-<h2><%= @user.email %></h2>
-<%= link_to "Edit my profile", edit_user_path(@user) %>
+  <%# Name & Specialties %>
+  <% if @user.specialties.count > 0 %>
+    <p class="col-2"><strong>Name:</strong> Dr. <%= @user.name %></p>
+    <p class="col-4"><strong>Specialties:</strong>
+      <% @user.specialties.each do |s| %>
+        <%= s.name %>
+      <% end %></p>
+  <% else %>
+    <p class="col-6"><strong>Name:</strong> <%= @user.name %></p>
+  <% end %>
+
+  <%# Address %>
+  <p class="col-6"><strong>Address:</strong> <%= @user.address %></p>
+
+  <%# Availability %>
+  <% if @user.specialties.count > 0 %>
+    <p class="col-6"><strong>Your current status is:</strong>
+      <% if @user.available %>
+        Available. <%= link_to "Make me unavailable", make_unavailable_path, method: :patch, class: "btn btn-warning" %>
+      <% else %>
+        Unavailable. <%= link_to "Make me available", make_available_path, method: :patch, class: "btn btn-success" %>
+      <% end %>
+    </p>
+
+  <% end %>
+</div>
+
+
+<%= link_to "Edit my profile", edit_user_path(@user), class: "btn btn-primary" %>
+
+<br>
+<br>
 
 <%= render 'shared/my_pets' %>
 

@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  before_action :find_user, only: [:edit, :update, :my_profile]
+  before_action :find_user, only: [:edit, :update, :my_profile,
+                                   :make_available, :make_unavailable]
 
   def my_profile; end
 
@@ -15,7 +16,19 @@ class UsersController < ApplicationController
     # Saving user
     @user.update!(user_params)
 
-    redirect_to edit_user_path(@user)
+    redirect_to my_profile_path(@user)
+  end
+
+  def make_available
+    @user.update!(available: true)
+
+    redirect_to my_profile_path(@user)
+  end
+
+  def make_unavailable
+    @user.update!(available: false)
+
+    redirect_to my_profile_path(@user)
   end
 
   private
