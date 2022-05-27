@@ -34,6 +34,7 @@ class UsersController < ApplicationController
 
   def available_vets
       @available_vets = User.all.where(available: true)
+
   end
 
   private

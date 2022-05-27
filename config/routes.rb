@@ -9,6 +9,8 @@ Rails.application.routes.draw do
       get '/consultations', to: 'consultations#pet_consultations'
     end
   end
+  patch '/make_available/', to: 'users#make_available'
+  patch '/make_unavailable/', to: 'users#make_unavailable'
 
   # Users custom routes
   patch '/make_available/', to: 'users#make_available'
