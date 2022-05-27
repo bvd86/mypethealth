@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   # Routes for users
   devise_for :users, path: 'users'
   resources :users, only: [:edit, :update] do
+    delete '/remove_photo/', to: 'users#remove_photo'
     # Routes for pets
     resources :pets, except: :show do
       get '/consultations', to: 'consultations#pet_consultations'

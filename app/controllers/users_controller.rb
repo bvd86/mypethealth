@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :find_user, only: [:edit, :update, :my_profile,
-                                   :make_available, :make_unavailable]
+                                   :make_available, :make_unavailable, :remove_photo]
 
   def my_profile; end
 
@@ -31,6 +31,12 @@ class UsersController < ApplicationController
     redirect_to my_profile_path(@user)
   end
 
+  def remove_photo
+    @user.photo.destroy
+
+    redirect_to my_profile_path(@user)
+  end
+
   private
 
   def find_user
@@ -38,6 +44,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:email, :password, :name, :address, :specialty_ids, :available)
+    params.require(:user).permit(:email, :password, :name, :address, :specialty_ids, :available, :photo)
   end
 end

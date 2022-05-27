@@ -15,8 +15,9 @@
     <p class="col-6"><strong>Name:</strong> <%= @user.name %></p>
   <% end %>
 
-  <%# Address %>
+  <%# Address & Picture %>
   <p class="col-6"><strong>Address:</strong> <%= @user.address %></p>
+  <%= cl_image_tag @user.photo.key, height: 200, width: 200 if current_user.photo.attached?%>
 
   <%# Availability %>
   <% if @user.specialties.count > 0 %>
