@@ -14,4 +14,10 @@ class MessagesController < ApplicationController
       render "consultations/show"
     end
   end
+
+  private
+
+  def message_params
+    params.require(:message).permit(:content)
+  end
 end

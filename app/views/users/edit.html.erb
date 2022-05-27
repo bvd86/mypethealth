@@ -18,6 +18,12 @@
                           collection: Specialty.all.order(:name),
                           input_html: { multiple: true, data: { controller: 'select2', select2_options_value: { tags: true } } } %>
       </div>
+      <div>
+      <%= f.input :photo, label: "Picture", as: :file %>
+      <%= link_to "Remove picture", user_remove_photo_path(@user),
+                  method: :delete,
+                  data: { confirm: 'Are you sure?' } %>
+      </div>
     </div>
   <%= f.button :submit, class: "btn btn-primary" %>
 <% end %>

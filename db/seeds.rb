@@ -8,6 +8,8 @@
 
 require 'faker'
 
+p "Starting seeding."
+
 Consultation.destroy_all
 User.destroy_all
 
@@ -81,3 +83,17 @@ end
     additional_info: Faker::Marketing.buzzwords
   })
 end
+
+# Creating random vets to populate vets list
+5.times do
+  user = User.create!({
+  email: Faker::Internet.email,
+  password: "password",
+  name: Faker::FunnyName.two_word_name,
+  address: Faker::Address.full_address,
+  available: true})
+
+  user.specialties = Specialty.all.sample(2)
+end
+
+p "Seeding is complete."
