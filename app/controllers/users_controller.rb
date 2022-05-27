@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :find_user, only: [:edit, :update, :my_profile,
-                                   :make_available, :make_unavailable]
+                                   :make_available, :make_unavailable,
+                                   :available_vets]
 
   def my_profile; end
 
@@ -29,6 +30,10 @@ class UsersController < ApplicationController
     @user.update!(available: false)
 
     redirect_to my_profile_path(@user)
+  end
+
+  def available_vets
+      @available_vets = User.all.where(available: true)
   end
 
   private
