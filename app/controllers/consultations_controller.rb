@@ -41,6 +41,9 @@ class ConsultationsController < ApplicationController
     end
   end
 
+  def end_consultation
+  end
+
   private
 
   def find_user
