@@ -8,13 +8,17 @@ export default class extends Controller {
   connect() {
     this.channel = consumer.subscriptions.create(
       { channel: "ConsultationChannel", id: this.consultationIdValue },
-      { received: (message) => {
-        this.messagesTarget.insertAdjacentHTML("beforeend", message)
-        this.messagesTarget.scrollTo(0, this.messagesTarget.scrollHeight) } }
+      { received: message => this.#insertMessageAndScrollDown(message) }
     )
 
     console.log(`Subscribed to the consultation with the id ${this.consultationIdValue}.`)
   }
+
+  #insertMessageAndScrollDown(message) {
+    this.messagesTarget.insertAdjacentHTML("beforeend", message)
+    this.messagesTarget.scrollTo(0, this.messagesTarget.scrollHeight)
+  }
+
 
   resetForm(event) {
     event.target.reset()

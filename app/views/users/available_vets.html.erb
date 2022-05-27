@@ -1,0 +1,15 @@
+<h1>Available veterinarians</h1>
+
+
+<% @available_vets.each do |vet| %>
+  <div class="row g2">
+    <p class="col-4"><strong>Name:</strong> <%= vet.name %></p>
+    <p class="col-4"><strong>Specialties: </strong>
+      <% vet.specialties.each do |s| %>
+        <%= s.name %>
+      <% end %>
+    </p>
+    <%= link_to "Start consultation", start_consultation_path(vet_id: vet.id), class: "btn btn-primary col-2" %>
+  </div>
+  <br>
+<% end %>

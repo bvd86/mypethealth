@@ -13,3 +13,11 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
+
+
+.mapboxgl-ctrl-geocoder {
+  max-width: none;
+  width: 100%;
+  border: 1px solid lightgrey;
+  box-shadow: none;
+}

@@ -5,6 +5,11 @@ class ConsultationsController < ApplicationController
     @consultations = Consultation.where(user: @user)
   end
 
+  def pet_consultations
+    @pet = Pet.find(params[:pet_id])
+    @consultations = Consultation.where(pet: @pet)
+  end
+
   def new
     @consultation = Consultation.new
   end
@@ -13,16 +18,27 @@ class ConsultationsController < ApplicationController
     @consultation = Consultation.new(consultation_params)
     @consultation.user = @user
 
-    if @consultation.save
-      redirect_to my_consultations_path
+    if @consultation.save!
+      redirect_to available_vets_path
     else
       render :new
     end
   end
 
   def show
-    @consultation = Consultation.find(params[:consultation_id])
+    @consultation = Consultation.find(params[:id])
     @message = Message.new
+  end
+
+  def start_consultation
+    @consultation = Consultation.last
+    @consultation.vet_id = params[:vet_id]
+
+    if @consultation.save!
+      redirect_to consultation_path(@consultation)
+    else
+      render :new
+    end
   end
 
   private
@@ -32,6 +48,6 @@ class ConsultationsController < ApplicationController
   end
 
   def consultation_params
-    params.require(:consultation).permit(:pet_id, :concern_category, :additional_info)
+    params.require(:consultation).permit(:pet_id, :concern_category, :additional_info, :user)
   end
 end

@@ -1,23 +1,29 @@
 <div class="navbar-extension">
     <div id="user-information" class="d-flex justify-content-start gap-3 pt-2">
-      <!-- add if statement to display user photo if available -->
-      <%#= cl_image_tag @user.photo.key, class: "avatar" %>
+      <!-- Profile Photo-->
+      <% if @user.photo.attached? %>
+        <%= cl_image_tag @user.photo.key, class: "avatar" %>
+      <% else %>
+        <%= image_tag 'blank-avatar.png', class: "avatar" %>
+      <% end %>
 
-      <%= image_tag 'blank-avatar.png', class: "avatar" %>
+    <div>
+      <!-- Name & Specialties -->
+      <% if @user.specialties.count > 0 %>
+        <p><strong>Dr. <%= @user.name %></strong></p>
+        <p><strong>Specialties:</strong>
+          <% @user.specialties.each do |s| %>
+            <%= s.name %>
+          <% end %></p>
+      <% else %>
+        <p><strong><%= @user.name %></strong></p>
+      <% end %>
 
-    <div class="d-flex">
-      <div>
-        <% if @user.vet_specialty != nil %>
-          <p>Dr. <%= @user.name %></p>
-        <% else %>
-          <p><%= @user.name %></p>
-        <% end %>
+      <!-- Address -->
+      <%= @user.address %>
+      <!--Email -->
+      <p><%= @user.email %></p>
 
-        <% if @user.address != nil %>
-          <p><%= @user.address %></p>
-        <% end %>
-
-        <p><%= @user.email %></p>
 
       </div>
 
@@ -29,5 +35,31 @@
 </div>
 
 
+<div class="row g2">
+
+
+
+
+
+  <%# Availability %>
+  <% if @user.specialties.count > 0 %>
+    <p class="col-6"><strong>Your current status is:</strong>
+      <% if @user.available %>
+        Available. <%= link_to "Make me unavailable", make_unavailable_path, method: :patch, class: "btn btn-warning" %>
+      <% else %>
+        Unavailable. <%= link_to "Make me available", make_available_path, method: :patch, class: "btn btn-success" %>
+      <% end %>
+    </p>
+
+  <% end %>
+</div>
+
+
+<%= link_to "Edit my profile", edit_user_path(@user), class: "btn btn-primary" %>
+
+<br>
+<br>
 
 <%= render 'shared/my_pets' %>
+
+<%= render 'shared/footer' %>

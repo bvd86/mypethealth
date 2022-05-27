@@ -4,18 +4,30 @@ Rails.application.routes.draw do
   # Routes for users
   devise_for :users, path: 'users'
   resources :users, only: [:edit, :update] do
+    delete '/remove_photo/', to: 'users#remove_photo'
     # Routes for pets
-    resources :pets, except: :show
+    resources :pets, except: :show do
+      get '/consultations', to: 'consultations#pet_consultations'
+    end
   end
+  patch '/make_available/', to: 'users#make_available'
+  patch '/make_unavailable/', to: 'users#make_unavailable'
 
-  get '/my-profile/', to: 'users#my_profile'
+  # Users custom routes
+  patch '/make_available/', to: 'users#make_available'
+  patch '/make_unavailable/', to: 'users#make_unavailable'
+  get '/available_vets/', to: 'users#available_vets'
+  get '/my-profile/', to: 'users#my_profile', as: 'my-profile'
 
   # Routes for consultations
-  resources :consultations, only: [:new, :create, :edit, :update, :destroy] do
+  resources :consultations, only: [:show, :new, :create, :edit, :update, :destroy] do
     # Message route
     resources :messages, only: :create
   end
 
-  get '/my-consultations/', to: 'consultations#my_consultations'
+  # Consultations custom routes
+  get '/my-consultations/', to: 'consultations#my_consultations', as: 'my-consultations'
+  get '/start_consultation/', to: 'consultations#start_consultation'
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
