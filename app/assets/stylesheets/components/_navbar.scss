@@ -1,10 +1,12 @@
+@import "variables";
+
 @media only screen
   and (min-device-width: 375px)
   and (max-device-width: 812px)
   and (-webkit-min-device-pixel-ratio: 3) {
     .navbar-lewagon {
       justify-content: space-between;
-      background: white;
+      background: $tealslate;
     }
 
     .navbar-lewagon .navbar-collapse {
@@ -18,7 +20,7 @@
 
 .navbar-lewagon {
   justify-content: space-between;
-  background: white;
+  background: $tealslate;
 }
 
 .navbar-lewagon .navbar-collapse {
@@ -27,4 +29,18 @@
 
 .navbar-lewagon .navbar-brand img {
   width: 40px;
+}
+
+.navbar-extension {
+  // background-color: $tealslate;
+  width: 100vw;
+  margin-left: calc(-1 * #{$spacing-containter-left});
+  padding-bottom: 56px;
+  padding-top: 16px;
+  border-radius: 0 0 46px 46px;
+  background: linear-gradient(180deg, $tealslate 0%, rgba(84, 128, 136, 0.697594) 53.43%, rgba(84, 128, 136, 0) 176.68%);
+
+  #user-information {
+    margin-left: 4rem;
+  }
 }
