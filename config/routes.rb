@@ -13,6 +13,10 @@ Rails.application.routes.draw do
   patch '/make_available/', to: 'users#make_available'
   patch '/make_unavailable/', to: 'users#make_unavailable'
 
+  # Users custom routes
+  patch '/make_available/', to: 'users#make_available'
+  patch '/make_unavailable/', to: 'users#make_unavailable'
+  get '/available_vets/', to: 'users#available_vets'
   get '/my-profile/', to: 'users#my_profile', as: 'my-profile'
 
   # Routes for consultations
@@ -21,6 +25,9 @@ Rails.application.routes.draw do
     resources :messages, only: :create
   end
 
+  # Consultations custom routes
   get '/my-consultations/', to: 'consultations#my_consultations', as: 'my-consultations'
+  get '/start_consultation/', to: 'consultations#start_consultation'
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
