@@ -14,16 +14,23 @@
   </div>
 
 
-  <%# New message from %>
+<%# New message from %>
+<% if @consultation.active %>
   <%= simple_form_for [@consultation, @message],
     remote: true,
     html: {data: {action: "ajax:success->consultation-subscription#resetForm"}, class: "d-flex" } do |f| %>
-
-    <%= f.input :content,
-      label: false,
-      placeholder: "What's happening with #{@consultation.pet.name}?",
-      wrapper_html: {class: "flex-grow-1"} %>
+      <%= f.input :content,
+        label: false,
+        placeholder: "What's happening with #{@consultation.pet.name}?",
+        wrapper_html: {class: "flex-grow-1"} %>
 
     <%= f.submit "Send", class: "btn btn-primary" %>
   <% end %>
+
+
+  <%= form_for @consultation, url: {action: "end_consultation"} do |f| %>
+  <%= f.hidden_field :id, :value => @consultation.id %>
+  <%= f.submit "End consultation" %>
+  <% end %>
+<% end %>
 </div>
