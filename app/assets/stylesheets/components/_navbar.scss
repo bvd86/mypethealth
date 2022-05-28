@@ -1,28 +1,11 @@
-<<<<<<< HEAD
-@import "variables";
-
-@media only screen
-  and (min-device-width: 375px)
-  and (max-device-width: 812px)
-  and (-webkit-min-device-pixel-ratio: 3) {
-    .navbar-lewagon {
-      justify-content: space-between;
-      background: $tealslate;
-    }
-=======
 nav {
   background-color: $tealslate;
   height: 65px;
 }
->>>>>>> master
 
 .nav-content {
   display: flex;
   justify-content: space-between;
-<<<<<<< HEAD
-  background: $tealslate;
-=======
->>>>>>> master
 }
 
 .navbar-brand img {
