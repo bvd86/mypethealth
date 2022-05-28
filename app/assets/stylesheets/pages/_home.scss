@@ -1,1 +1,17 @@
 // Specific CSS for your home-page
+
+.container-fluid {
+  padding: 2% 3% 2%;
+}
+
+#title {
+  background-color: $tealslate;
+  color: $cream;
+  height: fit-content;
+}
+
+.title-image {
+  width: 40%;
+  position: absolute;
+  right: 15%;
+}

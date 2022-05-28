@@ -1,18 +1,23 @@
-<nav role="navigation">
- <div class="nav-content">
-  <div id="menuToggle">
-    <input type="checkbox" />
-      <span></span>
-       <span></span>
-      <span></span>
-      <ul id="menu">
+<section id="title">
+    <div class="container-fluid">
+      <nav class="navbar navbar-expand-lg navbar-dark">
+        <%= link_to "MyPetHealth", root_path, class: "main-title" %>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
               <%= link_to "My profile", my_profile_path(current_user), class: "dropdown-item" %>
+            </li>
+            <li class="nav-item">
               <%= link_to "My consultations", my_consultations_path(current_user), class: "dropdown-item" %>
+            </li>
+            <li class="nav-item">
               <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
-       </ul>
-    </div>
-      <div class="avatar-profile">
-       <%= cl_image_tag @user.photo.key, :height=> 40, :width=> 40, :radius=>"max", :crop=>"fill" if current_user && current_user.photo.attached? %>
-      </div>
+            </li>
+          </ul>
+        </div>
+      </nav>
   </div>
-</nav>
+</section>
