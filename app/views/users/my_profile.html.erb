@@ -1,43 +1,71 @@
-<h1>My Profile</h1>
+<div class="navbar-extension">
+    <div id="user-information" class="d-flex justify-content-start gap-3 pt-2">
+      <!-- Profile Photo-->
+      <div class="d-flex flex-column gap-2 justtify-content-evenly">
+        <% if @user.photo.attached? %>
+          <%= cl_image_tag @user.photo.key, class: "avatar" %>
+        <% else %>
+          <%= image_tag 'blank-avatar.png', class: "avatar" %>
+        <% end %>
+        <!-- Toggle switch -->
+        <% if @user.specialties.count > 0 %>
+          <label class="switch">
+          <%= simple_form_for @user do |f| %>
+            <%= check_box_tag 'availability', '1', @user.available %>
 
-<div class="row g2">
-  <%# Email %>
-  <p class="col-4"><strong>Email:</strong> <%= @user.email %></p>
+            <span class="slider round"></span>
+          <% end %>
+          </label>
+        <% end %>
 
-  <%# Name & Specialties %>
-  <% if @user.specialties.count > 0 %>
-    <p class="col-2"><strong>Name:</strong> Dr. <%= @user.name %></p>
-    <p class="col-4"><strong>Specialties:</strong>
-      <% @user.specialties.each do |s| %>
-        <%= s.name %>
-      <% end %></p>
-  <% else %>
-    <p class="col-6"><strong>Name:</strong> <%= @user.name %></p>
-  <% end %>
 
-  <%# Address & Picture %>
-  <p class="col-6"><strong>Address:</strong> <%= @user.address %></p>
-  <%= cl_image_tag @user.photo.key, height: 200, width: 200 if current_user.photo.attached?%>
+      </div>
 
-  <%# Availability %>
-  <% if @user.specialties.count > 0 %>
-    <p class="col-6"><strong>Your current status is:</strong>
-      <% if @user.available %>
-        Available. <%= link_to "Make me unavailable", make_unavailable_path, method: :patch, class: "btn btn-warning" %>
-      <% else %>
-        Unavailable. <%= link_to "Make me available", make_available_path, method: :patch, class: "btn btn-success" %>
+      <div>
+        <!-- Name & Specialties -->
+        <% if @user.specialties.count > 0 %>
+          <p><strong>Dr. <%= @user.name %></strong></p>
+          <p><strong>Specialties:</strong>
+            <% @user.specialties.each do |s| %>
+              <%= s.name %></p>
+            <% end %></p>
+        <% else %>
+          <p><strong><%= @user.name %></strong></p>
+        <% end %>
+
+        <!-- Address -->
+        <p><%= @user.address %></p>
+        <!--Email -->
+        <p><%= @user.email %></p>
+
+
+      </div>
+
+      <%= link_to edit_user_path(@user) do%>
+        <i class="fa-solid fa-pencil edit-pen"></i>
       <% end %>
-    </p>
 
-  <% end %>
+    </div>
+
 </div>
 
 
-<%= link_to "Edit my profile", edit_user_path(@user), class: "btn btn-primary" %>
-
-<br>
-<br>
-
 <%= render 'shared/my_pets' %>
 
+<%= render 'shared/consultation_history' %>
+
+
 <%= render 'shared/footer' %>
+
+
+    <%# Availability %>
+  <!--%# if @user.specialties.count > 0 %>
+    <p><strong>Your current status is:</strong>
+      <%# if @user.available %>
+        Available. <%= link_to "Make me unavailable", make_unavailable_path, method: :patch, class: "btn btn-warning" %>
+      <%# else %>
+        Unavailable. <%= link_to "Make me available", make_available_path, method: :patch, class: "btn btn-success" %>
+      <%# end %>
+    </p>
+
+  <%# end %-->
