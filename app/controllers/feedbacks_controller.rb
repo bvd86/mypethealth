@@ -8,7 +8,6 @@ class FeedbacksController < ApplicationController
 
   def new
     @feedback = Feedback.new
-    @consultation = Consultation.find(params[:consultation_id])
   end
 
   def create
