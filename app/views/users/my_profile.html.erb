@@ -9,9 +9,11 @@
         <% end %>
         <!-- Toggle switch -->
         <label class="switch">
-          <%= check_box_tag 'availability', 'availability', @user.available %>
+        <%= simple_form_for @user do |f| %>
+          <%= check_box_tag 'availability', 'availability', @user.available, onchange: "this.form.submit();" %>
 
           <span class="slider round"></span>
+        <% end %>
         </label>
 
 
