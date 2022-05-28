@@ -1,18 +1,12 @@
+
 .main-title {
   color: $cream;
   text-decoration: none;
   font-size: 2.5rem;
   font-family: $headers-font;
   font-weight: bold;
-}
 
-
-.navbar-brand {
-  font-family: $headers-font;
-  font-size: 2.5rem;
-  font-weight: bold;
-  color: $cream;
-}
+@import "variables";
 
 .nav-item {
   padding: 0 18px;
@@ -27,4 +21,20 @@
 
 .navbar-nav {
   text-align: center;
+}
+
+.navbar-extension {
+  // background-color: $tealslate;
+  width: 100vw;
+  margin-left: calc(-1 * #{$spacing-containter-left});
+  padding-bottom: 56px;
+  padding-top: 16px;
+  border-radius: 0 0 46px 46px;
+  background: linear-gradient(180deg, $tealslate 0%, rgba(84, 128, 136, 0.697594) 53.43%, rgba(84, 128, 136, 0) 176.68%);
+
+  #user-information {
+    margin-left: 4rem;
+    color: $cream;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
+  }
 }
