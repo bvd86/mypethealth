@@ -4,9 +4,13 @@
 .main-title {
   color: $cream;
   text-decoration: none;
-  font-size: 2.5rem;
+  font-size: 2.3rem;
   font-family: $headers-font;
   font-weight: bold;
+}
+
+a:hover{
+  color: $cream;
 }
 
 .nav-item {
@@ -20,8 +24,19 @@
   color: $cream;
 }
 
+.dropdown-item:hover {
+  background-color: $tealslate;
+  color: $cream;
+}
+
 .navbar-nav {
   text-align: center;
+}
+
+svg {
+  width: 50px;
+  fill: $cream;
+  padding-right: 10px;
 }
 
 .navbar-extension {
