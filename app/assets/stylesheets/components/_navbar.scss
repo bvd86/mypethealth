@@ -1,3 +1,5 @@
+@import "variables";
+
 nav {
   background-color: $tealslate;
   height: 65px;
@@ -126,4 +128,20 @@ nav {
   position: relative;
   top: 12px;
   right: 12px;
+}
+
+.navbar-extension {
+  // background-color: $tealslate;
+  width: 100vw;
+  margin-left: calc(-1 * #{$spacing-containter-left});
+  padding-bottom: 56px;
+  padding-top: 16px;
+  border-radius: 0 0 46px 46px;
+  background: linear-gradient(180deg, $tealslate 0%, rgba(84, 128, 136, 0.697594) 53.43%, rgba(84, 128, 136, 0) 176.68%);
+
+  #user-information {
+    margin-left: 4rem;
+    color: $cream;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
+  }
 }
