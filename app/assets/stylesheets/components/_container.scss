@@ -14,3 +14,17 @@
   padding-right: $spacing-containter-right;
   padding-left: $spacing-containter-left;
 }
+
+#recent-consultations-container{
+  margin-top: 1rem;
+  margin-bottom: 6rem;
+
+  p {
+    font-size: 0.8rem;
+    margin-bottom: 0;
+  }
+
+  a {
+    color: $darkblue;
+  }
+}
