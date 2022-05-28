@@ -1,12 +1,17 @@
-<h1>Consultation form</h1>
-<p>How can we help you today?</p>
+<div class="my-5">
+  <h1 class="mb-1">Consultation form</h1>
+  <h3 class="font-light">How can we help you today?</h3>
+</div>
 
 <% types_of_concern = ["Behavior", "Dental", "End of Life", "Physical Activity", "Medication Nutrition Welfare"] %>
 
-<%= simple_form_for @consultation do |f| %>
-      <%= f.association :pet %>
-      <%= f.input :concern_category, collection: types_of_concern %>
-      <%= f.input :additional_info %>
-      <%= f.submit class: "btn btn-grad" %>
-    </div>
-<% end %>
+<div>
+  <%= simple_form_for  @consultation do |f| %>
+        <%= f.input :pet, collection: @user.pets %>
+        <%= f.input :concern_category, collection: types_of_concern %>
+        <%= f.input :additional_info %>
+        <%= f.submit class: "btn btn-grad" %>
+      </div>
+  <% end %>
+
+</div>
