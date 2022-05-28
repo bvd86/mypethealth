@@ -8,13 +8,15 @@
           <%= image_tag 'blank-avatar.png', class: "avatar" %>
         <% end %>
         <!-- Toggle switch -->
-        <label class="switch">
-        <%= simple_form_for @user do |f| %>
-          <%= check_box_tag 'availability', 'availability', @user.available, onchange: "this.form.submit();" %>
+        <% if @user.specialties.count > 0 %>
+          <label class="switch">
+          <%= simple_form_for @user do |f| %>
+            <%= check_box_tag 'availability', '1', @user.available %>
 
-          <span class="slider round"></span>
+            <span class="slider round"></span>
+          <% end %>
+          </label>
         <% end %>
-        </label>
 
 
       </div>
