@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_27_000348) do
+ActiveRecord::Schema.define(version: 2022_05_28_160246) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 2022_05_27_000348) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "vet_id"
+    t.boolean "active", default: true
     t.index ["pet_id"], name: "index_consultations_on_pet_id"
     t.index ["user_id"], name: "index_consultations_on_user_id"
   end
