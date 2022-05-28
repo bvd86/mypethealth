@@ -1,5 +1,5 @@
 nav {
-  background-color: #82AAA2;
+  background-color: $tealslate;
   height: 65px;
 }
 
@@ -43,7 +43,7 @@ nav {
   height: 2px;
   margin-bottom: 5px;
   position: relative;
-  background: #F2E9D0;
+  background: $cream;
   border-radius: 3px;
   z-index: 1;
   transform-origin: 5px 0px;
@@ -66,7 +66,7 @@ nav {
 {
   opacity: 1;
   transform: rotate(45deg) translate(-3px, -1px);
-  background: #36383F;
+  background: $darkblue;
 }
 #menuToggle input:checked ~ span:nth-last-child(3)
 {
@@ -84,11 +84,11 @@ nav {
   position: absolute;
   width: 110vw;
   height: 400px;
-  box-shadow: 0 0 10px #85888C;
+  box-shadow: 0 0 10px #C4C4C4;
   margin: -50px 0 0 -50px;
   padding: 50px;
   padding-top: 125px;
-  background-color: #F2E9D0;
+  background-color: $cream;
   -webkit-font-smoothing: antialiased;
   transform-origin: 0% 0%;
   transform: translate(-100%, 0);
@@ -109,14 +109,21 @@ nav {
 
 .navbar-brand {
   text-decoration: none;
-  color: #1E1E23;
+  color: $darkblue;
   opacity:1;
-  font-family: 'work sans', sans serif;
+  font-family: $body-font;
   font-size: 1.5em;
   font-weight: 400;
   transition: 200ms;
+  border-radius: 50%;
 }
 
 .navbar-brand:hover {
   opacity:0.5;
+}
+
+.avatar-profile {
+  position: relative;
+  top: 12px;
+  right: 12px;
 }

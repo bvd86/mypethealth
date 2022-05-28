@@ -6,13 +6,13 @@
        <span></span>
       <span></span>
       <ul id="menu">
-        <li><a class="nav-link" href="#">Profile</a></li>
-        <li><a class="nav-link" href="#">Pets</a></li>
-        <li><a  class="nav-link" href="#">Consultations</a></li>
+              <%= link_to "My profile", my_profile_path(current_user), class: "dropdown-item" %>
+              <%= link_to "My consultations", my_consultations_path(current_user), class: "dropdown-item" %>
+              <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
        </ul>
     </div>
-    <a class="navbar-brand" href="#">
-       <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/logo.png">
-    </a>
+      <div class="avatar-profile">
+       <%= cl_image_tag @user.photo.key, :height=> 40, :width=> 40, :radius=>"max", :crop=>"fill" if current_user && current_user.photo.attached? %>
+      </div>
   </div>
 </nav>
