@@ -9,10 +9,8 @@
         <% end %>
         <!-- Toggle switch -->
         <label class="switch">
-          <input type="checkbox" data-controller="availability"
-                                 data-availability-target="available"
-                                 <% if @user.available %> checked <% end %>
-                                 data-action = "change->availability#toggle">
+          <%= check_box_tag 'availability', 'availability', @user.available %>
+
           <span class="slider round"></span>
         </label>
 

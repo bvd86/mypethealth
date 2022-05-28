@@ -1,17 +1,29 @@
 <div id="recent-consultations-container">
-  <h3>Recent Consultations</h3>
+  <h3 class="mt-4 mb-3">Recent Consultations</h3>
 
-  <div>
-    <% @user.consultations.each do |c| %>
-      <div class="d-flex gap-2 my-2">
-        <%= cl_image_tag c.pet.photo.key, alt: c.pet.name, class:"avatar", style:"height: 50px" %>
-        <div>
-          <%= link_to consultation_path(c) do %>
-            <p>Consulted with Dr. <%= User.find(c.vet_id).name %></p>
+  <% if @user.consultations.empty? %>
+
+    <p class="small-font">You have no previous consultations.</p>
+
+  <% else %>
+
+    <div>
+      <% @user.consultations.each do |c| %>
+        <div class="d-flex gap-2 my-2">
+          <% if c.pet.photo.attached? %>
+          <%= cl_image_tag c.pet.photo.key, alt: c.pet.name, class:"avatar", style:"height: 50px" %>
+          <% else %>
+            <%= image_tag "pet-avatar.png", alt: "Default picture for pet", class:"avatar" %>
           <% end %>
-          <p><%= c.created_at.strftime("%B %d, %Y") %></p>
+
+          <div>
+            <%= link_to consultation_path(c) do %>
+              <p class="small-font">Consulted with Dr. <%= User.find(c.vet_id).name %></p>
+            <% end %>
+            <p class="small-font"><%= c.created_at.strftime("%B %d, %Y") %></p>
+          </div>
         </div>
-      </div>
-    <% end %>
-  </div>
+      <% end %>
+    </div>
+  <% end %>
 </div>
