@@ -1,6 +1,9 @@
 FEEDBACK FORM
+<% stars = 1..5 %>
  <%= simple_form_for [ @consultation, @feedback ] do |f| %>
-      <%= f.input :rating %>
+      <%= f.input :rating, collection: stars %>
+      <%= f.input :vet_rating, collection: stars %>
+      <%= f.input :friend_rating, collection: stars %>
       <%= f.input :comment %>
       <%= f.submit class: "btn btn-grad" %>
   <% end %>
