@@ -44,7 +44,7 @@ class ConsultationsController < ApplicationController
   def end_consultation
     @consultation = Consultation.find(params[:consultation][:id])
     @consultation.update!(active: false)
-    redirect_to consultation_path(@consultation)
+    redirect_to new_feedback_path
   end
 
   private

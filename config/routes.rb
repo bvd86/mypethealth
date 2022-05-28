@@ -28,5 +28,8 @@ Rails.application.routes.draw do
   get '/start_consultation/', to: 'consultations#start_consultation'
   patch '/end_consultation/', to: 'consultations#end_consultation'
 
+  # Routes for feedbacks
+  resources :feedbacks, only: [:show, :new, :create]
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
