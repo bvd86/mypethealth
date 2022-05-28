@@ -1,1 +1,8 @@
 FEEDBACK FORM
+ <%= simple_form_for [ @consultation, @feedback ] do |f| %>
+      <%= f.input :rating %>
+      <%= f.input :comment %>
+      <%= f.submit class: "btn btn-grad" %>
+  <% end %>
+
+<%= link_to "Skip feedback", receipt_path(@consultation) %>

@@ -21,6 +21,10 @@ Rails.application.routes.draw do
   resources :consultations, only: [:show, :new, :create, :edit, :update, :destroy] do
     # Message route
     resources :messages, only: :create
+
+
+    # Routes for feedbacks
+    resources :feedbacks, only: [:show, :new, :create]
   end
 
   # Consultations custom routes
@@ -28,8 +32,8 @@ Rails.application.routes.draw do
   get '/start_consultation/', to: 'consultations#start_consultation'
   patch '/end_consultation/', to: 'consultations#end_consultation'
 
-  # Routes for feedbacks
-  resources :feedbacks, only: [:show, :new, :create]
+  # Routes for receipts
+  resources :receipts, only: [:create, :show]
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
