@@ -3,4 +3,8 @@ class Pet < ApplicationRecord
   has_many :consultations
 
   has_one_attached :photo
+
+  SPECIES = ['dog', 'cat', 'bird', 'horse', 'rodent', 'fish', 'exotic animals', 'farm animals', 'reptile', 'other'].sort.freeze
+
+  validates :species, inclusion: { in: SPECIES }
 end
