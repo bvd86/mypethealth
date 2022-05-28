@@ -22,7 +22,6 @@ Rails.application.routes.draw do
     # Message route
     resources :messages, only: :create
 
-
     # Routes for feedbacks
     resources :feedbacks, only: [:show, :new, :create]
   end
