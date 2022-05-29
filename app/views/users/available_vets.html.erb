@@ -1,15 +1,28 @@
-<h1>Available veterinarians</h1>
+<div class="my-5">
+    <h1 class="mb-1">Select a specialist</h1>
+</div>
 
+<!-- btn to connect to random vet -->
+<%= link_to "Connect with any veterinarian", "#", class:"btn btn-primary rounded-pill" %>
 
+<!-- Vet cards -->
 <% @available_vets_customized.each do |vet| %>
-  <div class="row g2">
-    <p class="col-4"><strong>Name:</strong> <%= vet.name %></p>
-    <p class="col-4"><strong>Specialties: </strong>
-      <% vet.specialties.each do |s| %>
-        <%= s.name %>
-      <% end %>
-    </p>
-    <%= link_to "Start consultation", start_consultation_path(vet_id: vet.id), class: "btn btn-primary col-2" %>
+  <div class="card mb-3 card-vet">
+    <div class="row g-0">
+      <div class="col-4">
+        <% if vet.photo.attached? %>
+          <%= cl_image_tag vet.photo.key, alt:"#{vet.name}'s photo", class:"img-fluid card-vet-img" %>
+        <% else %>
+          <%= image_tag "blank-avatar", alt: "default avatar photo", class:"img-fluid card-vet-img" %>
+        <% end %>
+      </div>
+      <div class="col-8">
+        <div class="card-body">
+          <h5 class="card-title"><strong>Dr.</strong> <%= vet.name %></h5>
+          <p class="card-text">Specialties: <%= vet.specialties.map { |s| s.name }.to_sentence %> </p>
+          <%= link_to "Connect", start_consultation_path(vet_id: vet.id), class: "btn-sm btn-primary card-btn-connect" %>
+        </div>
+      </div>
+    </div>
   </div>
-  <br>
 <% end %>
