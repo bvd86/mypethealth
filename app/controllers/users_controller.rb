@@ -39,7 +39,21 @@ class UsersController < ApplicationController
   end
 
   def available_vets
-      @available_vets = User.all.where(available: true)
+    # Get species from last consult from to filter vets
+    @species = Consultation.last.pet.species.downcase
+
+    # Find specialty by species defined by pet that's consulting
+    # Returns a Hash of Arrays
+    @wanted_specialties = Specialty::SPECIALTIES.select do |k, v|
+      v.include?(@species)
+    end
+
+    # Display available vets only if their specialty is needed
+    @available_vets_customized = User.joins(:specialties)
+                                # filter by available vets
+                                .where(users: {available: true})
+                                # filter by specialty required by the pet
+                                .where(specialties: {name: @wanted_specialties.keys})
   end
 
   private
