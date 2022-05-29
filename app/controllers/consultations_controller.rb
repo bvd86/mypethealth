@@ -12,6 +12,7 @@ class ConsultationsController < ApplicationController
 
   def new
     @consultation = Consultation.new
+    @pets = @user.pets
   end
 
   def create
@@ -54,6 +55,6 @@ class ConsultationsController < ApplicationController
   end
 
   def consultation_params
-    params.require(:consultation).permit(:pet_id, :concern_category, :additional_info, :user, :active)
+    params.require(:consultation).permit(:pet_id, :concern_category, :additional_info, :user, :active, :species)
   end
 end
