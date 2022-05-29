@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(version: 2022_05_28_201127) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "vet_id"
     t.boolean "active", default: true
+    t.string "species"
     t.index ["pet_id"], name: "index_consultations_on_pet_id"
     t.index ["user_id"], name: "index_consultations_on_user_id"
   end
