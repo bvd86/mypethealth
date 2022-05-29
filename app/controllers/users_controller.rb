@@ -40,7 +40,7 @@ class UsersController < ApplicationController
 
   def available_vets
     # Get species from last consult from to filter vets
-    @species = Consultation.last.pet.species.downcase
+    @species = @user.consultations.last.pet.species.downcase
 
     # Find specialty by species defined by pet that's consulting
     # Returns a Hash of Arrays

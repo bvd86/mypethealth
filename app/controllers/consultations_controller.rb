@@ -31,7 +31,7 @@ class ConsultationsController < ApplicationController
   end
 
   def start_consultation
-    @consultation = Consultation.last
+    @consultation = @user.consultations.last
     @consultation.vet_id = params[:vet_id]
 
     if @consultation.save!
