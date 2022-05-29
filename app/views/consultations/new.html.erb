@@ -11,7 +11,7 @@
 
       <% if user_signed_in? %>
         <!-- User can select their own pet-->
-        <%= f.association :pet, collection: @pets, label: 'Which pet is this for?', class:"input-border-none input-color" %>
+        <%= f.association :pet, collection: @pets, label: 'Which pet is this for?' %>
       <% end %>
         <%= f.input :species, collection: species, label: 'What kind of animal is it?' %>
         <%= f.input :concern_category, collection: types_of_concern, label: 'What type of concern do you have?' %>
