@@ -1,18 +1,23 @@
-<div class="my-5">
-  <h1 class="mb-1">Consultation form</h1>
-  <h3 class="font-light">How can we help you today?</h3>
-</div>
+<div class="container-md">
+  <div class="my-5">
+    <h1 class="mb-1">Consultation form</h1>
+    <h3 class="font-light">How can we help you today?</h3>
+  </div>
 
-<% types_of_concern = ["Behavior", "Dental", "End of Life", "Physical Activity", "Medication Nutrition Welfare", "Other"] %>
-<% species = ['Bird', 'Cat', 'Dog', 'Exotic animals', 'Farm animals', 'Fish', 'Horse', 'Reptile', 'Rodent', 'Other'].freeze %>
-<div>
-  <%= simple_form_for  @consultation do |f| %>
-        <%= f.input :pet, collection: @user.pets, label: 'Which pet is this for?', class:"input-border-none input-color" %>
+    <% types_of_concern = ["Behavior", "Dental", "End of Life", "Physical Activity", "Medication Nutrition Welfare", "Other"] %>
+    <% species = ['Bird', 'Cat', 'Dog', 'Exotic animals', 'Farm animals', 'Fish', 'Horse', 'Reptile', 'Rodent', 'Other'].freeze %>
+
+    <%= simple_form_for  @consultation do |f| %>
+
+      <% if user_signed_in? %>
+        <!-- User can select their own pet-->
+        <%= f.association :pet, collection: @pets, label: 'Which pet is this for?', class:"input-border-none input-color" %>
+      <% end %>
         <%= f.input :species, collection: species, label: 'What kind of animal is it?' %>
         <%= f.input :concern_category, collection: types_of_concern, label: 'What type of concern do you have?' %>
         <%= f.input :additional_info, label: 'Additional Information' %>
-        <%= f.submit class: "form-control mt-3 btn btn-form" %>
-      </div>
-  <% end %>
+        <%= f.submit class: "form-control mt-3 btn btn-primary rounded-pill", style: "color: #F2E9D0;" %>
+    <% end %>
+
 
 </div>

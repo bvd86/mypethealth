@@ -12,6 +12,7 @@ class ConsultationsController < ApplicationController
 
   def new
     @consultation = Consultation.new
+    @pets = @user.pets
   end
 
   def create
