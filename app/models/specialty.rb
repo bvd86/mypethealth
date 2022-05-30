@@ -8,10 +8,11 @@ class Specialty < ApplicationRecord
     "Beef Cattles" => %w[ cow ],
     "Felines" => %w[ cat lynx tiger ],
     "Canines" => %w[ dog ],
-    "Exotic Mammals" => "",
+    "Exotic Mammals" => %w[ exotic ],
     "Dairy Mammals" => %w[ cow  goat ],
-    "Reptile" => "",
-    "Amphibian" => %w[ frog ]
+    "Reptile" => %w[ snake turtle lizard iguana ],
+    "Amphibian" => %w[ frog ],
+    "Rodent" => %w[ mouse hamster chinchilla ]
   }
 
 end
