@@ -8,7 +8,7 @@
   <% else %>
 
     <div>
-      <% @user.consultations.each do |c| %>
+      <% @user.consultations.reverse.each do |c| %>
         <% if !c.vet_id.nil? %>
 
 
