@@ -16,7 +16,12 @@ class FeedbacksController < ApplicationController
     @feedback.consultation = @consultation
 
     if @feedback.save!
-      redirect_to receipt_path(@feedback.consultation)
+      @receipt = Receipt.new(consultation: @consultation)
+      receipt_controller = ReceiptsController.new
+      receipt_controller.request = request
+      receipt_controller.response = response
+      receipt_controller.create
+      redirect_to consultation_receipt_path(@feedback.consultation)
     else
       render :new
     end

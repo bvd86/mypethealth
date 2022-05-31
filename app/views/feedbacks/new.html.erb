@@ -4,8 +4,8 @@ FEEDBACK FORM
       <%= f.input :rating, label: 'How was your overall experience?', collection: stars %>
       <%= f.input :vet_rating, label: 'Was the vetenarian able to answer your questions?', collection: stars %>
       <%= f.input :friend_rating, label: 'Would you recommend us to a friend?', collection: stars %>
-      <%= f.input :comment %>
+      <%= f.input :comment, label: 'Additional comments' %>
       <%= f.submit class: "btn btn-grad" %>
   <% end %>
 
-<%= link_to "Skip feedback", receipt_path(@consultation) %>
+<%= link_to "Skip feedback", consultation_receipt_path(@consultation) %>

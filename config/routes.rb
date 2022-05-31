@@ -24,15 +24,15 @@ Rails.application.routes.draw do
 
     # Routes for feedbacks
     resources :feedbacks, only: [:show, :new, :create]
+
+    # Routes for receipts
+    resources :receipts, only: [:create, :show]
   end
 
   # Consultations custom routes
   get '/my-consultations/', to: 'consultations#my_consultations', as: 'my-consultations'
   get '/start_consultation/', to: 'consultations#start_consultation'
   patch '/end_consultation/', to: 'consultations#end_consultation'
-
-  # Routes for receipts
-  resources :receipts, only: [:create, :show]
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

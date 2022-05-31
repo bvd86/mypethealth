@@ -4,5 +4,13 @@ class ReceiptsController < ApplicationController
   end
 
   def create
+    @receipt = Receipt.new(receipt_params)
+    @receipt.save!
+  end
+
+  private
+
+  def receipt_params
+    params.require(:receipt).permit(:consultation, :price)
   end
 end
