@@ -1,0 +1,18 @@
+.card-vet {
+  max-width: 540px;
+  position: relative;
+  background-color: rgba(130, 170, 162, 0.5);
+}
+
+
+.card-vet-img{
+ height: 100%;
+ object-fit: cover;
+}
+
+.card-btn-connect {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  text-decoration: none;
+}
