@@ -1,9 +1,25 @@
-<% types_of_concern = ["Behavior", "Dental", "End of Life", "Physical Activity", "Medication Nutrition Welfare"] %>
+<div class="container-md">
+  <div class="my-5">
+    <h1 class="mb-1">Consultation form</h1>
+    <h3 class="font-light">How can we help you today?</h3>
+  </div>
 
-<%= simple_form_for @consultation do |f| %>
-      <%= f.association :pet %>
-      <%= f.input :concern_category, collection: types_of_concern %>
-      <%= f.input :additional_info %>
-      <%= f.submit class: "btn btn-grad" %>
-    </div>
-<% end %>
+
+    <%= simple_form_for  @consultation do |f| %>
+
+      <% if user_signed_in? %>
+        <!-- User can select their own pet-->
+        <%= f.association :pet, collection: @pets, label: 'Which pet is this for?' %>
+        <%= f.input :concern_category, collection: Consultation::CONCERN, label: 'What type of concern do you have?' %>
+        <%= f.input :additional_info, label: 'Additional Information' %>
+        <%= f.submit class: "form-control mt-3 btn btn-primary rounded-pill", style: "color: #F2E9D0;" %>
+      <% else %>
+        <%= f.input :species, collection: Pet::SPECIES, label: 'What kind of animal is it?' %>
+        <%= f.input :concern_category, collection: Consultation::CONCERN, label: 'What type of concern do you have?' %>
+        <%= f.input :additional_info, label: 'Additional Information' %>
+        <%= f.submit class: "form-control mt-3 btn btn-primary rounded-pill", style: "color: #F2E9D0;" %>
+      <% end %>
+    <% end %>
+
+
+</div>

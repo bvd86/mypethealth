@@ -1,5 +1,20 @@
 // HOME PAGE
 
 .action-button {
-  margin: 5% 3% 5% 0%;
+  border-radius: 50px;
+  color: $cream;
+  border-color: $darkblue;
+  margin-top: 3rem;
+  background-color: $darkblue;
+}
+
+
+.btn-form {
+  background-color: $tealslate;
+  color: $cream;
+}
+
+.btn-link-faint {
+  opacity: 0.7;
+  display: block;
 }

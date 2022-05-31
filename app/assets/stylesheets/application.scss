@@ -10,6 +10,9 @@
 @import "font-awesome";
 @import "mapbox-gl/dist/mapbox-gl";
 
+// css for star-rating
+@import "jquery-bar-rating/dist/themes/css-stars";
+
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
