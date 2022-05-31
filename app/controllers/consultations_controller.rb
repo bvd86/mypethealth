@@ -12,6 +12,7 @@ class ConsultationsController < ApplicationController
 
   def new
     @consultation = Consultation.new
+    @pets = @user.pets
   end
 
   def create
@@ -44,7 +45,7 @@ class ConsultationsController < ApplicationController
   def end_consultation
     @consultation = Consultation.find(params[:consultation][:id])
     @consultation.update!(active: false)
-    redirect_to new_feedback_path
+    redirect_to new_consultation_feedback_path(@consultation)
   end
 
   private
@@ -54,6 +55,6 @@ class ConsultationsController < ApplicationController
   end
 
   def consultation_params
-    params.require(:consultation).permit(:pet_id, :concern_category, :additional_info, :user, :active)
+    params.require(:consultation).permit(:pet_id, :concern_category, :additional_info, :user, :active, :species)
   end
 end

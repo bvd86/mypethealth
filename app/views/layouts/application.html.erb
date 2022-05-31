@@ -26,7 +26,10 @@
       <%= render 'shared/flashes' %>
 
       <%# Notification window %>
-      <div id="notifications">
+      <div data-controller="notification-subscription">
+        <div class="messages" data-notification-subscription-target="notification">
+          test
+        </div>
       </div>
 
       <%= yield %>

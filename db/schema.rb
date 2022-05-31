@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_28_185120) do
+ActiveRecord::Schema.define(version: 2022_05_28_201127) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(version: 2022_05_28_185120) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "vet_id"
     t.boolean "active", default: true
+    t.string "species"
     t.index ["pet_id"], name: "index_consultations_on_pet_id"
     t.index ["user_id"], name: "index_consultations_on_user_id"
   end
@@ -63,6 +64,8 @@ ActiveRecord::Schema.define(version: 2022_05_28_185120) do
     t.text "comment"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "vet_rating"
+    t.integer "friend_rating"
     t.index ["consultation_id"], name: "index_feedbacks_on_consultation_id"
     t.index ["user_id"], name: "index_feedbacks_on_user_id"
   end

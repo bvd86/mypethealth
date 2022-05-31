@@ -1,2 +1,57 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<section id="title">
+
+  <div class="container-fluid landing-extension">
+    <div class="row">
+      <div class="col-lg-6">
+        <h1 class="title-text">Find a vet within few minutes</h1>
+        <button type="button" class="btn btn-dark btn-lg action-button">Start a consultation</button>
+      </div>
+      <div class="col-lg-6">
+        <%= image_tag "dog-cat.png", class: "title-image" %>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="features">
+    <div class="row">
+      <div class="col-lg-4 features-box">
+        <i class="fas fa-stethoscope icon-features"></i>
+        <h3>Easy Access to vet</h3>
+        <p class="feature-text">Get in touch with a professionnal quickly.</p>
+      </div>
+      <div class="col-lg-4 features-box">
+        <i class="fa-solid fa-heart icon-features"></i>
+        <h3>Stress Free</h3>
+        <p class="feature-text">Don't worry about you pet for multiple hours.</p>
+      </div>
+      <div class="col-lg-4 features-box">
+        <i class="fa-solid fa-shield-dog icon-features"></i>
+        <h3>Pet Security</h3>
+        <p class="feature-text">Sleep well knowing your pet is safe.</p>
+      </div>
+    </div>
+  </section>
+
+<section id="testimonials">
+    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <h2>I was able to get someone to help to save my dog.</h2>
+        <%= image_tag "jenny.png", class: "testimonial-image" %>
+        <em>Jenny, New York</em>
+      </div>
+      <div class="carousel-item">
+        <h2>Mittens was really sick and Dr.Pham gave me amazing solutions!</h2>
+        <%= image_tag "chris.png", class: "testimonial-image" %>
+        <em>Chris, Illinois</em>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>

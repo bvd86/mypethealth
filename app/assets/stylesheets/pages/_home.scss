@@ -1,1 +1,107 @@
 // Specific CSS for your home-page
+
+.container-fluid {
+  padding: 2% 3% 2%;
+}
+
+// Banner //
+#title {
+  background-color: $tealslate;
+  color: $cream;
+  height: fit-content;
+}
+
+.title-image {
+  width: 40%;
+  position: absolute;
+  right: 10%;
+  top: 35%;
+}
+
+.landing-extension{
+  // background-color: $tealslate;
+  width: 100vw;
+  margin-left: calc(-1 * #{$spacing-containter-left});
+  padding: 15% 12%;
+  background: $tealslate
+}
+
+.title-text {
+  color: $cream;
+  font-size: 4.5rem;
+}
+
+// Features //
+
+.features-box {
+  margin: 100px auto;
+  padding: 31px;
+  text-align: center;
+}
+
+.features-box h3 {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.features-box p {
+  color: $gray;
+}
+
+.icon-features {
+  color: $matteteal;
+  font-size: 3.5rem;
+  padding: 15px;
+}
+
+.icon-features:hover {
+  color: $paleteal;
+}
+
+// Testimonial //
+
+#testimonials {
+  text-align: center;
+  background-color: $paleteal;
+  color: $cream;
+}
+
+.carousel-item {
+  padding: 7% 15%;
+}
+
+.testimonial-image {
+  width: 10%;
+  border-radius: 100%;
+  margin: 20px;
+}
+
+// Media Query //
+
+@media (max-width: 1028px) {
+  #title {
+    text-align: center;
+  }
+
+  .action-button {
+    border-radius: 50px;
+    margin-bottom: 3rem;
+  }
+
+  .features-box {
+    margin: 3rem auto;
+  }
+
+  .title-image {
+    position: static;
+    width: 60%;
+  }
+
+  .title-text {
+    font-size: 3.8rem;
+    margin-bottom: 3rem
+  }
+
+
+
+}

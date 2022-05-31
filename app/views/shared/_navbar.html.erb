@@ -1,18 +1,26 @@
-<nav role="navigation">
- <div class="nav-content">
-  <div id="menuToggle">
-    <input type="checkbox" />
-      <span></span>
-       <span></span>
-      <span></span>
-      <ul id="menu">
-              <%= link_to "My profile", my_profile_path(current_user), class: "dropdown-item" %>
-              <%= link_to "My consultations", my_consultations_path(current_user), class: "dropdown-item" %>
-              <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
-       </ul>
-    </div>
-      <div class="avatar-profile">
-       <%= cl_image_tag @user.photo.key, :height=> 40, :width=> 40, :radius=>"max", :crop=>"fill" if current_user && current_user.photo.attached? %>
+<section id="title">
+    <div class="container-fluid">
+      <nav class="navbar navbar-expand-lg navbar-dark">
+      <div class="d-flex">
+        <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 193.7 183.49"><defs><style>.cls-1{fill:#F2E9D0;}</style></defs><path class="cls-1" d="M95.1,235.32c-17.74,0-35.58-8.8-43-24.78-9.92-21.42-5.89-51.12,9.36-69.1,23.45-27.64,81.37-89.59,81.37-89.59s59.3,61.62,82.77,89.28c15.25,18,19.28,47.68,9.36,69.1-7.4,16-24.24,24.78-42,24.78-18.06,0-28.47-3.28-36.84-11.72a35.34,35.34,0,0,1-10.55-25.77c0-8,8.08-5.86,8.08.32a24.94,24.94,0,0,0,8.54,19.25c5.8,5,14.52,8.92,30.77,8.92,18,0,29.68-10.64,33.81-19.56a49.62,49.62,0,0,0,3.39-11.19c.35-1.83,1.26-6.74-2.49-8.8s-16.16-7.66-21.58-10.53-4.65-7.75-.53-7.75,12.93-.14,18-.63,3.55-5.24,2.95-6.77a50.56,50.56,0,0,0-7.8-13.83c-20-23.55-63.52-69.19-75.81-82-12.06,12.94-54.62,58.77-74.61,82.34-12.91,15.22-16.45,41.35-8.06,59.49,4.14,8.92,16.84,19.56,34.82,19.56a44.43,44.43,0,0,0,22.36-4.75c9.74-4.74,14.69-14.82,14.69-24A79.89,79.89,0,0,0,123,160.65c-3.08-5.63,4.25-11.07,7.78-4.56a88.56,88.56,0,0,1,10.35,41.45,35.57,35.57,0,0,1-19.76,32.12A53.69,53.69,0,0,1,95.1,235.32Z" transform="translate(-46.7 -51.85)"/><circle class="cls-1" cx="121.22" cy="82.51" r="6.98"/></svg>
+        <%= link_to "MyPetHealth", root_path, class: "main-title" %>
       </div>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <%= link_to "My profile", my_profile_path(current_user), class: "dropdown-item" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "My consultations", my_consultations_path(current_user), class: "dropdown-item" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+            </li>
+          </ul>
+        </div>
+      </nav>
   </div>
-</nav>
+</section>
