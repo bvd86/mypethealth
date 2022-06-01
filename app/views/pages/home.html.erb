@@ -2,11 +2,11 @@
 
   <div class="container-fluid landing-extension">
     <div class="row">
-      <div class="col-lg-6">
+      <div class="col-lg-6 banner-text">
         <h1 class="title-text">Find a vet within few minutes</h1>
-        <button type="button" class="btn btn-dark btn-lg action-button">Start a consultation</button>
+        <button type="button" class="btn btn-dark btn-lg action-button"><%= link_to "Start a consultation", new_consultation_path, class: "banner-button" %></button>
       </div>
-      <div class="col-lg-6">
+      <div class="col-lg-6 image-animal">
         <%= image_tag "dog-cat.png", class: "title-image" %>
       </div>
     </div>
