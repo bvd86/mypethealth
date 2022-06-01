@@ -16,10 +16,18 @@ class FeedbacksController < ApplicationController
     @feedback.consultation = @consultation
 
     if @feedback.save!
-      redirect_to receipt_path(@feedback.consultation)
+      create_receipt
+      redirect_to consultation_receipt_path(@feedback.consultation, @feedback.consultation.id)
     else
       render :new
     end
+  end
+
+  def create_receipt
+    receipt_controller = ReceiptsController.new
+    receipt_controller.request = request
+    receipt_controller.response = response
+    receipt_controller.create
   end
 
   private
@@ -35,4 +43,5 @@ class FeedbacksController < ApplicationController
   def find_consultation
     @consultation = Consultation.find(params[:consultation_id])
   end
+
 end

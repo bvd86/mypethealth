@@ -14,5 +14,5 @@
     <% end %>
   </div>
 
-  <%= link_to "Skip", receipt_path(@consultation), class:"btn btn-link btn-link-faint mt-4" %>
+  <%= link_to "Skip", consultation_receipts_path(@consultation), method: :post,  class:"btn btn-link btn-link-faint mt-4" %>
 </div>
