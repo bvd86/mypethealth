@@ -1,1 +1,12 @@
-RECEIPT
+<h1>Thank you!</h1>
+<h3>Consultation receipt</h3>
+
+Vet: <%= User.where(id: @consultation.vet_id).name %> <br>
+Price: <%= @receipt.price_cents %> <br>
+<% if @consultation.feedbacks %>
+  <% @consultation.feedbacks.each do |f| %>
+    General rating: <%= f.rating %> <br>
+    Vet rating: <%= f.vet_rating %> <br>
+    Friend rating: <%= f.friend_rating %> <br>
+  <% end %>
+<% end %>
