@@ -1,6 +1,6 @@
 class ReceiptsController < ApplicationController
   def show
-    @receipt = Receipt.where(consultation: params[:id])
+    @receipt = Receipt.find(params[:id])
     @consultation = Consultation.find(params[:consultation_id])
   end
 
@@ -9,7 +9,9 @@ class ReceiptsController < ApplicationController
     @receipt = Receipt.new(consultation: @consultation)
     @receipt.price_cents = 50
     @receipt.save!
-    redirect_to consultation_receipt_path(@consultation, @consultation.id)
+    @consultation.receipt = @receipt
+    @consultation.save!
+    redirect_to consultation_receipt_path(@consultation, @consultation.receipt)
   end
 
   private
