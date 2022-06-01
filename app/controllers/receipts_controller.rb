@@ -2,6 +2,7 @@ class ReceiptsController < ApplicationController
   def show
     @receipt = Receipt.find(params[:id])
     @consultation = Consultation.find(params[:consultation_id])
+    @vet = User.find(@consultation.vet_id)
   end
 
   def create

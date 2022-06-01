@@ -1,12 +1,29 @@
-<h1>Thank you!</h1>
-<h3>Consultation receipt</h3>
+<div class="my-5">
+  <h1>Thank you!</h1>
+  <h3 style="font-weight: lighter;">Consultation receipt</h3>
+</div>
 
-Vet: <%= User.find(@consultation.vet_id).name %> <br>
-Price: <%= @receipt.price_cents %> <br>
-<% if @consultation.feedbacks %>
-  <% @consultation.feedbacks.each do |f| %>
-    General rating: <%= f.rating %> <br>
-    Vet rating: <%= f.vet_rating %> <br>
-    Friend rating: <%= f.friend_rating %> <br>
+<div class="d-flex align-items-center gap-3">
+
+  <% if @vet.photo.attached? %>
+   <%= cl_image_tag @vet.photo.key, alt: @vet.name, class:"avatar" %>
+  <% else %>
+    <%= image_tag "blank-avatar.png", alt: "Default avatar", class:"avatar" %>
   <% end %>
+
+  <i class="fa-solid fa-stethoscope"></i>
+
+  <% if @consultation.pet.photo.attached? %>
+   <%= cl_image_tag @consultation.pet.photo.key, alt: @consultation.pet.name, class:"avatar" %>
+  <% else %>
+    <%= image_tag "pet-avatar.png", alt: "Default picture for pet", class:"avatar" %>
+  <% end %>
+</div>
+
+Veteranian: <%= User.find(@consultation.vet_id).name %> <br>
+Price: <%= @receipt.price_cents %> <br>
+<% if @consultation.feedback %>
+    General rating: <%= @consultation.feedback.rating %> <br>
+    Vet rating: <%= @consultation.feedback.vet_rating %> <br>
+    Friend rating: <%= @consultation.feedback.friend_rating %> <br>
 <% end %>
