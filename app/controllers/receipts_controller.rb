@@ -2,6 +2,8 @@ class ReceiptsController < ApplicationController
   def show
     @receipt = Receipt.find(params[:id])
     @consultation = Consultation.find(params[:consultation_id])
+    @vet = User.find(@consultation.vet_id)
+    @feedback_avg = (@consultation.feedback.rating + @consultation.feedback.vet_rating + @consultation.feedback.friend_rating)/3
   end
 
   def create
