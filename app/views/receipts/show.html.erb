@@ -1,4 +1,6 @@
 <h1>Thank you!</h1>
 <h3>Consultation receipt</h3>
 
-<%= @receipt.consultation.user.name %>
+Vet: <%= User.where(id: @consultation.vet_id).name %>
+Price: <%= @receipt.first.price_cents %>
+<% @consultation.feedbacks if @consultation.feedbacks %>
