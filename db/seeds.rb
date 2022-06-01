@@ -8,10 +8,21 @@
 
 require 'faker'
 
-p "Starting seeding."
+p "Destroying old seeds..."
 
+Message.destroy_all
+Feedback.destroy_all
+Receipt.destroy_all
 Consultation.destroy_all
+UserSpecialty.destroy_all
+Specialty.destroy_all
 User.destroy_all
+
+p "Done."
+
+
+p "Starting new seeds..."
+
 
 # Seeding vet specialties
 unless Specialty.any?
@@ -37,7 +48,8 @@ vet_1 = User.create!({
   email: "drfraisse@mypethealth.ca",
   password: "123456",
   name: "Nicolas Fraisse",
-  address: "391 Rue de la Congrégation, Montreal QC"})
+  address: "391 Rue de la Congrégation, Montreal QC",
+  available: true})
 
 # Adding 2 specialties to vet
 vet_1.specialties = Specialty.all.sample(2)
@@ -68,8 +80,9 @@ types_of_concern = ["Behavior", "Dental", "End of Life", "Physical Activity", "M
 3.times do
   Consultation.create!({
     user: vet_1,
+    vet_id: vet_1.id,
     pet: client_1.pets.sample,
-    concern_category: types_of_concern.sample,
+    concern_category: Consultation::CONCERN.sample,
     additional_info: Faker::Marketing.buzzwords
   })
 end
@@ -78,6 +91,7 @@ end
 2.times do
   Consultation.create!({
     user: vet_1,
+    vet_id: vet_1.id,
     pet: client_2.pets.sample,
     concern_category: types_of_concern.sample,
     additional_info: Faker::Marketing.buzzwords
