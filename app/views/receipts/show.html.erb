@@ -1,29 +1,93 @@
-<div class="my-5">
-  <h1>Thank you!</h1>
-  <h3 style="font-weight: lighter;">Consultation receipt</h3>
-</div>
+<div class="container-small">
+  <div class="my-5">
+    <h1>Thank you!</h1>
+    <h3 style="font-weight: lighter;">Consultation receipt</h3>
+  </div>
 
-<div class="d-flex align-items-center gap-3">
+  <!-- Vet & Pet of the Consultation -->
+  <div class="d-flex justify-content-center align-items-center gap-4" id="card-consult-between">
+    <!-- vet info -->
+    <div>
+      <% if @vet.photo.attached? %>
+      <%= cl_image_tag @vet.photo.key, alt: @vet.name, class:"avatar avatar-middle" %>
+      <% else %>
+        <%= image_tag "blank-avatar.png", alt: "Default avatar", class:"avatar avatar-middle" %>
+      <% end %>
+      <p class="mt-2">Dr. <%= User.find(@consultation.vet_id).name %></p>
+    </div>
 
-  <% if @vet.photo.attached? %>
-   <%= cl_image_tag @vet.photo.key, alt: @vet.name, class:"avatar" %>
-  <% else %>
-    <%= image_tag "blank-avatar.png", alt: "Default avatar", class:"avatar" %>
-  <% end %>
+    <i class="fa-solid fa-stethoscope fs-3" style="color: #F2E9D0;"></i>
 
-  <i class="fa-solid fa-stethoscope"></i>
+    <!-- pet info -->
+    <div>
+      <% if @consultation.pet.photo.attached? %>
+      <%= cl_image_tag @consultation.pet.photo.key, alt: @consultation.pet.name, class:"avatar avatar-middle" %>
+      <% else %>
+        <%= image_tag "pet-avatar.png", alt: "Default picture for pet", class:"avatar avatar-middle" %>
+      <% end %>
+      <p class="mt-2"><%= @consultation.pet.name %></p>
+    </div>
+  </div>
 
-  <% if @consultation.pet.photo.attached? %>
-   <%= cl_image_tag @consultation.pet.photo.key, alt: @consultation.pet.name, class:"avatar" %>
-  <% else %>
-    <%= image_tag "pet-avatar.png", alt: "Default picture for pet", class:"avatar" %>
-  <% end %>
-</div>
+  <!-- Duration in minutes-->
+  <div>
+    <table>
+      <tr>
+        <td>Duration</td>
+        <td><%= ((@consultation.updated_at - @consultation.created_at)/(1.minute)).round %> min.</td>
+      </tr>
+      <tr>
+          <td>Total</td>
+          <td> $<%= @receipt.price_cents  %></td>
+      </tr>
+    </table>
 
-Veteranian: <%= User.find(@consultation.vet_id).name %> <br>
-Price: <%= @receipt.price_cents %> <br>
-<% if @consultation.feedback %>
-    General rating: <%= @consultation.feedback.rating %> <br>
-    Vet rating: <%= @consultation.feedback.vet_rating %> <br>
-    Friend rating: <%= @consultation.feedback.friend_rating %> <br>
-<% end %>
+  </div>
+
+  <div class="text-center fs-1">
+    <% if @feedback_avg %>
+      <% if @feedback_avg == 1 %>
+        <span class="fa fa-star star-checked"></span>
+        <span class="fa fa-star"></span>
+        <span class="fa fa-star"></span>
+        <span class="fa fa-star"></span>
+        <span class="fa fa-star"></span>
+      <% elsif @feedback_avg == 2 %>
+        <span class="fa fa-star star-checked"></span>
+        <span class="fa fa-star star-checked"></span>
+        <span class="fa fa-star"></span>
+        <span class="fa fa-star"></span>
+        <span class="fa fa-star"></span>
+
+      <% elsif @feedback_avg == 3 %>
+        <span class="fa fa-star star-checked"></span>
+        <span class="fa fa-star star-checked"></span>
+        <span class="fa fa-star star-checked"></span>
+        <span class="fa fa-star"></span>
+        <span class="fa fa-star"></span>
+
+      <% elsif @feedback_avg == 4 %>
+        <span class="fa fa-star star-checked"></span>
+        <span class="fa fa-star star-checked"></span>
+        <span class="fa fa-star star-checked"></span>
+        <span class="fa fa-star star-checked"></span>
+        <span   class="fa fa-star"></span>
+
+      <% elsif @feedback_avg == 5 %>
+        <span class="fa fa-star star-checked"></span>
+        <span class="fa fa-star star-checked"></span>
+        <span class="fa fa-star star-checked"></span>
+        <span class="fa fa-star star-checked"></span>
+        <span class="fa fa-star star-checked"></span>
+
+
+      <% end %>
+    <% end %>
+    </div>
+    <div class="text-center">
+      <%= link_to "See full feedback", consultation_feedback_path(@consultation, @consultation.feedback), style:"font-size: 0.5rem !important;"%>
+    </div>
+  </div>
+
+
+<div>
