@@ -22,7 +22,7 @@
             <% end %>
 
             <div>
-              <%= link_to consultation_path(c) do %>
+              <%= link_to consultation_receipt_path(c, c.receipt) do %>
                 <p class="small-font">Consulted with Dr. <%= User.find(c.vet_id).name %></p>
               <% end %>
               <p class="small-font"><%= c.created_at.strftime("%B %d, %Y") %></p>
