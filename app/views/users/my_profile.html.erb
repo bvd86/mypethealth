@@ -38,6 +38,18 @@
         <!--Email -->
         <p><%= @user.email %></p>
 
+          <!-- Availability -->
+        <% if @user.specialties.count > 0 %>
+          <p><strong>Your current status is:</strong>
+            <% if @user.available %>
+              Available. <%= link_to "Make me unavailable", make_unavailable_path, method: :patch, class: "btn btn-warning" %>
+            <% else %>
+              Unavailable. <%= link_to "Make me available", make_available_path, method: :patch, class: "btn btn-success" %>
+            <% end %>
+          </p>
+
+        <% end %>
+
 
       </div>
 
@@ -56,16 +68,3 @@
 
 
 <%= render 'shared/footer' %>
-
-
-    <%# Availability %>
-  <!--%# if @user.specialties.count > 0 %>
-    <p><strong>Your current status is:</strong>
-      <%# if @user.available %>
-        Available. <%= link_to "Make me unavailable", make_unavailable_path, method: :patch, class: "btn btn-warning" %>
-      <%# else %>
-        Unavailable. <%= link_to "Make me available", make_available_path, method: :patch, class: "btn btn-success" %>
-      <%# end %>
-    </p>
-
-  <%# end %-->

@@ -12,7 +12,7 @@ class ReceiptsController < ApplicationController
     @receipt.save!
     @consultation.receipt = @receipt
     @consultation.save!
-    redirect_to consultation_receipt_path(@consultation, @consultation.receipt)
+    redirect_to consultation_receipt_path(@consultation, @receipt)
   end
 
   private
