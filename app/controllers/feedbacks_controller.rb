@@ -17,7 +17,7 @@ class FeedbacksController < ApplicationController
 
     if @feedback.save!
       create_receipt
-      redirect_to consultation_receipt_path(@feedback.consultation, @feedback.consultation.id)
+      redirect_to consultation_receipt_path(@feedback.consultation, @feedback.consultation.receipt)
     else
       render :new
     end
