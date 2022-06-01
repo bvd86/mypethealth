@@ -8,34 +8,37 @@
 <% if @user.pets.empty? %>
   <p class="small-font">You have not added any pets yet.</p>
 <% else %>
-  <div class="row row-cols-2 row-cols-md-3 g-4">
+  <div class="pet-card">
     <% @user.pets.each do |p| %>
-      <div class="col">
-        <div class="card h-100">
-        <!-- Pet's photo -->
-          <% if p.photo.attached? %>
-          <%= cl_image_tag p.photo.key, alt: p.name, class:"card-img-top" %>
-          <% else %>
-            <%= image_tag "pet-avatar.png", alt: "Default picture for pet", class:"card-img-top" %>
-          <% end %>
-          <!-- Pet's info -->
-          <div class="card-body">
-            <div class="d-flex gap-2">
-              <h5 class="card-title"><%= p.name %></h5>
-              <!-- Link to edit pet info -->
-              <p><%= link_to edit_user_pet_path(@user, p.id) do %>
-                <i class="fa-solid fa-pencil edit-pen"></i>
-              <% end %></p>
-              <!-- Link to Consultation history-->
+      <div class="a-box">
+        <div class="img-container flip-card">
+          <div class="img-inner flip-card-inner">
+            <div class="inner-skew flip-card-front ">
+              <% if p.photo.attached? %>
+                <%= cl_image_tag p.photo.key, alt: p.name, class:"card-img-top" %>
+              <% else %>
+                <%= image_tag "pet-avatar.png", alt: "Default picture for pet", class:"card-img-top" %>
+              <% end %>
+            </div>
+            <div class="flip-card-back">
               <%= link_to user_pet_consultations_path(@user, p.id) do %>
                 <i class="fa-solid fa-book-medical icon-history"></i>
               <% end %>
+              <p><%= link_to edit_user_pet_path(@user, p.id) do %>
+                <i class="fa-solid fa-pencil edit-pen"></i>
+              <% end %></p>
             </div>
-            <p class="card-text mb-0"><%= p.species %></p>
-            <p class="card-text"><%= p.breed %></p>
-
           </div>
         </div>
+        <div class="text-container">
+          <div class="content-container">
+            <h3><%= p.name %></h3>
+            <h4><%= p.species %></h4>
+          </div>
+          <div class="three-dot">
+          <h1>...</h1>
+        </div>
+      </div>
       </div>
     <% end %>
   </div>
