@@ -1,16 +1,17 @@
-<div style="display:flex; justify-content: space-between;">
+<div class="consultation-header" style="display:flex; justify-content: space-between;">
   <h1>My consultations</h1>
   <%= link_to "➕ Add a consultation", new_consultation_path %>
 </div>
 
 <% @consultations.each do |c| %>
-Name: <%= c.pet.name %> <br>
-Species: <%= c.pet.species %> <br>
-Concern: <%= c.concern_category %> <br>
-More info: <%= c.additional_info %> <br>
-<%# Message history not implemented yet%>
-<%= link_to "See consultation", consultation_path(c) %> <br>
------------------------------ <br>
+<div class="my-consultation">
+  <p class="consultation-name">Name: <%= c.pet.name %></p>
+  <p class="consultation-species">Species: <%= c.pet.species %></p>
+  <p class="consultation-text">Concern: <%= c.concern_category %></p>
+  <p class="consultation-text">More info: <%= c.additional_info %></p>
+  <%# Message history not implemented yet%>
+  <%= link_to "See consultation", consultation_path(c) %>
+</div>
 <% end %>
 
 <%= render 'shared/footer' %>
