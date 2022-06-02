@@ -13,7 +13,7 @@
 
     <div>
       <% @user.consultations.reverse.each do |c| %>
-        <% if !c.vet_id.nil? %>
+        <% if !c.vet_id.nil? && c.pet.user == @user  %>
 
 
           <div class="d-flex gap-2 my-2">
