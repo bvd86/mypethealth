@@ -5,13 +5,12 @@ class Specialty < ApplicationRecord
   SPECIALTIES = {
     "Avians" => %w[ bird chicken owl parrot cockatoo budgy],
     "Equines" => %w[ horse pony ],
-    "Beef Cattles" => %w[ cow ],
+    "Farm Animals" =>[ "cow", "beef cattles", "farm animals"],
     "Felines" => %w[ cat lynx tiger ],
     "Canines" => %w[ dog ],
-    "Exotic Mammals" => %w[ exotic ],
+    "Exotic Mammals" => [ "exotic", "exotic mammals"],
     "Dairy Mammals" => %w[ cow  goat ],
-    "Reptile" => %w[ snake turtle lizard iguana ],
-    "Amphibian" => %w[ frog ],
+    "Reptile and Amphibian" => %w[ snake turtle lizard iguana frog ],
     "Rodent" => %w[ mouse hamster chinchilla ]
   }
 
