@@ -20,10 +20,8 @@
             <% end %>
 
             <div>
-              <% if c.active == false %>
-                <%= link_to consultation_receipt_path(c, c.receipt) do %>
-                  <p class="small-font">Consulted with Dr. <%= User.find(c.vet_id).name %></p>
-                <% end %>
+              <%= link_to consultation_receipt_path(c, c.receipt) do %>
+                <p class="small-font">Consulted with Dr. <%= User.find(c.vet_id).name %></p>
               <% end %>
               <p class="small-font"><%= c.created_at.strftime("%B %d, %Y") %></p>
             </div>
