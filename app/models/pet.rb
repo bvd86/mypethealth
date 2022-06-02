@@ -4,7 +4,7 @@ class Pet < ApplicationRecord
 
   has_one_attached :photo
 
-  SPECIES = ['Dog', 'Cat', 'Bird', 'Horse', 'Rodent', 'Fish', 'Exotic animals', 'Farm animals', 'Reptile', 'Other'].freeze
+  SPECIES = ['Dog', 'Cat', 'Bird', 'Horse', 'Rodent', 'Fish', 'Exotic Mammals', 'Farm animals', 'Reptile and Amphibian', 'Other'].freeze
 
   validates :species, inclusion: { in: SPECIES }
 end
