@@ -95,7 +95,9 @@
     <% end %>
     </div>
     <div class="text-center">
-      <%= link_to "See full feedback", consultation_feedback_path(@consultation, @consultation.feedback), style:"font-size: 0.5rem !important;"%>
+      <% if @consultation.feedback %>
+        <%= link_to "See full feedback", consultation_feedback_path(@consultation, @consultation.feedback), style:"font-size: 0.5rem !important;"%>
+      <% end %>
     </div>
   </div>
 
