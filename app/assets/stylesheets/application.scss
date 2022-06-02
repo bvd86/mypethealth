@@ -6,11 +6,15 @@
 // External libraries
 @import "@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder";
 @import "bootstrap/scss/bootstrap";
+
 // @import "font-awesome-sprockets";
 @import "font-awesome";
 @import "mapbox-gl/dist/mapbox-gl";
 
-// css for star-rating
+// Select2 CSS
+@import 'select2/dist/css/select2';
+
+// CSS for star-rating
 @import "jquery-bar-rating/dist/themes/css-stars";
 
 // Your CSS partials
