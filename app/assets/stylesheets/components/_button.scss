@@ -13,3 +13,25 @@
   background-color: $tealslate;
   color: $cream;
 }
+
+.btn-link-faint {
+  opacity: 0.7;
+  display: block;
+}
+
+.banner-button {
+  text-decoration: none;
+  color: $cream;
+}
+
+.banner-button:hover {
+  color: $cream;
+}
+
+.star-checked {
+ color: $cream;
+}
+
+.star-unchecked {
+  color: $gray;
+ }

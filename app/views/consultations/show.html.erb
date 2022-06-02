@@ -23,14 +23,14 @@
         label: false,
         placeholder: "What's happening with #{@consultation.pet.name}?",
         wrapper_html: {class: "flex-grow-1"} %>
-
+      <%= f.input :photo, label: false, as: :file %>
     <%= f.submit "Send", class: "btn btn-primary" %>
   <% end %>
 
 
   <%= form_for @consultation, url: {action: "end_consultation"} do |f| %>
   <%= f.hidden_field :id, :value => @consultation.id %>
-  <%= f.submit "End consultation" %>
+  <%= f.submit "End consultation", class: "btn btn-secondary" %>
   <% end %>
 <% end %>
 </div>

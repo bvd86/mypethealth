@@ -8,8 +8,8 @@
   <% else %>
 
     <div>
-      <% @user.consultations.each do |c| %>
-        <% if !c.vet_id.nil? %>
+      <% @user.consultations.reverse.first(5).each do |c| %>
+        <% if !c.vet_id.nil? && c.pet.user == @user && !c.receipt.nil?%>
 
 
           <div class="d-flex gap-2 my-2">
@@ -20,7 +20,7 @@
             <% end %>
 
             <div>
-              <%= link_to consultation_path(c) do %>
+              <%= link_to consultation_receipt_path(c, c.receipt) do %>
                 <p class="small-font">Consulted with Dr. <%= User.find(c.vet_id).name %></p>
               <% end %>
               <p class="small-font"><%= c.created_at.strftime("%B %d, %Y") %></p>

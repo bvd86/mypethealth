@@ -8,19 +8,27 @@
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
+
         <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
           <ul class="navbar-nav ms-auto">
             <li class="nav-item">
-              <%= link_to "My profile", my_profile_path(current_user), class: "dropdown-item" %>
+              <%= link_to "My profile", my_profile_path, class: "dropdown-item" %>
             </li>
             <li class="nav-item">
-              <%= link_to "My consultations", my_consultations_path(current_user), class: "dropdown-item" %>
+              <%= link_to "My consultations", my_consultations_path, class: "dropdown-item" %>
             </li>
+            <% if user_signed_in? %>
+              <li class="nav-item">
+                <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+              </li>
+            <% else %>
             <li class="nav-item">
-              <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+              <%= link_to "Log In / Sign Up", new_user_session_path, class: "dropdown-item" %>
             </li>
+            <% end %>
           </ul>
         </div>
+
       </nav>
   </div>
 </section>

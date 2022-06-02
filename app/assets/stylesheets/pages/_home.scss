@@ -11,24 +11,25 @@
   height: fit-content;
 }
 
-.title-image {
-  width: 40%;
-  position: absolute;
-  right: 10%;
-  top: 35%;
-}
-
 .landing-extension{
   // background-color: $tealslate;
   width: 100vw;
   margin-left: calc(-1 * #{$spacing-containter-left});
-  padding: 15% 12%;
+  padding: 6% 12%;
   background: $tealslate
+}
+
+.banner-text {
+  padding: 10%;
 }
 
 .title-text {
   color: $cream;
   font-size: 4.5rem;
+}
+
+.image-animal {
+  text-align: center;
 }
 
 // Features //
