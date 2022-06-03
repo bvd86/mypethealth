@@ -22,17 +22,6 @@
         padding: 1rem;
       }
 
-      .message-bubble {
-        background-color: #F1E8D0;
-        border-radius: 50px;
-        box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.3);
-        position: relative;
-        width: 75%;
-        margin-bottom: 15px;
-        padding: 1px 20px;
-        padding-top: 10px;
-      }
-
       .messages {
         height: 100%;
         overflow: scroll;
@@ -67,17 +56,6 @@
     border-bottom: 1px solid $gray-200;
     margin-bottom: 0;
     padding: 1rem;
-  }
-
-  .message-bubble {
-    background-color: #F1E8D0;
-    border-radius: 50px;
-    box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.3);
-    position: relative;
-    width: 75%;
-    margin-bottom: 15px;
-    padding: 1px 20px;
-    padding-top: 10px;
   }
 
   .messages {
