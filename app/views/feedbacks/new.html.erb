@@ -1,11 +1,18 @@
-FEEDBACK FORM
-<% stars = 1..5 %>
- <%= simple_form_for [ @consultation, @feedback ] do |f| %>
-      <%= f.input :rating, label: 'How was your overall experience?', collection: stars %>
-      <%= f.input :vet_rating, label: 'Was the vetenarian able to answer your questions?', collection: stars %>
-      <%= f.input :friend_rating, label: 'Would you recommend us to a friend?', collection: stars %>
-      <%= f.input :comment %>
-      <%= f.submit class: "btn btn-grad" %>
-  <% end %>
+<div class="container-small">
+  <div class="mt-4 mb-5">
+    <h1>We value your feedback!</h1>
+    <h4 style="font-weight: lighter;">Thank you for consulting with us! <br> Tell us how we did...</h4>
+  </div>
 
-<%= link_to "Skip feedback", receipt_path(@consultation) %>
+  <div class="mb-2">
+    <%= simple_form_for [ @consultation, @feedback ] do |f| %>
+          <%= f.input :rating, label: 'How was your overall experience?', collection: Feedback::STARS %>
+          <%= f.input :vet_rating, label: 'Was the vetenarian able to answer your questions?', collection: Feedback::STARS %>
+          <%= f.input :friend_rating, label: 'Would you recommend us to a friend?', collection: Feedback::STARS %>
+          <%= f.input :comment %>
+          <%= f.submit "Leave Feedback", class: "form-control btn btn-primary", style:"color:#F2E9D0;" %>
+    <% end %>
+  </div>
+
+  <%= link_to "Skip", consultation_receipts_path(@consultation), method: :post,  class:"btn btn-link btn-link-faint mt-4" %>
+</div>

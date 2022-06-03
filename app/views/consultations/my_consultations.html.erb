@@ -1,16 +1,39 @@
-<div style="display:flex; justify-content: space-between;">
+
+<div class="my-5">
+
   <h1>My consultations</h1>
-  <%= link_to "➕ Add a consultation", new_consultation_path %>
 </div>
 
-<% @consultations.each do |c| %>
-Name: <%= c.pet.name %> <br>
-Species: <%= c.pet.species %> <br>
-Concern: <%= c.concern_category %> <br>
-More info: <%= c.additional_info %> <br>
-<%# Message history not implemented yet%>
-<%= link_to "See consultation", consultation_path(c) %> <br>
------------------------------ <br>
-<% end %>
+<div class="mb-4">
+  <% if @user.consultations.empty? %>
+
+    <p class="small-font">You have no previous consultations.</p>
+
+  <% else %>
+
+    <div>
+      <% @user.consultations.reverse.each do |c| %>
+        <% if !c.vet_id.nil? && c.pet.user == @user && !c.receipt.nil? %>
+
+
+          <div class="d-flex gap-2 my-2">
+            <% if c.pet.photo.attached? %>
+            <%= cl_image_tag c.pet.photo.key, alt: c.pet.name, class:"avatar", style:"height: 50px" %>
+            <% else %>
+              <%= image_tag "pet-avatar.png", alt: "Default picture for pet", class:"avatar" %>
+            <% end %>
+
+            <div>
+              <%= link_to consultation_receipt_path(c, c.receipt) do %>
+                <p class="small-font">Consulted with Dr. <%= User.find(c.vet_id).name %></p>
+              <% end %>
+              <p class="small-font"><%= c.created_at.strftime("%B %d, %Y") %></p>
+            </div>
+          </div>
+          <% end %>
+      <% end %>
+    </div>
+  <% end %>
+</div>
 
 <%= render 'shared/footer' %>

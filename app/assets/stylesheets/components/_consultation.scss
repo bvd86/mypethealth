@@ -1,0 +1,58 @@
+// My consultation page //
+
+.my-consultation {
+  padding: 5px 5px;
+  margin: 5px 5px;
+  border: 1px solid $paleteal;
+  background-color: rgba(84, 128, 136, 0.2);
+}
+
+.consultation-header {
+  font-size: $body-font;
+  align-items: baseline;
+}
+
+.consultation-name {
+  font-size: 2rem;
+  margin-bottom: 3px;
+  font-family: $body-font;
+}
+
+.consultation-species {
+  font-size: 1.5rem;
+  margin-bottom: 3px;
+  font-family: $body-font;
+}
+
+.consultation-text {
+  margin-bottom: 3px;
+  font-family: $body-font;
+}
+
+.container-md {
+  text-align: -webkit-center;
+}
+
+
+// Consultation form //
+
+.new-consultation {
+  border: 1px solid $paleteal;
+  padding: 10px 10px;
+}
+
+@media (min-width: 1000px) {
+
+  .new-consultation {
+    width: 70%;
+  }
+
+}
+
+@media (min-width: 1250px) {
+
+  .new-consultation {
+    width: 55%;
+  }
+
+}

@@ -94,6 +94,7 @@ GEM
       rest-client
     coderay (1.1.3)
     concurrent-ruby (1.1.10)
+    connection_pool (2.2.5)
     crass (1.0.6)
     csv (3.2.3)
     devise (4.8.1)
@@ -230,6 +231,12 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2)
     semantic_range (3.0.0)
+    sidekiq (6.4.2)
+      connection_pool (>= 2.2.2)
+      rack (~> 2.0)
+      redis (>= 4.2.0)
+    sidekiq-failures (1.0.1)
+      sidekiq (>= 4.0.0)
     spring (4.0.0)
     sprockets (4.0.3)
       concurrent-ruby (~> 1.0)
@@ -301,6 +308,8 @@ DEPENDENCIES
   redis (~> 4.0)
   sass-rails (>= 6)
   selenium-webdriver (>= 4.0.0.rc1)
+  sidekiq
+  sidekiq-failures (~> 1.0)
   simple_form!
   spring
   turbolinks (~> 5)
@@ -313,4 +322,4 @@ RUBY VERSION
    ruby 3.0.3p157
 
 BUNDLED WITH
-   2.3.13
+   2.3.12
