@@ -15,6 +15,7 @@ export default class extends Controller {
   }
 
   #insertMessageAndScrollDown(data) {
+    // Logic to know if the sender is the current_user
     const currentUserIsSender = this.currentUserIdValue === data.sender_id
 
     const messageElement = this.#buildMessageElement(currentUserIsSender, data.message)
@@ -24,6 +25,7 @@ export default class extends Controller {
   }
 
   #buildMessageElement(currentUserIsSender, message) {
+    //  Creating a Div depending on user //
     return `
       <div class="message-row d-flex ${this.#justifyClass(currentUserIsSender)}">
         <div class="${this.#userStyleClass(currentUserIsSender)}">
@@ -34,10 +36,12 @@ export default class extends Controller {
   }
 
   #justifyClass(currentUserIsSender) {
+    // Return justify content depending on user //
     return currentUserIsSender ? "justify-content-end" : "justify-content-start"
   }
 
   #userStyleClass(currentUserIsSender) {
+    // return correct style depending on user //
     return currentUserIsSender ? "sender-style" : "receiver-style"
   }
 
