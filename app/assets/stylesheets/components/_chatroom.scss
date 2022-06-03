@@ -4,13 +4,17 @@
   and (-webkit-min-device-pixel-ratio: 3) {
 
     .chatroom {
-      background: white;
-      margin-top: 9px;
-      height: 60vw;
+      background-color: $paleteal;
+      border-radius: 25px;
+      box-shadow: 0px 0px 10px 5px rgba(0,0,0,0.2);
+      overflow: hidden;
+      padding: 15px;
+      position: relative;
+      width: 95%;
+      max-width: 100%;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      flex-grow: 1;
 
       h1 {
         border-bottom: 1px solid $gray-200;
@@ -18,10 +22,21 @@
         padding: 1rem;
       }
 
+      .message-bubble {
+        background-color: #F1E8D0;
+        border-radius: 50px;
+        box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.3);
+        position: relative;
+        width: 75%;
+        margin-bottom: 15px;
+        padding: 1px 20px;
+        padding-top: 10px;
+      }
+
       .messages {
         height: 100%;
         overflow: scroll;
-        padding: 1rem;
+        margin-top: 10px;
       }
 
       #new_message {
@@ -36,13 +51,17 @@
 }
 
 .chatroom {
-  background: white;
-  margin-top: 9px;
-  height: 60vw;
+  background-color: $paleteal;
+  border-radius: 25px;
+  box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  padding: 15px;
+  position: relative;
+  width: 700px;
+  max-width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  flex-grow: 1;
 
   h1 {
     border-bottom: 1px solid $gray-200;
@@ -50,10 +69,21 @@
     padding: 1rem;
   }
 
+  .message-bubble {
+    background-color: #F1E8D0;
+    border-radius: 50px;
+    box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.3);
+    position: relative;
+    width: 75%;
+    margin-bottom: 15px;
+    padding: 1px 20px;
+    padding-top: 10px;
+  }
+
   .messages {
     height: 100%;
     overflow: scroll;
-    padding: 1rem;
+    margin-top: 10px;
   }
 
   #new_message {
@@ -64,4 +94,31 @@
       margin-bottom: 0;
     }
   }
+}
+
+#message_content {
+	font-size: 16px;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	padding: 10px 15px;
+	width: 100%;
+}
+
+.end-consultation {
+  text-align: center;
+  margin: 10px;
+}
+
+#message_photo {
+  display: none;
+}
+
+.fa-paperclip {
+  position: absolute;
+  right: 25px;
+  font-size: x-large;
+  bottom: 10px;
+  cursor: pointer;
 }
