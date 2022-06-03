@@ -3,13 +3,17 @@
 <%# Chatroom window %>
 <div class="container chatroom"
      data-controller="consultation-subscription"
-     data-consultation-subscription-consultation-id-value="<%= @consultation.id %>" >
+     data-consultation-subscription-consultation-id-value="<%= @consultation.id %>",
+     data-consultation-subscription-current-user-id-value="<%= current_user.id %>" >
 
   <h1>About <%= @consultation.pet.name %></h1>
-
   <div class="messages" data-consultation-subscription-target="messages">
     <% @consultation.messages.each do |message| %>
-        <%= render "messages/message", message: message %>
+      <div class="message-row d-flex <%= message.sender?(current_user) ? 'justify-content-end' : 'justify-content-start' %>">
+        <div class="<%= message.sender?(current_user) ? 'sender-style' : 'receiver-style' %>">
+          <%= render "messages/message", message: message %>
+        </div>
+      </div>
     <% end %>
   </div>
 
