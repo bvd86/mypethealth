@@ -1,20 +1,26 @@
 <div class="margin-above-footer">
+  <h1 class="mt-5 mb-3"><%= @pet.name %>'s consultations</h1>
 
-    <h1 class="my-5"><%= @pet.name %>'s consultations</h1>
+  <% if @pet.photo.attached? %>
+    <%= cl_image_tag @pet.photo.key, alt: @pet.name, class:"avatar-large" %>
+  <% else %>
+    <%= image_tag "pet-avatar.png", alt: "Default picture for pet", class:"avatar-large" %>
+  <% end %>
 
-  <% @consultations.each do |c| %>
-  <% if c.vet_id.present? %>
+  <% if @consultations.any? %>
 
 
-    Consultation with Dr. <%= User.find(c.vet_id).name %> <br>
-    Name: <%= c.pet.name %> <br>
-    Species: <%= c.pet.species %> <br>
-    Concern: <%= c.concern_category %> <br>
-    More info: <%= c.additional_info %> <br>
-    <%# Message history not implemented yet%>
-    <%= link_to "Message history", consultation_path(@user) %> <br>
-    ----------------------------- <br>
+    <% @consultations.each do |c| %>
+      <% if c.vet_id.present? && c.receipt.present? %>
+
+
+        <p>Consultation with Dr. <%= User.find(c.vet_id).name %> </p>
+        <p>Concern: <%= c.concern_category %></p>
+        <p class="small-font"><%= c.created_at.strftime("%B %d, %Y") %></p>
+
+        <%= link_to "View Receipt", consultation_receipt_path(c, c.receipt) %>
+      <% end %>
     <% end %>
- <% end %>
+  <% end %>
   <%= render 'shared/footer' %>
 </div>
