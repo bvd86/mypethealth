@@ -1,17 +1,20 @@
-<div style="display:flex; justify-content: space-between;">
-  <h1><%= @pet.name %>'s consultations</h1>
-  <%= link_to "➕ Add a consultation", new_consultation_path %>
+<div class="margin-above-footer">
+
+    <h1 class="my-5"><%= @pet.name %>'s consultations</h1>
+
+  <% @consultations.each do |c| %>
+  <% if c.vet_id.present? %>
+
+
+    Consultation with Dr. <%= User.find(c.vet_id).name %> <br>
+    Name: <%= c.pet.name %> <br>
+    Species: <%= c.pet.species %> <br>
+    Concern: <%= c.concern_category %> <br>
+    More info: <%= c.additional_info %> <br>
+    <%# Message history not implemented yet%>
+    <%= link_to "Message history", consultation_path(@user) %> <br>
+    ----------------------------- <br>
+    <% end %>
+ <% end %>
+  <%= render 'shared/footer' %>
 </div>
-
-<% @consultations.each do |c| %>
-Consultation with Dr. <%= c.user.name %> <br>
-Name: <%= c.pet.name %> <br>
-Species: <%= c.pet.species %> <br>
-Concern: <%= c.concern_category %> <br>
-More info: <%= c.additional_info %> <br>
-<%# Message history not implemented yet%>
-<%= link_to "Message history", consultation_path(@user) %> <br>
------------------------------ <br>
-<% end %>
-
-<%= render 'shared/footer' %>
