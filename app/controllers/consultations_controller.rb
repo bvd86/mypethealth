@@ -36,6 +36,7 @@ class ConsultationsController < ApplicationController
     @consultation.vet_id = params[:vet_id]
 
     if @consultation.save!
+      Notification.create(recipient: @consultation.vet_id, user: @consultation.user_id, action: "requested", notifiable: @consultation.vet_id)
       redirect_to consultation_path(@consultation)
     else
       render :new
