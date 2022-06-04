@@ -1,5 +1,3 @@
+<h1>Edit your pet</h1>
 <%= link_to "Back", my_profile_path %>
 <%= render 'shared/pet_form' %>
-
-<%= link_to "Delete", user_pet_path(@user, @pet.id), method: :delete,
-data: {confirm: 'You are about to remove this pet from your list, are you sure?'}%>

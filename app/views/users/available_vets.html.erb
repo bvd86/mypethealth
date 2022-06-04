@@ -21,6 +21,11 @@
           <div class="card-body">
             <h5 class="card-title">Dr. <%= vet.name %></h5>
             <p class="card-text">Specialties: <%= vet.specialties.map { |s| s.name }.to_sentence %> </p>
+              <% if vet.feedbacks.count == 0 %>
+                No ratings yet
+              <% else %>
+                <%= vet.feedbacks.map(&:rating).sum.fdiv(vet.feedbacks.count).round(1) %> Stars
+              <% end %>
             <%= link_to "Connect", start_consultation_path(vet_id: vet), class: "btn-sm btn-primary card-btn-connect", style:"color:#F2E9D0;"  %>
           </div>
         </div>
