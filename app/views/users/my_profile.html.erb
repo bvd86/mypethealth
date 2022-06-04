@@ -1,54 +1,48 @@
 <div class="navbar-extension">
-    <div id="user-information" class="d-flex justify-content-start gap-3 pt-2">
+    <div id="user-information" class="d-flex justify-content-start gap-3 pt-2 me-2">
       <!-- Profile Photo-->
-      <div class="d-flex flex-column gap-2 justtify-content-evenly">
+      <div class="d-flex flex-column gap-2 justify-content-center">
         <% if @user.photo.attached? %>
-          <%= cl_image_tag @user.photo.key, class: "avatar" %>
+          <%= cl_image_tag @user.photo.key, class: "avatar-large" %>
         <% else %>
-          <%= image_tag 'blank-avatar.png', class: "avatar" %>
+          <%= image_tag 'blank-avatar.png', class: "avatar-large" %>
         <% end %>
-        <!-- Toggle switch -->
-        <% if @user.specialties.count > 0 %>
-          <label class="switch">
-          <%= simple_form_for @user do |f| %>
-            <%= check_box_tag 'availability', '1', @user.available %>
 
-            <span class="slider round"></span>
+        <!-- Toggle switch for availability -->
+        <div style="margin-left: 0.3rem;">
+          <% if @user.specialties.count > 0 %>
+            <p class="smaller-font mb-1">On duty?</p>
+            <label class="switch">
+            <%= simple_form_for @user, url: {action: "change_vet_status"} do |f| %>
+              <%= check_box_tag 'availability', '1', @user.available, onchange: 'this.form.submit();', data: {remote: true} %>
+              <span class="slider round"></span>
+              <span class="labels" data-on="YES" data-off="NO"></span>
+            <% end %>
+            </label>
           <% end %>
-          </label>
-        <% end %>
-
-
+        </div>
       </div>
+
+
+
 
       <div>
         <!-- Name & Specialties -->
         <% if @user.specialties.count > 0 %>
           <p><strong>Dr. <%= @user.name %></strong></p>
-          <p><strong>Specialties:</strong>
-            <% @user.specialties.each do |s| %>
-              <%= s.name %></p>
-            <% end %></p>
+          <!--Email -->
+          <p><%= @user.email %></p>
+
+          <p class="mt-3"><strong>Specialties</strong>
+          <p style="text-shadow: none;"><%= @user.specialties.map { |s| s.name }.to_sentence %></p>
         <% else %>
           <p><strong><%= @user.name %></strong></p>
+          <!--Email -->
+          <p><%= @user.email %></p>
         <% end %>
 
         <!-- Address -->
-        <p><%= @user.address %></p>
-        <!--Email -->
-        <p><%= @user.email %></p>
-
-          <!-- Availability -->
-        <% if @user.specialties.count > 0 %>
-          <p><strong>Your current status is:</strong>
-            <% if @user.available %>
-              Available. <%= link_to "Make me unavailable", make_unavailable_path, method: :patch, class: "btn btn-warning" %>
-            <% else %>
-              Unavailable. <%= link_to "Make me available", make_available_path, method: :patch, class: "btn btn-success" %>
-            <% end %>
-          </p>
-
-        <% end %>
+        <!--p><%#= @user.address %></p-->
 
 
       </div>

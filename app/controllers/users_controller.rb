@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :find_user, only: [:edit, :update, :my_profile,
                                    :make_available, :make_unavailable,
-                                   :available_vets, :remove_photo]
+                                   :available_vets, :remove_photo, :change_vet_status]
 
   def my_profile; end
 
@@ -20,16 +20,8 @@ class UsersController < ApplicationController
     redirect_to my_profile_path
   end
 
-  def make_available
-    @user.update!(available: true)
-
-    redirect_to my_profile_path
-  end
-
-  def make_unavailable
-    @user.update!(available: false)
-
-    redirect_to my_profile_path
+  def change_vet_status
+    @user.available ? @user.update!(available: false) : @user.update!(available: true)
   end
 
   def remove_photo
