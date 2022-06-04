@@ -5,7 +5,11 @@
       <%= image_tag 'blank-avatar.png', class: "avatar-chat" %>
     <% end %>
   <small>
+    <% if message.user.specialties.present? %>
+    <strong>Dr. <%= message.user.name %> <i class="fa-solid fa-user-doctor"></i></strong>
+    <% else %>
     <strong><%= message.user.name %></strong>
+    <% end %>
     <br>
     <%= cl_image_tag message.photo.key, class: "chat-image", height: 200, width: 200, crop: :fill if message.photo.attached?%>
   </small>
