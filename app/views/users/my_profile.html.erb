@@ -7,11 +7,11 @@
         <% else %>
           <%= image_tag 'blank-avatar.png', class: "avatar" %>
         <% end %>
-        <!-- Toggle switch -->
+        <!-- Toggle switch for availability -->
         <% if @user.specialties.count > 0 %>
           <label class="switch">
-          <%= simple_form_for @user do |f| %>
-            <%= check_box_tag 'availability', '1', @user.available, onchange: remote_function(url: { controller: :user, action: :make_available}) %>
+          <%= simple_form_for @user, url: {action: "change_vet_status"} do |f| %>
+            <%= check_box_tag 'availability', '1', @user.available, onchange: 'this.form.submit();', data: {remote: true} %>
 
             <span class="slider round"></span>
           <% end %>
@@ -26,31 +26,17 @@
         <!-- Name & Specialties -->
         <% if @user.specialties.count > 0 %>
           <p><strong>Dr. <%= @user.name %></strong></p>
-          <p><strong>Specialties:</strong>
-            <% @user.specialties.each do |s| %>
-              <%= s.name %></p>
-            <% end %></p>
+
+          <p><strong>Spcialties:</strong>
+          <p><%= @user.specialties.map { |s| s.name }.to_sentence %></p>
         <% else %>
           <p><strong><%= @user.name %></strong></p>
         <% end %>
 
         <!-- Address -->
-        <p><%= @user.address %></p>
+        <!--p><%#= @user.address %></p-->
         <!--Email -->
         <p><%= @user.email %></p>
-
-          <!-- Availability -->
-        <% if @user.specialties.count > 0 %>
-          <p><strong>Your current status is:</strong>
-            <% if @user.available %>
-              Available. <%= link_to "Make me unavailable", make_unavailable_path, method: :patch, class: "btn btn-warning" %>
-            <% else %>
-              Unavailable. <%= link_to "Make me available", make_available_path, method: :patch, class: "btn btn-success" %>
-            <% end %>
-          </p>
-
-        <% end %>
-
 
       </div>
 
