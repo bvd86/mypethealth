@@ -1,41 +1,42 @@
 
-<div>
-<div class="my-5">
+<div class="margin-above-footer">
+  <div class="my-5">
 
-  <h1>My consultations</h1>
-</div>
+    <h1>My consultations</h1>
+  </div>
 
-<div class="mb-4">
-  <% if @user.consultations.empty? %>
+  <div>
+    <% if @user.consultations.empty? %>
 
-    <p class="small-font">You have no previous consultations.</p>
+      <p class="small-font">You have no previous consultations.</p>
 
-  <% else %>
+    <% else %>
 
-    <div>
-      <% @user.consultations.reverse.each do |c| %>
-        <% if !c.vet_id.nil? && c.pet.user == @user && !c.receipt.nil? %>
+      <div>
+        <% @user.consultations.reverse.each do |c| %>
+          <% if !c.vet_id.nil? && c.pet.user == @user && !c.receipt.nil? %>
 
 
-          <div class="d-flex align-items-center gap-3 my-3 card-consult-history">
-            <% if c.pet.photo.attached? %>
-            <%= cl_image_tag c.pet.photo.key, alt: c.pet.name, class:"avatar ms-3" %>
-            <% else %>
-              <%= image_tag "pet-avatar.png", alt: "Default picture for pet", class:"avatar ms-3" %>
-            <% end %>
-
-            <div>
-              <%= link_to consultation_receipt_path(c, c.receipt) do %>
-                <p class="small-font fw-bold">Consulted with Dr. <%= User.find(c.vet_id).name %></p>
+            <div class="d-flex align-items-center gap-3 my-3 card-consult-history">
+              <% if c.pet.photo.attached? %>
+              <%= cl_image_tag c.pet.photo.key, alt: c.pet.name, class:"avatar ms-3" %>
+              <% else %>
+                <%= image_tag "pet-avatar.png", alt: "Default picture for pet", class:"avatar ms-3" %>
               <% end %>
-              <p class="small-font">Concern Type: <%= c.concern_category.present? ? c.concern_category : "Not specified" %></p>
-              <p class="small-font"><%= c.created_at.strftime("%B %d, %Y") %></p>
+
+              <div>
+                <%= link_to consultation_receipt_path(c, c.receipt) do %>
+                  <p class="small-font fw-bold">Consulted with Dr. <%= User.find(c.vet_id).name %></p>
+                <% end %>
+                <p class="small-font">Concern Type: <%= c.concern_category.present? ? c.concern_category : "Not specified" %></p>
+                <p class="small-font"><%= c.created_at.strftime("%B %d, %Y") %></p>
+              </div>
             </div>
-          </div>
-          <% end %>
-      <% end %>
-    </div>
-  <% end %>
+            <% end %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
 </div>
 
 <%= render 'shared/footer' %>
