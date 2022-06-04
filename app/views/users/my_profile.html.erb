@@ -11,7 +11,7 @@
         <% if @user.specialties.count > 0 %>
           <label class="switch">
           <%= simple_form_for @user do |f| %>
-            <%= check_box_tag 'availability', '1', @user.available, onchange: 'this.form.submit();' %>
+            <%= check_box_tag 'availability', '1', @user.available, onchange: remote_function(url: { controller: :user, action: :make_available}) %>
 
             <span class="slider round"></span>
           <% end %>
