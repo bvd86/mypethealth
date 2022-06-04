@@ -1,26 +1,52 @@
-<div class="margin-above-footer">
-  <h1 class="mt-5 mb-3"><%= @pet.name %>'s consultations</h1>
+<div class="margin-above-footer mt-5">
 
   <% if @pet.photo.attached? %>
-    <%= cl_image_tag @pet.photo.key, alt: @pet.name, class:"avatar-large" %>
+    <%= cl_image_tag @pet.photo.key, alt: @pet.name, class:"avatar-large avatar-center-page " %>
   <% else %>
-    <%= image_tag "pet-avatar.png", alt: "Default picture for pet", class:"avatar-large" %>
+    <%= image_tag "pet-avatar.png", alt: "Default picture for pet", class:"avatar-large avatar-center-page " %>
   <% end %>
 
-  <% if @consultations.any? %>
+  <h1 class="my-3 text-center"><%= @pet.name %>'s consultations</h1>
 
+
+
+  <% if @consultations.any? %>
 
     <% @consultations.each do |c| %>
       <% if c.vet_id.present? && c.receipt.present? %>
 
 
-        <p>Consultation with Dr. <%= User.find(c.vet_id).name %> </p>
-        <p>Concern: <%= c.concern_category %></p>
-        <p class="small-font"><%= c.created_at.strftime("%B %d, %Y") %></p>
 
-        <%= link_to "View Receipt", consultation_receipt_path(c, c.receipt) %>
+        <div class="card-pet-consult-history my-3 d-flex align-items-center gap-3">
+        <!-- Vet's Photo -->
+        <% if User.find(c.vet_id).photo.attached? %>
+          <%= cl_image_tag User.find(c.vet_id).photo.key, alt: User.find(c.vet_id).name, class:"avatar" %>
+        <% else %>
+          <%= image_tag "blank-avatar.png", alt: "Default picture", class:"avatar-" %>
+        <% end %>
+
+        <!-- Consultation info -->
+        <div>
+          <p class="small-font"><b>Consultated with Dr. <%= User.find(c.vet_id).name %></b></p>
+          <p class="small-font">Concern: <%= c.concern_category %></p>
+          <p class="small-font"><%= c.created_at.strftime("%B %d, %Y") %></p>
+
+
+              <%= link_to consultation_receipt_path(c, c.receipt) do %>
+              <div class="d-flex gap-2 mt-2 align-items-center">
+                <i class="fa-solid fa-receipt"></i><p>View Receipt</p>
+              </div>
+              <% end %>
+        </div>
+
+        </div>
       <% end %>
+
     <% end %>
+  <% else %>
+
+  <p><%= @pet.name %> has not been seen by a veterinarian yet</p>
+
   <% end %>
   <%= render 'shared/footer' %>
 </div>
