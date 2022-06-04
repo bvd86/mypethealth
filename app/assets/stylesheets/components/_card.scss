@@ -181,3 +181,20 @@
   bottom: -2px;
   right: 7px;
 }
+
+.card-pet-consult-history {
+  background-color: rgba(164, 189, 187, 0.3);;
+  padding: 0.5rem;
+  border-radius: 1rem;
+  max-width: 20.75rem;
+  margin-left: auto;
+  margin-right: auto;
+
+  p {
+    margin-bottom: 0px;
+  }
+
+  a{
+    text-decoration: none;
+  }
+}
