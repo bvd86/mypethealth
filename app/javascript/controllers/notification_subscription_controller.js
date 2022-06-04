@@ -26,6 +26,10 @@ export default class extends Controller {
   }
 
   #insertNotification(message) {
-    this.notificationTarget.prepend(message)
+    this.notificationTarget.insertAdjacentHTML("beforeend", message)
+    const reqNotification = document.getElementById("request-notification")
+    reqNotification.addEventListener("click", ()=> {
+      window.location.href = reqNotification.dataset.redirect
+    } )
   }
 }
