@@ -25,11 +25,12 @@ class PetsController < ApplicationController
     redirect_to my_profile_path
   end
 
-  def destroy
-    @pet.destroy!
+  # Removing pet deletion method because of dependency with consultations
+  # def destroy
+  #   @pet.destroy!
 
-    redirect_to my_profile_path
-  end
+  #   redirect_to my_profile_path
+  # end
 
   private
 

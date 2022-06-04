@@ -1,5 +1,9 @@
 <div class="footer mt-5">
   <div class="footer-links">
-    <%= link_to 'Consult a veterinarian now', new_consultation_path  %>
+    <% if current_user.pets.count == 0 %>
+      <%= link_to "You don't have a pet yet, click here to add one", new_user_pet_path(@user)  %>
+    <% else %>
+      <%= link_to 'Consult a veterinarian now', new_consultation_path  %>
+    <% end %>
   </div>
 </div>
