@@ -26,7 +26,6 @@
             <% vet.average_rating = (vet.average_rating + f.rating) / feedbacks.count %>
             <% end %>
             <%= vet.average_rating %>
-            <% raise %>
             <%= link_to "Connect", start_consultation_path(vet_id: vet), class: "btn-sm btn-primary card-btn-connect", style:"color:#F2E9D0;"  %>
           </div>
         </div>
