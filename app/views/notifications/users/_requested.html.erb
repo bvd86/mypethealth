@@ -1,4 +1,4 @@
-<div>
-  <p><%= notification.user.email %> has <%= notification.action %> a chat with you!</p>
-  <%= link_to "join", consultation_path(notification.user.consultations.last), class: "btn btn-primary" %>
+<div class="messages notification-bar" id="request-notification" data-redirect="<%= consultation_path(notification.user.consultations.last)%>">
+  <p><%= notification.user.name %> has <%= notification.action %> a chat with you!</p>
+  <%= link_to "", consultation_path(notification.user.consultations.last)%>
 </div>
