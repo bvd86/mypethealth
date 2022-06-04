@@ -12,8 +12,7 @@ Rails.application.routes.draw do
   end
 
   # Users custom routes
-  patch '/make_available/', to: 'users#make_available'
-  patch '/make_unavailable/', to: 'users#make_unavailable'
+  patch '/change_vet_status/', to: 'users#change_vet_status'
   get '/available_vets/', to: 'users#available_vets'
   get '/my-profile/', to: 'users#my_profile', as: 'my-profile'
 
