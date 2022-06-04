@@ -22,6 +22,12 @@
 
   <body>
 
+    <div data-controller="notification-subscription">
+      <div class="messages" data-notification-subscription-target="notification">
+        <em>Notification empty state.</em>
+      </div>
+    </div>
+
     <div class="app-container">
       <%= render 'shared/flashes' %>
       <%= yield %>

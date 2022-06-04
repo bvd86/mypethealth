@@ -2,18 +2,18 @@
 
 <%= simple_form_for [@user] do |f| %>
     <div class="row g2">
-      <div class="col-6">
+      <div class="col-md-6 col-sm-12">
         <%= f.input :name %>
       </div>
-      <div class="col-6">
+      <div class="col-md-6 col-sm-12">
         <%= f.input :email %>
       </div>
-      <div class="col-6">
+      <div class="col-md-6 col-sm-12">
         <%= f.input :address,
                     input_html: { data: { geocoder_target: "address" }, class: "d-none" },
                     wrapper_html: { data: { controller: "geocoder", geocoder_api_key_value: ENV['MAPBOX_API_KEY'], geocoder_target: "other" } } %>
       </div>
-      <div class="col-6">
+      <div class="col-md-6 col-sm-12">
         <%= f.association :specialties,
                           collection: Specialty.all.order(:name),
                           input_html: { multiple: true, data: { controller: 'select2', select2_options_value: { tags: true } } } %>
@@ -25,5 +25,5 @@
                   data: { confirm: 'Are you sure?' } %>
       </div>
     </div>
-  <%= f.button :submit, class: "btn btn-primary" %>
+  <%= f.button :submit, class: "btn btn-primary action-button" %>
 <% end %>
