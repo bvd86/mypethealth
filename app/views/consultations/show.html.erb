@@ -1,4 +1,3 @@
-<h1>Consultation</h1>
 
 <%# Chatroom window %>
 <div class="container chatroom"
@@ -6,7 +5,17 @@
      data-consultation-subscription-consultation-id-value="<%= @consultation.id %>",
      data-consultation-subscription-current-user-id-value="<%= current_user.id %>" >
 
-  <h1>About <%= @consultation.pet.name %></h1>
+  <div class="chat-header">
+    <h1>About <%= @consultation.pet.name %></h1>
+    <% if @consultation.active? %>
+    <div class="end-consultation">
+      <%= form_for @consultation, url: {action: "end_consultation"} do |f| %>
+        <%= f.hidden_field :id, :value => @consultation.id %>
+        <%= f.submit "End", class: "btn btn-secondary end-button" %>
+      <% end %>
+      </div>
+     <% end %>
+  </div>
   <div class="messages" data-consultation-subscription-target="messages">
     <% @consultation.messages.each do |message| %>
       <div class="message-row d-flex <%= message.sender?(current_user) ? 'justify-content-end' : 'justify-content-start' %>">
@@ -34,10 +43,4 @@
       <% end %>
     <% end %>
   </div>
-</div>
-<div class="end-consultation">
-  <%= form_for @consultation, url: {action: "end_consultation"} do |f| %>
-    <%= f.hidden_field :id, :value => @consultation.id %>
-    <%= f.submit "End consultation", class: "btn btn-secondary" %>
-  <% end %>
 </div>
