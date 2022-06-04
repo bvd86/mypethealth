@@ -27,7 +27,7 @@
         <% if @user.specialties.count > 0 %>
           <p><strong>Dr. <%= @user.name %></strong></p>
 
-          <p><strong>Spcialties:</strong>
+          <p><strong>Specialties:</strong>
           <p><%= @user.specialties.map { |s| s.name }.to_sentence %></p>
         <% else %>
           <p><strong><%= @user.name %></strong></p>
