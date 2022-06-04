@@ -19,13 +19,16 @@
               <% else %>
                 <%= image_tag "pet-avatar.png", alt: "Default picture for pet", class:"card-img-top" %>
               <% end %>
+              <div class="three-dot">
+                <h1>...</h1>
+              </div>
             </div>
             <div class="flip-card-back">
               <%= link_to user_pet_consultations_path(@user, p.id) do %>
-                <i class="fa-solid fa-book-medical icon-history"></i>
+                 <button type="button" class="btn btn-dark btn-lg pet-button">Consultation</button>
               <% end %>
               <p><%= link_to edit_user_pet_path(@user, p.id) do %>
-                <i class="fa-solid fa-pencil edit-pen"></i>
+                <button type="button" class="btn btn-dark btn-lg pet-button">Edit</button>
               <% end %></p>
             </div>
           </div>
@@ -35,8 +38,7 @@
             <h3><%= p.name %></h3>
             <h4><%= p.species %></h4>
           </div>
-          <div class="three-dot">
-          <h1>...</h1>
+
         </div>
       </div>
       </div>

@@ -123,10 +123,6 @@
   backface-visibility: hidden;
 }
 
-.action-card {
-
-}
-
 .flip-card-front {
   background-color: #bbb;
   color: black;
@@ -178,4 +174,10 @@
   padding: 0.5rem;
   border-radius: 1rem;
   max-width: 20.75rem;
+}
+
+.three-dot {
+  position: absolute;
+  bottom: -2px;
+  right: 7px;
 }
