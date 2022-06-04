@@ -31,6 +31,10 @@
         margin-top: 10px;
       }
 
+      .messages::-webkit-scrollbar {
+        background-color: $paleteal ;
+      }
+
       #new_message {
         .form-group {
           margin-bottom: 0;
@@ -74,6 +78,10 @@
     overflow-x: hidden;
   }
 
+  .messages::-webkit-scrollbar {
+    background-color: $paleteal ;
+  }
+
   #new_message {
 
     .form-group {
@@ -112,8 +120,4 @@
   font-size: x-large;
   bottom: 10px;
   cursor: pointer;
-}
-
-::-webkit-scrollbar {
-  background-color: $paleteal ;
 }
