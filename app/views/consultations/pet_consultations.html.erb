@@ -9,44 +9,45 @@
   <h1 class="my-3 text-center"><%= @pet.name %>'s consultations</h1>
 
 
+  <div id="">
+    <% if @consultations.any? %>
 
-  <% if @consultations.any? %>
-
-    <% @consultations.each do |c| %>
-      <% if c.vet_id.present? && c.receipt.present? %>
+      <% @consultations.each do |c| %>
+        <% if c.vet_id.present? && c.receipt.present? %>
 
 
 
-        <div class="card-pet-consult-history my-3 d-flex align-items-center gap-3">
-        <!-- Vet's Photo -->
-        <% if User.find(c.vet_id).photo.attached? %>
-          <%= cl_image_tag User.find(c.vet_id).photo.key, alt: User.find(c.vet_id).name, class:"avatar" %>
-        <% else %>
-          <%= image_tag "blank-avatar.png", alt: "Default picture", class:"avatar-" %>
+          <div class="card-pet-consult-history my-3 d-flex align-items-center gap-3">
+          <!-- Vet's Photo -->
+          <% if User.find(c.vet_id).photo.attached? %>
+            <%= cl_image_tag User.find(c.vet_id).photo.key, alt: User.find(c.vet_id).name, class:"avatar" %>
+          <% else %>
+            <%= image_tag "blank-avatar.png", alt: "Default picture", class:"avatar-" %>
+          <% end %>
+
+          <!-- Consultation info -->
+          <div>
+            <p class="small-font"><b>Consultated with Dr. <%= User.find(c.vet_id).name %></b></p>
+            <p class="small-font">Concern: <%= c.concern_category %></p>
+            <p class="small-font"><%= c.created_at.strftime("%B %d, %Y") %></p>
+
+
+                <%= link_to consultation_receipt_path(c, c.receipt) do %>
+                <div class="d-flex gap-2 mt-2 align-items-center">
+                  <i class="fa-solid fa-receipt"></i><p class="small-font">View Receipt</p>
+                </div>
+                <% end %>
+          </div>
+
+          </div>
         <% end %>
 
-        <!-- Consultation info -->
-        <div>
-          <p class="small-font"><b>Consultated with Dr. <%= User.find(c.vet_id).name %></b></p>
-          <p class="small-font">Concern: <%= c.concern_category %></p>
-          <p class="small-font"><%= c.created_at.strftime("%B %d, %Y") %></p>
-
-
-              <%= link_to consultation_receipt_path(c, c.receipt) do %>
-              <div class="d-flex gap-2 mt-2 align-items-center">
-                <i class="fa-solid fa-receipt"></i><p class="small-font">View Receipt</p>
-              </div>
-              <% end %>
-        </div>
-
-        </div>
       <% end %>
+    <% else %>
+
+    <p><%= @pet.name %> has not been seen by a veterinarian yet</p>
 
     <% end %>
-  <% else %>
-
-  <p><%= @pet.name %> has not been seen by a veterinarian yet</p>
-
-  <% end %>
-  <%= render 'shared/footer' %>
+    <%= render 'shared/footer' %>
+  </div>
 </div>
