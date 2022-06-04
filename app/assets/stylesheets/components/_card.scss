@@ -123,10 +123,6 @@
   backface-visibility: hidden;
 }
 
-.action-card {
-
-}
-
 .flip-card-front {
   background-color: #bbb;
   color: black;
@@ -180,6 +176,11 @@
   max-width: 20.75rem;
 }
 
+.three-dot {
+  position: absolute;
+  bottom: -2px;
+  right: 7px;
+}
 
 .card-pet-consult-history {
   background-color: rgba(164, 189, 187, 0.3);;

@@ -12,7 +12,7 @@ class FeedbacksController < ApplicationController
 
   def create
     @feedback = Feedback.new(feedback_params)
-    @feedback.user = @user
+    @feedback.user = User.find(@consultation.vet_id)
     @feedback.consultation = @consultation
 
     if @feedback.save!
