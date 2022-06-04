@@ -21,6 +21,12 @@
           <div class="card-body">
             <h5 class="card-title">Dr. <%= vet.name %></h5>
             <p class="card-text">Specialties: <%= vet.specialties.map { |s| s.name }.to_sentence %> </p>
+            <p><% feedbacks = Feedback.where(vet_id: vet.id) %></p>
+            <% feedbacks.each do |f| %>
+            <% vet.average_rating = (vet.average_rating + f.rating) / feedbacks.count %>
+            <% end %>
+            <%= vet.average_rating %>
+            <% raise %>
             <%= link_to "Connect", start_consultation_path(vet_id: vet), class: "btn-sm btn-primary card-btn-connect", style:"color:#F2E9D0;"  %>
           </div>
         </div>
