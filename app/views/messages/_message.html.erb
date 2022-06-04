@@ -1,8 +1,13 @@
-<div id="message-<%= message.id %>">
+<div class="message-bubble" id="message-<%= message.id %>">
+   <% if message.user.photo.attached? %>
+      <%= cl_image_tag message.user.photo.key, class: "avatar-chat" %>
+    <% else %>
+      <%= image_tag 'blank-avatar.png', class: "avatar-chat" %>
+    <% end %>
   <small>
-    <strong><%= message.user.id %></strong>
-    <i><%= message.created_at.strftime("%a %b %e at %l:%M %p") %></i>
-    <%= cl_image_tag message.photo.key, height: 20, width: 20, crop: :fill if message.photo.attached?%>
+    <strong><%= message.user.name %></strong>
+    <br>
+    <%= cl_image_tag message.photo.key, class: "chat-image", height: 200, width: 200, crop: :fill if message.photo.attached?%>
   </small>
   <p><%= message.content %></p>
 </div>

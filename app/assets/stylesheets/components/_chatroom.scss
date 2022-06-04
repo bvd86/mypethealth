@@ -1,19 +1,26 @@
 @media only screen
-  and (min-device-width: 375px)
+  and (min-device-width: 370px)
   and (max-device-width: 812px)
   and (-webkit-min-device-pixel-ratio: 3) {
 
     .chatroom {
-      background: white;
-      margin-top: 9px;
-      height: 60vw;
+      background-color: $paleteal;
+      border-radius: 25px;
+      box-shadow: 0px 0px 10px 5px rgba(0,0,0,0.2);
+      overflow: hidden;
+      padding: 15px;
+      position: relative;
+      margin-top: 5%;
+      margin-bottom: 5%;
+      width: 95%;
+      max-width: 100%;
+      height: 80vh;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      flex-grow: 1;
+      overflow: hidden;
 
       h1 {
-        border-bottom: 1px solid $gray-200;
         margin-bottom: 0;
         padding: 1rem;
       }
@@ -21,31 +28,45 @@
       .messages {
         height: 100%;
         overflow: scroll;
-        padding: 1rem;
+        margin-top: 10px;
+      }
+
+      .messages::-webkit-scrollbar {
+        background-color: $paleteal ;
       }
 
       #new_message {
-        border-top: 1px solid $gray-200;
-        padding: 1rem;
-
         .form-group {
           margin-bottom: 0;
         }
+      }
+
+      .chat-header {
+        display: flex;
+        justify-content: space-between;
       }
     }
 }
 
 .chatroom {
-  background: white;
-  margin-top: 9px;
-  height: 60vw;
+  background-color: $paleteal;
+  border-radius: 25px;
+  box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  padding: 15px;
+  position: relative;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  width: 700px;
+  max-width: 100%;
+  height: 80vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  flex-grow: 1;
+  overflow: hidden;
+
 
   h1 {
-    border-bottom: 1px solid $gray-200;
     margin-bottom: 0;
     padding: 1rem;
   }
@@ -53,15 +74,50 @@
   .messages {
     height: 100%;
     overflow: scroll;
-    padding: 1rem;
+    margin-top: 10px;
+    overflow-x: hidden;
+  }
+
+  .messages::-webkit-scrollbar {
+    background-color: $paleteal ;
   }
 
   #new_message {
-    border-top: 1px solid $gray-200;
-    padding: 1rem;
 
     .form-group {
       margin-bottom: 0;
     }
   }
+
+  .chat-header {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+#message_content {
+	font-size: 16px;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	padding: 10px 15px;
+	width: 100%;
+}
+
+.end-consultation {
+  text-align: center;
+  margin: 10px;
+}
+
+#message_photo {
+  display: none;
+}
+
+.fa-paperclip {
+  position: absolute;
+  right: 25px;
+  font-size: x-large;
+  bottom: 10px;
+  cursor: pointer;
 }

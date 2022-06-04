@@ -4,10 +4,11 @@ class MessagesController < ApplicationController
     @message = Message.new(message_params)
     @message.consultation = @consultation
     @message.user = current_user
-    if @message.save!
+    if @message.save
       ConsultationChannel.broadcast_to(
         @consultation,
-        render_to_string(partial: "message", locals: {message: @message})
+        message: render_to_string(partial: "message", locals: { message: @message }),
+        sender_id: @message.user.id
       )
       head :ok
     else
