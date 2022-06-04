@@ -56,41 +56,12 @@
   <!-- Star Rating Average -->
   <div class="text-center fs-1 mt-4">
     <% if @feedback_avg %>
-      <% if @feedback_avg == 1 %>
+      <% stars = @feedback_avg %>
+      <% stars.times do %>
         <span class="fa fa-star star-checked"></span>
+      <% end %>
+      <% (5-stars).times do %>
         <span class="fa fa-star star-unchecked"></span>
-        <span class="fa fa-star star-unchecked"></span>
-        <span class="fa fa-star star-unchecked"></span>
-        <span class="fa fa-star star-unchecked"></span>
-      <% elsif @feedback_avg == 2 %>
-        <span class="fa fa-star star-checked"></span>
-        <span class="fa fa-star star-checked"></span>
-        <span class="fa fa-star star-unchecked"></span>
-        <span class="fa fa-star star-unchecked"></span>
-        <span class="fa fa-star star-unchecked"></span>
-
-      <% elsif @feedback_avg == 3 %>
-        <span class="fa fa-star star-checked"></span>
-        <span class="fa fa-star star-checked"></span>
-        <span class="fa fa-star star-checked"></span>
-        <span class="fa fa-star star-unchecked"></span>
-        <span class="fa fa-star star-unchecked"></span>
-
-      <% elsif @feedback_avg == 4 %>
-        <span class="fa fa-star star-checked"></span>
-        <span class="fa fa-star star-checked"></span>
-        <span class="fa fa-star star-checked"></span>
-        <span class="fa fa-star star-checked"></span>
-        <span   class="fa fa-star star-unchecked"></span>
-
-      <% elsif @feedback_avg == 5 %>
-        <span class="fa fa-star star-checked"></span>
-        <span class="fa fa-star star-checked"></span>
-        <span class="fa fa-star star-checked"></span>
-        <span class="fa fa-star star-checked"></span>
-        <span class="fa fa-star star-checked"></span>
-
-
       <% end %>
     <% end %>
     </div>
