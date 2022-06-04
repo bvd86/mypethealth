@@ -3,34 +3,41 @@
 <%# Chatroom window %>
 <div class="container chatroom"
      data-controller="consultation-subscription"
-     data-consultation-subscription-consultation-id-value="<%= @consultation.id %>" >
+     data-consultation-subscription-consultation-id-value="<%= @consultation.id %>",
+     data-consultation-subscription-current-user-id-value="<%= current_user.id %>" >
 
   <h1>About <%= @consultation.pet.name %></h1>
-
   <div class="messages" data-consultation-subscription-target="messages">
     <% @consultation.messages.each do |message| %>
-      <%= render "messages/message", message: message %>
+      <div class="message-row d-flex <%= message.sender?(current_user) ? 'justify-content-end' : 'justify-content-start' %>">
+        <div class="<%= message.sender?(current_user) ? 'sender-style' : 'receiver-style' %>">
+          <%= render "messages/message", message: message %>
+        </div>
+      </div>
     <% end %>
   </div>
 
 
-<%# New message from %>
-<% if @consultation.active %>
-  <%= simple_form_for [@consultation, @message],
-    remote: true,
-    html: {data: {action: "ajax:success->consultation-subscription#resetForm"}, class: "d-flex" } do |f| %>
-      <%= f.input :content,
-        label: false,
-        placeholder: "What's happening with #{@consultation.pet.name}?",
-        wrapper_html: {class: "flex-grow-1"} %>
-      <%= f.input :photo, label: false, as: :file %>
-    <%= f.submit "Send", class: "btn btn-primary" %>
-  <% end %>
-
-
+  <%# New message form %>
+  <div class="input-chat">
+    <% if @consultation.active %>
+      <%= simple_form_for [@consultation, @message],
+        remote: true,
+        html: {data: {action: "ajax:success->consultation-subscription#resetForm"}, class: "d-flex" } do |f| %>
+          <div class="chat-field">
+          <%= f.input :content,
+            label: false,
+            placeholder: "What's happening with #{@consultation.pet.name}?",
+            wrapper_html: {class: "flex-grow-1"} %>
+          <%= f.input :photo, label: ('<i class="fa-solid fa-paperclip"></i>').html_safe, as: :file %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+<div class="end-consultation">
   <%= form_for @consultation, url: {action: "end_consultation"} do |f| %>
-  <%= f.hidden_field :id, :value => @consultation.id %>
-  <%= f.submit "End consultation", class: "btn btn-secondary" %>
+    <%= f.hidden_field :id, :value => @consultation.id %>
+    <%= f.submit "End consultation", class: "btn btn-secondary" %>
   <% end %>
-<% end %>
 </div>
