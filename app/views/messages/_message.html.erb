@@ -6,6 +6,7 @@
     <% end %>
   <small>
     <strong><%= message.user.name %></strong>
+    <br>
     <%= cl_image_tag message.photo.key, class: "chat-image", height: 200, width: 200, crop: :fill if message.photo.attached?%>
   </small>
   <p><%= message.content %></p>
