@@ -1,5 +1,3 @@
-
-
 class UsersController < ApplicationController
   before_action :find_user, only: [:edit, :update, :my_profile,
                                    :make_available, :make_unavailable,
