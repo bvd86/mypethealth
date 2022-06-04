@@ -14,7 +14,6 @@ class FeedbacksController < ApplicationController
     @feedback = Feedback.new(feedback_params)
     @feedback.user = @user
     @feedback.consultation = @consultation
-    @feedback.vet_id = @consultation.vet_id
 
     if @feedback.save!
       create_receipt
