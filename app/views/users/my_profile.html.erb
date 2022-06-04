@@ -11,15 +11,16 @@
         <% if @user.specialties.count > 0 %>
           <label class="switch">
           <%= simple_form_for @user do |f| %>
-            <%= check_box_tag 'availability', '1', @user.available %>
+            <%= check_box_tag 'availability', '1', @user.available, onchange: 'this.form.submit();' %>
 
             <span class="slider round"></span>
           <% end %>
           </label>
         <% end %>
-
-
       </div>
+
+
+
 
       <div>
         <!-- Name & Specialties -->
