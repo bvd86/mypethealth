@@ -42,7 +42,7 @@ def find_pic(username)
 end
 
 
-p "Destroying old seeds..."
+p "Destroying previous data..."
 
 Message.destroy_all
 Feedback.destroy_all
@@ -52,13 +52,14 @@ UserSpecialty.destroy_all
 Specialty.destroy_all
 User.destroy_all
 
-p "Done."
+p "Old data cleaned!"
 
 
 p "Starting new seeds..."
 
+p "Seeding vets' specialties..."
 
-# Seeding vet specialties
+# Seeding vets' specialties
 unless Specialty.any?
   specialties = ["Avians",
     "Equines",
@@ -78,9 +79,14 @@ unless Specialty.any?
   end
 end
 
+p "vets' specialties created!"
+
 # ========================
 # Creating vet
 # ========================
+
+p "Seeding vets..."
+
 vet_1 = User.create!({
   email: "drfraisse@mypethealth.ca",
   password: "123456",
@@ -121,6 +127,7 @@ vet_3.photo.attach(io: file, filename: 'enya-avatar.jpg', content_type: 'image/j
 # Adding 2 specialties to vet
 vet_3.specialties = [Specialty.find_by(name:"Felines"), Specialty.find_by(name:"Exotic Mammals")]
 
+p "Vets seeded!"
 
 # TEACHERS.each do |k, v|
 #   pic = find_pic(k[:username])
@@ -142,6 +149,9 @@ vet_3.specialties = [Specialty.find_by(name:"Felines"), Specialty.find_by(name:"
 # ======================
 # Creating clients
 # ======================
+
+p "Creating clients..."
+
 # Creating client 1
 client_1 = User.create!({ email: "jeff@ilovecats.com", password: "123456", name: "Jeff Trempe", address: "1940 Jolicoeur Street, Montreal QC" })
 
@@ -162,7 +172,11 @@ end
   Pet.create!({ user: client_2, name: Faker::Creature::Dog.name, species: "Dog", breed: Faker::Creature::Dog.breed})
 end
 
+p "Clients seeded!"
+
 types_of_concern = ["Behavior", "Dental", "End of Life", "Physical Activity", "Medication", "Nutrition", "Welfare"]
+
+p "Seeding consultations..."
 
 # Seeding consultations for vet with client 1
 3.times do
@@ -186,7 +200,11 @@ end
   })
 end
 
+p "Consultations seeded!"
+
 # Creating random vets to populate vets list
+
+p "Adding vets to populate lists..."
 15.times do
   user = User.create!({
   email: Faker::Internet.email,
@@ -203,5 +221,7 @@ end
   # Adding 2 specialties to vet
 
 end
+
+p "Additional vets added!"
 
 p "Seeding is complete."
