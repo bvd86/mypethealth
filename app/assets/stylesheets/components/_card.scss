@@ -29,6 +29,7 @@
 
 .a-box {
   width: 167px;
+  margin-bottom: 40px;
 }
 
 .img-container {
@@ -163,6 +164,10 @@
 
 @media (min-width: 1028px) {
 
+  .a-box {
+    width: 374px;
+  }
+
   .img-container img {
     height: 270px;
     width: 300px;
@@ -174,7 +179,8 @@
   }
 
   .pet-card {
-    justify-content: space-evenly;
+   justify-content: space-evenly;
+   text-align: center;
   }
 }
 
