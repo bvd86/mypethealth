@@ -1,17 +1,53 @@
-<div style="display:flex; justify-content: space-between;">
-  <h1>My consultations</h1>
-  <%= link_to "➕ Add a consultation", new_consultation_path %>
+<div class="margin-above-footer mt-5">
+
+  <% if @pet.photo.attached? %>
+    <%= cl_image_tag @pet.photo.key, alt: @pet.name, class:"avatar-large avatar-center-page " %>
+  <% else %>
+    <%= image_tag "pet-avatar.png", alt: "Default picture for pet", class:"avatar-large avatar-center-page " %>
+  <% end %>
+
+  <h1 class="my-3 text-center"><%= @pet.name %>'s consultations</h1>
+
+
+  <div id="">
+    <% if @consultations.any? %>
+
+      <% @consultations.each do |c| %>
+        <% if c.vet_id.present? && c.receipt.present? %>
+
+
+
+          <div class="card-pet-consult-history my-3 d-flex align-items-center gap-3">
+          <!-- Vet's Photo -->
+          <% if User.find(c.vet_id).photo.attached? %>
+            <%= cl_image_tag User.find(c.vet_id).photo.key, alt: User.find(c.vet_id).name, class:"avatar" %>
+          <% else %>
+            <%= image_tag "blank-avatar.png", alt: "Default picture", class:"avatar-" %>
+          <% end %>
+
+          <!-- Consultation info -->
+          <div>
+            <p class="small-font"><b>Consultated with Dr. <%= User.find(c.vet_id).name %></b></p>
+            <p class="small-font">Concern: <%= c.concern_category %></p>
+            <p class="small-font"><%= c.created_at.strftime("%B %d, %Y") %></p>
+
+
+                <%= link_to consultation_receipt_path(c, c.receipt) do %>
+                <div class="d-flex gap-2 mt-2 align-items-center">
+                  <i class="fa-solid fa-receipt"></i><p class="small-font">View Receipt</p>
+                </div>
+                <% end %>
+          </div>
+
+          </div>
+        <% end %>
+
+      <% end %>
+    <% else %>
+
+    <p><%= @pet.name %> has not been seen by a veterinarian yet</p>
+
+    <% end %>
+    <%= render 'shared/footer' %>
+  </div>
 </div>
-
-<% @consultations.each do |c| %>
-Consultation with Dr. <%= c.user.name %> <br>
-Name: <%= c.pet.name %> <br>
-Species: <%= c.pet.species %> <br>
-Concern: <%= c.concern_category %> <br>
-More info: <%= c.additional_info %> <br>
-<%# Message history not implemented yet%>
-<%= link_to "Message history", consultation_path(@user) %> <br>
------------------------------ <br>
-<% end %>
-
-<%= render 'shared/footer' %>
