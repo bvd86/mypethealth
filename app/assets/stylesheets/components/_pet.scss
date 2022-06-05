@@ -1,0 +1,22 @@
+// New pet form
+
+.new-pet {
+  border: 1px solid $paleteal;
+  padding: 10px 10px;
+}
+
+@media (min-width: 1000px) {
+
+  .new-pet {
+    width: 70%;
+  }
+
+}
+
+@media (min-width: 1250px) {
+
+  .new-pet {
+    width: 55%;
+  }
+
+}
