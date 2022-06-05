@@ -7,7 +7,7 @@
   <div class="mb-2">
     <%= simple_form_for [ @consultation, @feedback ] do |f| %>
           <%= f.input :rating, label: 'How was your overall experience?', collection: Feedback::STARS %>
-          <%= f.input :vet_rating, label: 'Was the vetenarian able to answer your questions?', collection: Feedback::STARS %>
+          <%= f.input :vet_rating, label: 'Was the veterinarian able to answer your questions?', collection: Feedback::STARS %>
           <%= f.input :friend_rating, label: 'Would you recommend us to a friend?', collection: Feedback::STARS %>
           <%= f.input :comment, placeholder: "Share your thoughts" %>
           <%= f.submit "Leave Feedback", class: "form-control btn btn-primary", style:"color:#F2E9D0;" %>
