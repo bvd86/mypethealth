@@ -198,3 +198,87 @@
     text-decoration: none;
   }
 }
+
+
+// Vet Card //
+
+.vet-card {
+  background-color: $paleteal;
+  position: relative;
+  display: flex;
+  border-radius: $border-radius;
+  box-shadow: 0 15px 20px rgba(0, 0, 0, 0.356);
+  margin-bottom: 40px;
+
+    .consult-now {
+    position: absolute;
+    bottom: -20px;
+    right: -12px;
+    border: none;
+    outline: none;
+    display: flex;
+    align-items: center;
+    background-color: $darkblue;
+    color: $cream;
+    padding: 22px 45px;
+    font-size: 1rem;
+    text-transform: uppercase;
+    border-radius: $border-radius;
+    cursor: pointer;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.294);
+    i {
+      margin-left: 20px;
+      font-size: 1.5rem;
+    }
+  }
+}
+
+.card-title {
+  font-size: 1rem;
+}
+
+.container__text {
+
+  padding: 12px 20px 0;
+  h1 {
+   color: $darkblue;
+   font-weight: 400;
+  }
+  .star-checked {
+   font-size: 0.8rem;
+   color: #ffa800;
+   margin: -5px 0 20px;
+  }
+  .star-unchecked {
+    font-size: 0.8rem;
+    color: #d1d1d1;
+    margin: -5px 0 20px;
+   }
+}
+
+.card-vet-img {
+  width: 100px;
+  height: 210px;
+  border-radius: $border-radius 0 0 $border-radius;
+}
+
+
+@media only screen and (min-width: 400px) {
+
+  .card-vet-img {
+    width: 200px;
+    height: 200px;
+  }
+
+  .container__text {
+    padding: 40px 40px 0;
+  }
+
+  .consult-now {
+    right: -20px;
+  }
+
+  .card-title {
+    font-size: 1.25rem;
+  }
+}
