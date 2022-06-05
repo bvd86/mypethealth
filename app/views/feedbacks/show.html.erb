@@ -44,7 +44,7 @@
  <div>
   <p class="mb-1 mt-3">Additinal comments</p>
   <% if @feedback.comment.present? %>
-    <p class="small-font"><%= @feedback.comment %></p>
+    <p class="small-font">"<i><%= @feedback.comment %></i>"</p>
   <% else %>
     <p class="small-font">No additional comments were provided.</p>
   <% end %>
