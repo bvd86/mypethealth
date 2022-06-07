@@ -8,17 +8,13 @@
 
   <!-- Vet cards -->
   <% @available_vets_customized.each do |vet| %>
-    <div class="card mb-3 card-vet">
-      <div class="row g-0">
-        <div class="col-4">
+      <div class="vet-card">
           <% if vet.photo.attached? %>
             <%= cl_image_tag vet.photo.key, alt:"#{vet.name}'s photo", class:"img-fluid card-vet-img" %>
           <% else %>
             <%= image_tag "blank-avatar", alt: "default avatar photo", class:"img-fluid card-vet-img" %>
           <% end %>
-        </div>
-        <div class="col-8">
-          <div class="card-body">
+        <div class="container__text">
             <h5 class="card-title">Dr. <%= vet.name %></h5>
             <p class="card-text">Specialties: <%= vet.specialties.map { |s| s.name }.to_sentence %> </p>
               <% if vet.feedbacks.count == 0 %>
@@ -31,12 +27,9 @@
                   <% (5-stars).times do %>
                     <span class="fa fa-star star-unchecked"></span>
                   <% end %>
-
               <% end %>
-            <%= link_to "Connect", start_consultation_path(vet_id: vet), class: "btn-sm btn-primary card-btn-connect", style:"color:#F2E9D0;"  %>
-          </div>
+            <%= link_to "Connect", start_consultation_path(vet_id: vet), class: "btn-sm btn-primary card-btn-connect consult-now", style:"color:#F2E9D0;"  %>
         </div>
       </div>
-    </div>
   <% end %>
 </div>
