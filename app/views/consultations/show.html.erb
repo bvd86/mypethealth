@@ -6,16 +6,43 @@
      data-consultation-subscription-current-user-id-value="<%= current_user.id %>" >
 
   <div class="chat-header">
-    <h1>About <%= @consultation.pet.name %></h1>
-    <% if @consultation.active? %>
-    <div class="end-consultation">
-      <%= form_for @consultation, url: {action: "end_consultation"} do |f| %>
-        <%= f.hidden_field :id, :value => @consultation.id %>
-        <%= f.submit "End", class: "btn btn-secondary end-button" %>
+    <div>
+      <h2 class="mb-1">Dr. <%= User.find(@consultation.vet_id).name %></h2>
+      <%if @consultation.active? %>
+        <p class="online"><i class="fa-solid fa-circle text-success"></i> Online</p>
       <% end %>
+    </div>
+    <% if @consultation.active? %>
+      <div class="end-consultation">
+        <%= form_for @consultation, url: {action: "end_consultation"} do |f| %>
+          <%= f.hidden_field :id, :value => @consultation.id %>
+          <%= f.submit "End", class: "btn btn-secondary end-button" %>
+        <% end %>
       </div>
-     <% end %>
+    <% end %>
   </div>
+
+  <% if @consultation.additional_info %>
+
+  <div class="dropdown-consult" data-controller="dropdown">
+    <p class="dropmenu mb-0" data-dropdown-target="menu"
+                            data-action="click->dropdown#showContent">
+                            <%= "Concern: #{@consultation.concern_category}" if @consultation.concern_category %>
+                            </p>
+    <div class="dropdown-content" id="add-info" data-dropdown-target="content" >
+      <p>Addtitional information : <%= @consultation.additional_info %></p>
+    </div>
+  </div>
+
+  <% else %>
+  <div class="consult-form-info">
+    <p><%= "Concern: #{@consultation.concern_category}" if @consultation.concern_category %></p>
+  </div>
+  <% end %>
+
+
+
+
   <div class="messages" data-consultation-subscription-target="messages">
     <% @consultation.messages.each do |message| %>
       <div class="message-row d-flex <%= message.sender?(current_user) ? 'justify-content-end' : 'justify-content-start' %>">
