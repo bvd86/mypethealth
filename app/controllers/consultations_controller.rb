@@ -30,7 +30,6 @@ class ConsultationsController < ApplicationController
     @consultation = Consultation.find(params[:id])
     @message = Message.new
 
-
     respond_to do |format|
       format.html
         format.pdf do
