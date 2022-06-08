@@ -35,11 +35,9 @@ class ConsultationsController < ApplicationController
       format.html
         format.pdf do
           render pdf: "Consultation Id. #{@consultation.id}",
-          page_size: 'A4',
           template: "consultations/show.html.erb",
-          lowquality: true,
-          zoom: 1,
-          dpi: 75
+          layout: 'pdf'
+
         end
      end
   end
