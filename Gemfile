@@ -44,6 +44,12 @@ gem 'faker'
 gem 'json'
 gem 'csv'
 
+# Stripe integration gems
+# More info: https://kitt.lewagon.com/knowledge/tutorials/stripe
+gem "money-rails"
+gem 'stripe'
+gem 'stripe_event'
+
 group :development, :test do  gem 'pry-byebug'
   gem 'pry-rails'
   gem 'dotenv-rails'

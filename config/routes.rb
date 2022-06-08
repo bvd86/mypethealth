@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   root to: 'pages#home'
 
+  mount StripeEvent::Engine, at: '/stripe-webhooks'
+
   # Routes for users
   devise_for :users, path: 'users'
   resources :users, only: [:edit, :update] do
@@ -26,6 +28,9 @@ Rails.application.routes.draw do
 
     # Routes for receipts
     resources :receipts, only: [:create, :show]
+
+    # Payment nested routes
+    resources :payments, only: :new
   end
 
   # Consultations custom routes
