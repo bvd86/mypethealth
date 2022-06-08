@@ -4,7 +4,13 @@
     <div class="row">
       <div class="col-lg-6 banner-text">
         <h1 class="title-text">Find a vet within few minutes</h1>
-        <button type="button" class="btn btn-dark btn-lg action-button"><%= link_to "Start a consultation", new_consultation_path, class: "banner-button" %></button>
+        <button type="button" class="btn btn-dark btn-lg action-button">
+          <% if current_user.pets.count == 0 %>
+            <%= link_to "Consult a veterinarian now", new_user_pet_path(@user), class: "banner-button" %>
+          <% else %>
+            <%= link_to 'Consult a veterinarian now', new_consultation_path  %>
+          <% end %>
+      </button>
       </div>
       <div class="col-lg-6 image-animal">
         <%= image_tag "dog-cat.png", class: "title-image" %>

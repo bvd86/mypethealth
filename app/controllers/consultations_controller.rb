@@ -18,9 +18,27 @@ class ConsultationsController < ApplicationController
   def create
     @consultation = Consultation.new(consultation_params)
     @consultation.user = @user
+    @consultation.price_cents = 1900
+    @consultation.status = 'pending'
 
     if @consultation.save!
-      redirect_to available_vets_path
+      # Creating a session to process event's payment
+      session = Stripe::Checkout::Session.create(
+        payment_method_types: ['card'],
+        line_items: [{
+          name: "#{@consultation.pet.name}##{@consultation.id}",
+          # images: '',
+          amount: @consultation.price_cents,
+          currency: 'cad',
+          quantity: 1
+        }],
+        success_url: available_vets_url,
+        cancel_url: available_vets_url
+      )
+
+      @consultation.update(checkout_session_id: session.id)
+
+      redirect_to new_consultation_payment_path(@consultation)
     else
       render :new
     end
