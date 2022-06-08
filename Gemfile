@@ -81,3 +81,7 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'cloudinary', '~> 1.16.0'
+
+# Generate pdf's rails-generate-pdf/Gemfile
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'

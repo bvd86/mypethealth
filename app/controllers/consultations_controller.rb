@@ -47,6 +47,14 @@ class ConsultationsController < ApplicationController
   def show
     @consultation = Consultation.find(params[:id])
     @message = Message.new
+
+    respond_to do |format|
+      format.html
+        format.pdf do
+          render pdf: "Consultation Id. #{@consultation.id}",
+          template: "consultations/show.html.erb"
+        end
+     end
   end
 
   def start_consultation
