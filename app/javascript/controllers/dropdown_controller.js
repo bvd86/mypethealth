@@ -4,11 +4,13 @@ export default class extends Controller {
   static targets = [ "content", "menu" ]
 
   connect() {
-    console.log('Dropdown controller is connected!')
+    console.log('Dropdown controller is connected!');
+    document.addEventListener("click", () => {
+      this.contentTarget.classList.toggle("show");
+    })
   }
 
   showContent() {
-    console.log(this.contentTarget)
-    this.contentTarget.classList.toggle("show")
+    this.contentTarget.classList.toggle("show");
   }
 }
