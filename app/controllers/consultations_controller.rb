@@ -35,9 +35,7 @@ class ConsultationsController < ApplicationController
       format.html
         format.pdf do
           render pdf: "Consultation Id. #{@consultation.id}",
-          template: "consultations/show.html.erb",
-          layout: 'pdf'
-
+          template: "consultations/show.html.erb"
         end
      end
   end

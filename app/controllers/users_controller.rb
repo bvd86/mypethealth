@@ -17,15 +17,6 @@ class UsersController < ApplicationController
     # Saving user
     @user.update!(user_params)
 
-    # Resize image (for pdf)
-    user_photo_id = @user.photo.id
-
-    unless Rails.env.test?
-      unless user_photo_id == @user.photo.id
-        ResizePhotoJob.set(wait: 2.seconds).perform_later("User", @user.id, :photo, 120, 120)
-      end
-    end
-
     redirect_to my_profile_path
   end
 

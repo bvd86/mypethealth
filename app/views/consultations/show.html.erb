@@ -11,7 +11,7 @@
     <div class="end-consultation">
       <%= form_for @consultation, url: {action: "end_consultation"} do |f| %>
         <%= f.hidden_field :id, :value => @consultation.id %>
-        <%= f.submit "End", class: "btn btn-secondary end-button"%>
+        <%= f.submit "End", class: "btn btn-secondary end-button" %>
       <% end %>
       </div>
      <% end %>
