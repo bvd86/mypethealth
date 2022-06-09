@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_29_231632) do
+ActiveRecord::Schema.define(version: 2022_06_07_225628) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,6 +53,9 @@ ActiveRecord::Schema.define(version: 2022_05_29_231632) do
     t.integer "vet_id"
     t.boolean "active", default: true
     t.string "species"
+    t.integer "price_cents", default: 0, null: false
+    t.string "status"
+    t.string "checkout_session_id"
     t.index ["pet_id"], name: "index_consultations_on_pet_id"
     t.index ["user_id"], name: "index_consultations_on_user_id"
   end

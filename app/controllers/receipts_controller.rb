@@ -11,7 +11,7 @@ class ReceiptsController < ApplicationController
   def create
     @consultation = Consultation.find(params[:consultation_id])
     @receipt = Receipt.new(consultation: @consultation)
-    @receipt.price_cents = 50
+    @receipt.price_cents = @consultation.price_cents
     @receipt.save!
     @consultation.receipt = @receipt
     @consultation.save!

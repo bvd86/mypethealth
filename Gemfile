@@ -44,6 +44,12 @@ gem 'faker'
 gem 'json'
 gem 'csv'
 
+# Stripe integration gems
+# More info: https://kitt.lewagon.com/knowledge/tutorials/stripe
+gem "money-rails"
+gem 'stripe'
+gem 'stripe_event'
+
 group :development, :test do  gem 'pry-byebug'
   gem 'pry-rails'
   gem 'dotenv-rails'
@@ -75,3 +81,7 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'cloudinary', '~> 1.16.0'
+
+# Generate pdf's rails-generate-pdf/Gemfile
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
