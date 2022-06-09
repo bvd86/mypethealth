@@ -23,16 +23,18 @@
   </div>
 
   <% if @consultation.additional_info %>
-
-  <div class="dropdown-consult" data-controller="dropdown">
-    <p class="dropmenu mb-0" data-dropdown-target="menu"
-                            data-action="click->dropdown#showContent">
-                            <%= "Concern: #{@consultation.concern_category}" if @consultation.concern_category %>
-                            </p>
-    <div class="dropdown-content" id="add-info" data-dropdown-target="content" >
-      <p>Addtitional information : <%= @consultation.additional_info %></p>
-    </div>
-  </div>
+    <% if @consultation.concern_category %>
+      <div class="dropdown-consult" data-controller="dropdown" data-action="click->dropdown#showContent">
+        <p class="dropmenu mb-0 d-flex justify-content-between align-items-center" data-dropdown-target="menu"
+                                                                                  >
+          Concern: <%= @consultation.concern_category %>
+          <i class="fa-solid fa-angle-down"></i>
+        </p>
+        <div class="dropdown-content" id="add-info" data-dropdown-target="content" >
+          <p>Addtitional information : <%= @consultation.additional_info %></p>
+        </div>
+      </div>
+    <% end %>
 
   <% else %>
   <div class="consult-form-info">
