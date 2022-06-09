@@ -3,9 +3,9 @@
       <!-- Profile Photo-->
       <div class="d-flex flex-column gap-2 justify-content-center">
         <% if @user.photo.attached? %>
-          <%= cl_image_tag @user.photo.key, class: "avatar-large" %>
+          <%= cl_image_tag @user.photo.key, class: "avatar-profile" %>
         <% else %>
-          <%= image_tag 'blank-avatar.png', class: "avatar-large" %>
+          <%= image_tag 'blank-avatar.png', class: "avatar-profile" %>
         <% end %>
 
         <!-- Toggle switch for availability -->
