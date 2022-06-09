@@ -9,6 +9,7 @@ export default class extends Controller {
       // console.log(event.target)
       if (event.target != this.contentTarget.previousElementSibling) {
       this.contentTarget.classList.remove("show");
+      this.menuTarget.classList.remove("dropmenu-undo-borders");
       }
 
     })
