@@ -5,9 +5,8 @@ export default class extends Controller {
 
   connect() {
     console.log('Dropdown controller is connected!');
-    document.addEventListener("click", () => {
-      console.log(this.event.target)
-      if (this.event.target != this.contentTarget) {
+    document.addEventListener("click", (event) => {
+      if (event.target != this.contentTarget.previousElementSibling) {
       this.contentTarget.classList.remove("show");
       }
 
@@ -15,13 +14,7 @@ export default class extends Controller {
   }
 
   showContent() {
-
-      this.contentTarget.classList.toggle("show");
-      console.log(this.event.target)
+      this.contentTarget.classList.add("show");
     }
 
-  hideContent() {
-
-    this.contenTarget.classList.remove("show");
-  }
 }
