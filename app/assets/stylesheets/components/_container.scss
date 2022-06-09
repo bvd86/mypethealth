@@ -37,3 +37,8 @@
   align-items: center;
   margin-bottom: 1rem;
 }
+
+.navbar-fix {
+  position: fixed;
+  z-index: 10;
+}
