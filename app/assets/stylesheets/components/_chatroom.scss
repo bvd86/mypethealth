@@ -46,6 +46,18 @@
         justify-content: space-between;
       }
     }
+
+    .online {
+      font-size: 0.7rem;
+    }
+
+    .consult-form-info {
+      background-color: #F2E9D0C9;
+      padding: 0.5rem 0.5rem 0.75rem 0.5 rem;
+      border-radius: 1.12rem;
+      font-size: 0.7rem;
+      }
+
 }
 
 .chatroom {
@@ -120,4 +132,55 @@
   font-size: x-large;
   bottom: 10px;
   cursor: pointer;
+}
+
+.online {
+  font-size: 0.7rem;
+}
+
+.consult-form-info {
+background-color: #F2E9D0C9;
+padding: 0.5rem 0.5rem 0.75rem 0.5 rem;
+border-radius: 1.12rem;
+font-size: 0.7rem;
+}
+
+
+ /* Dropdown Button */
+ .dropmenu {
+  background-color: #F2E9D0C9;
+  color: black;
+  padding: 0.5rem;
+  font-size: 0.7rem;
+  border: none;
+  border-radius: 4px;
+}
+
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #F2E9D0C9;
+  width: 91%;
+  z-index: 1;
+  font-size: 0.7rem;
+  padding: 0.5rem;
+  color: black;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show {display:block;}
+
+.dropmenu-undo-borders {
+  border-bottom-left-radius: 0px !important;
+  border-bottom-right-radius: 0px !important;
 }
