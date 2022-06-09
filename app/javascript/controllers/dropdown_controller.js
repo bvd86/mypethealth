@@ -17,6 +17,7 @@ export default class extends Controller {
   showContent() {
 
       this.contentTarget.classList.toggle("show");
+      this.menuTarget.classList.toggle("dropmenu-undo-borders")
       // console.log(this.contentTarget.previousElementSibling.firstElementChild)
     }
 }
