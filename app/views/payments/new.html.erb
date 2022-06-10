@@ -1,16 +1,17 @@
 <div class="container">
   <div class="row py-4">
-    <div class="col-md-3">
+    <div class="col-md-3 pet-card-payment">
       <% if @consultation.pet.photo.attached? %>
-        <%= cl_image_tag @consultation.pet.photo.key, alt: @consultation.pet.name, class:"card-img-top" %>
+        <%= cl_image_tag @consultation.pet.photo.key, alt: @consultation.pet.name, class:"card-img-top picture-card-payment" %>
       <% else %>
-        <%= image_tag "pet-avatar.png", alt: "Default picture for pet", class:"card-img-top" %>
+        <%= image_tag "pet-avatar.png", alt: "Default picture for pet", class:"card-img-top picture-card-payment" %>
       <% end %>
     </div>
     <div class="col payment-form">
       <h2>Checkout summary</h2>
       <hr>
-      <p>Consultation for <strong><%= @consultation.pet.name %></strong> <br>
+      <p>Consultation for <strong><%= @consultation.pet.name %></strong></p>
+      <p>with <strong>Dr. <%= User.find(@consultation.vet_id).name %></p></strong>
       <p>Total :<strong><%= humanized_money_with_symbol @consultation.price %></strong></p>
 
       <button id="pay" class="btn btn-primary pay-btn">Checkout</button>
