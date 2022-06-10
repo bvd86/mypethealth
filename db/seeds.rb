@@ -57,6 +57,63 @@ p "vets' specialties created!"
 
 p "Seeding vets..."
 
+9.times do
+  user = User.create!({
+  email: Faker::Internet.email,
+  password: "password",
+  name: "#{Faker::Name.male_first_name} #{Faker::Name.last_name}",
+  address: Faker::Address.full_address,
+  available: true})
+
+  p "#{user.name} created"
+
+  # Adding 2 specialties to vet
+  user.specialties = Specialty.all.sample(2)
+
+  p "#{user.name}'s speciatlies added"
+end
+
+5.times do
+  user = User.create!({
+  email: Faker::Internet.email,
+  password: "password",
+  name: "#{Faker::Name.female_first_name} #{Faker::Name.last_name}",
+  address: Faker::Address.full_address,
+  available: true})
+
+  p "#{user.name} created"
+
+  # Adding 2 specialties to vet
+  user.specialties = Specialty.all.sample(2)
+
+  p "#{user.name}'s speciatlies added"
+end
+
+vet_photos = ["https://img.freepik.com/free-photo/smiling-handsome-young-black-male-doctor-medicine-concept_1262-12521.jpg?t=st=1654821269~exp=1654821869~hmac=6e8233ff6b4a3f0c1bff87d75fae8ce5dc8cd3f394ca10e7db502744e4fcbe7c&w=1800",
+"https://img.freepik.com/free-photo/healthcare-workers-medicine-covid-19-pandemic-self-quarantine-concept-smiling-attractive-doctor-scrubs-glasses-stethoscope-neck-cross-arms-chest-ready-help-patients_1258-58772.jpg?t=st=1654821269~exp=1654821869~hmac=916e54f72f2cdf268641a34c67adc49f13c4156605a06d03f3b0527b3c1b922d&w=1800",
+"https://img.freepik.com/free-photo/portrait-smiling-handsome-male-doctor-man_171337-5055.jpg?t=st=1654821269~exp=1654821869~hmac=0a3b08dcf581d0f2f77e94eebba507763134fd963d04b6642557637ae84ea8b2&w=1800",
+"https://img.freepik.com/free-photo/portrait-doctor_144627-39381.jpg?t=st=1654821269~exp=1654821869~hmac=122a9ee4bf7d0e827cff44ee1530fa972c2496319332630958b1541b5dae4b20&w=1800",
+"https://img.freepik.com/free-photo/portrait-smiling-young-man-doctor-with-stethoscope-standing-with-arms-folded_171337-15538.jpg?size=626&ext=jpg",
+"https://img.freepik.com/free-photo/medium-shot-smiley-man-wearing-coat_23-2148816193.jpg?size=626&ext=jpg",
+"https://img.freepik.com/free-photo/doctor-posing-confident-his-cabinet-near-window-african-american-doctor-during-his-work-with-patients-explaining-recipes-drug-daily-hard-work-health-lives-saving-during-epidemic_155003-39496.jpg?size=626&ext=jpg",
+"https://img.freepik.com/free-photo/portrait-african-american-practitioner-doctor-working-hospital-office_482257-21715.jpg?size=626&ext=jpg",
+"https://img.freepik.com/free-photo/doctor-standing-with-folder-stethoscope_1291-16.jpg?size=626&ext=jpg",
+"https://img.freepik.com/free-photo/isolated-shotof-happy-successful-mature-senior-physician-wearing-medical-unifrom-stethoscope-having-cheerful-facial-expression-smiling-broadly-keeping-arms-crossed-chest_343059-2254.jpg?size=626&ext=jpg",
+"https://img.freepik.com/free-photo/beautiful-young-female-doctor-looking-camera-office_1301-7781.jpg?size=626&ext=jpg",
+"https://img.freepik.com/free-photo/confident-beautiful-young-asian-female-doctor_1262-12292.jpg?size=626&ext=jpg",
+"https://img.freepik.com/free-photo/content-young-female-doctor-posing-camera_1262-18213.jpg?size=626&ext=jpg",
+"https://img.freepik.com/free-photo/medium-shot-smiley-doctor-with-coat_23-2148814212.jpg?size=338&ext=jpg"]
+
+
+User.all.each do |i, u|
+
+  # Add vet photo
+  file = URI.open("#{vet_photos[i]}")
+  user.photo.attach(io: file, filename: 'user-avatar.jpg', content_type: 'image/jpg')
+
+  p "#{u.name}'s photo attached"
+end
+
 vet_1 = User.create!({
   email: "drbelanger@mypethealth.ca",
   password: "123456",
@@ -102,27 +159,8 @@ vet_3.specialties = [Specialty.find_by(name:"Felines"), Specialty.find_by(name:"
 
 p "#{vet_3.name} created"
 
-p "Vets seeded!"
 
-p "Adding vets to populate lists..."
-15.times do
-  user = User.create!({
-  email: Faker::Internet.email,
-  password: "password",
-  name: Faker::Name.name,
-  address: Faker::Address.full_address,
-  available: true})
-
-  user.specialties = Specialty.all.sample(2)
-
-  # Add vet photo
-  file = URI.open('https://source.unsplash.com/random/?face-avatar')
-  user.photo.attach(io: file, filename: 'user-avatar.jpg', content_type: 'image/jpg')
-  # Adding 2 specialties to vet
-
-end
-
-p "Additional vets added!"
+p "Vets added!"
 
 # ======================
 # Creating clients
