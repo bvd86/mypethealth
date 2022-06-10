@@ -21,6 +21,7 @@
   border-color: $darkblue;
   margin-top: 1rem;
   background-color: $darkblue;
+  font-size: medium;
 }
 
 
@@ -49,4 +50,15 @@
 
 .star-unchecked {
   color: $gray;
+ }
+
+
+ .pay-btn {
+   width: 95%;
+   background-color: $tealslate;
+   color: $cream;
+   border-radius: 25px;
+   position: absolute;
+   bottom: 15px;
+   left: 8px;
  }

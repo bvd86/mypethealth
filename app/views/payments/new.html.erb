@@ -7,10 +7,13 @@
         <%= image_tag "pet-avatar.png", alt: "Default picture for pet", class:"card-img-top" %>
       <% end %>
     </div>
-    <div class="col">
-      <h1>Checkout summary</h1>
-      <p>Purchase of <strong><%= @consultation.pet.name %></strong> for <strong><%= humanized_money_with_symbol @consultation.price %></strong></p>
-      <button id="pay" class="btn btn-primary">Pay</button>
+    <div class="col payment-form">
+      <h2>Checkout summary</h2>
+      <hr>
+      <p>Consultation for <strong><%= @consultation.pet.name %></strong> <br>
+      <p>Total :<strong><%= humanized_money_with_symbol @consultation.price %></strong></p>
+
+      <button id="pay" class="btn btn-primary pay-btn">Checkout</button>
       <script src="https://js.stripe.com/v3/"></script>
       <script>
         const paymentButton = document.getElementById('pay');
