@@ -39,6 +39,10 @@ svg {
   padding-right: 10px;
 }
 
+.navbar-toggler:focus {
+  box-shadow: none;
+}
+
 
 .navbar-extension {
   // background-color: $tealslate;

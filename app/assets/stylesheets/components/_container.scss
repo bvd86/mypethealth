@@ -13,6 +13,7 @@
 .app-container {
   padding-right: $spacing-containter-right;
   padding-left: $spacing-containter-left;
+  padding-top: 110px  ;
 }
 
 #recent-consultations-container{
@@ -35,4 +36,9 @@
   flex-direction: column;
   align-items: center;
   margin-bottom: 1rem;
+}
+
+.navbar-fix {
+  position: fixed;
+  z-index: 10;
 }
