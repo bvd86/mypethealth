@@ -22,23 +22,7 @@ class ConsultationsController < ApplicationController
     @consultation.status = 'pending'
 
     if @consultation.save!
-      # Creating a session to process event's payment
-      session = Stripe::Checkout::Session.create(
-        payment_method_types: ['card'],
-        line_items: [{
-          name: "#{@consultation.pet.name}##{@consultation.id}",
-          # images: '',
-          amount: @consultation.price_cents,
-          currency: 'cad',
-          quantity: 1
-        }],
-        success_url: available_vets_url,
-        cancel_url: available_vets_url
-      )
-
-      @consultation.update(checkout_session_id: session.id)
-
-      redirect_to new_consultation_payment_path(@consultation)
+      redirect_to available_vets_path
     else
       render :new
     end
@@ -56,12 +40,28 @@ class ConsultationsController < ApplicationController
     if @consultation.save!
       # Creating and sending notification to the vet attached to the consultation
       notification = Notification.create(recipient: User.find(@consultation.vet_id),
-                          user: @consultation.user,
-                          action: "requested",
-                          notifiable: User.find(@consultation.vet_id))
+      user: @consultation.user,
+      action: "requested",
+      notifiable: User.find(@consultation.vet_id))
       NotificationRelayJob.perform_later(notification)
 
-      redirect_to consultation_path(@consultation)
+      # Creating a session to process event's payment
+      session = Stripe::Checkout::Session.create(
+        payment_method_types: ['card'],
+        line_items: [{
+          name: "#{@consultation.pet.name}##{@consultation.id}",
+          # images: '',
+          amount: @consultation.price_cents,
+          currency: 'cad',
+          quantity: 1
+        }],
+        success_url: consultation_url(@consultation),
+        cancel_url: consultation_url(@consultation)
+      )
+
+      @consultation.update(checkout_session_id: session.id)
+
+      redirect_to new_consultation_payment_path(@consultation)
     else
       render :new
     end
