@@ -11,39 +11,9 @@ require 'open-uri'
 require 'json'
 
 
-TEACHERS = {
-  teacher1: {
-    name: "Kristyna Dierstein",
-    address: Faker::Address.full_address,
-    username: "kristynadierstein",
-  },
-  teacher2: {
-    name: "Jeff Trempe",
-    address: Faker::Address.full_address,
-    username: "JefGreen",
-  },
-  teacher3: {
-    name: "Frederic Charest",
-    address: Faker::Address.full_address,
-    username: "aquidam",
-  },
-  teacher4: {
-    name: "Solene Duprat",
-    address: Faker::Address.full_address,
-    username: "aquidam",
-  }
-}
-
-def find_pic(username)
-  url = "https://api.github.com/users/#{username}"
-  user_serialized = URI.open(url).read
-  user = JSON.parse(user_serialized)
-  user["avatar_url"]
-end
-
-
 p "Destroying previous data..."
 
+Notification.destroy_all
 Message.destroy_all
 Feedback.destroy_all
 Receipt.destroy_all
@@ -88,63 +58,71 @@ p "vets' specialties created!"
 p "Seeding vets..."
 
 vet_1 = User.create!({
-  email: "drfraisse@mypethealth.ca",
+  email: "drbelanger@mypethealth.ca",
   password: "123456",
-  name: "Nicolas Fraisse",
+  name: "Fannie Belanger",
   address: "391 Rue de la Congrégation, Montreal QC",
   available: true})
 
 # Add vet photo
-file = URI.open('https://res.cloudinary.com/wagon/image/upload/c_fill,g_face,h_200,w_200/v1570482026/xlayp6fkanfrqzwlg1eu.jpg')
-vet_1.photo.attach(io: file, filename: 'nic-avatar.jpg', content_type: 'image/jpg')
+file = URI.open('https://img.freepik.com/free-photo/pleased-young-female-doctor-wearing-medical-robe-stethoscope-around-neck-standing-with-closed-posture_409827-254.jpg?t=st=1654819726~exp=1654820326~hmac=27c981abc9cb3a0b1b8bc6cc765e135fb7191b33145a01441a1b43b75b8da960&w=1800')
+vet_1.photo.attach(io: file, filename: 'fannie-avatar.jpg', content_type: 'image/jpg')
 # Adding 2 specialties to vet
 vet_1.specialties = [Specialty.find_by(name:"Canines"), Specialty.find_by(name:"Felines"), Specialty.find_by(name:"Generalist") ]
 
+p "#{vet_1.name} created"
 
 vet_2 = User.create!({
   email: "drlafontaine@mypethealth.ca",
   password: "123456",
-  name: "Stephane Lafontaine",
+  name: "Stephanie Lafontaine",
   address: "1155 rue Metcalfe, Montreal QC",
   available: true})
 
 # Add vet photo
-file = URI.open('https://res.cloudinary.com/wagon/image/upload/c_fill,g_face,h_200,w_200/v1652365690/ygqzrfi0zo1jpj6y4lwa.jpg')
-vet_2.photo.attach(io: file, filename: 'stephane-avatar.jpg', content_type: 'image/jpg')
+file = URI.open('https://img.freepik.com/free-photo/woman-doctor-wearing-lab-coat-with-stethoscope-isolated_1303-29791.jpg?w=1800&t=st=1654821230~exp=1654821830~hmac=ce7d765896030c4ee3e612a23b94f4f62a6aecac282af0eb440282f30fb615f4')
+vet_2.photo.attach(io: file, filename: 'stephanie-avatar.jpg', content_type: 'image/jpg')
 # Adding 2 specialties to vet
 vet_2.specialties = [Specialty.find_by(name:"Equines"), Specialty.find_by(name:"Farm Animals")]
 
+p "#{vet_2.name} created"
+
 vet_3 = User.create!({
-  email: "drleger@mypethealth.ca",
+  email: "drsmith@mypethealth.ca",
   password: "123456",
-  name: "Enya Leger",
+  name: "Eric Smith",
   address: "2209 ave du Mont-Royal Est, Montreal QC",
   available: true})
 
 # Add vet photo
-file = URI.open('https://res.cloudinary.com/wagon/image/upload/c_fill,g_face,h_200,w_200/v1641386359/dhel4rtasvauuahid89k.jpg')
-vet_3.photo.attach(io: file, filename: 'enya-avatar.jpg', content_type: 'image/jpg')
+file = URI.open('https://img.freepik.com/free-photo/portrait-successful-mid-adult-doctor-with-crossed-arms_1262-12865.jpg?t=st=1654821269~exp=1654821869~hmac=0f098bd9462ad511c7d477a1f1459a2e48d03ae707572e5b09f2ae96c7d36d90&w=1800')
+vet_3.photo.attach(io: file, filename: 'eric-avatar.jpg', content_type: 'image/jpg')
 # Adding 2 specialties to vet
 vet_3.specialties = [Specialty.find_by(name:"Felines"), Specialty.find_by(name:"Exotic Mammals")]
 
+p "#{vet_3.name} created"
+
 p "Vets seeded!"
 
-# TEACHERS.each do |k, v|
-#   pic = find_pic(k[:username])
-#   vet = User.create!({
-#     email: "#{k[:name]}@mypethealth.ca",
-#     password: "123456",
-#     name: k[:name],
-#     address: k[:address],
-#     available: true
-#   })
-#    # Add vet photo
-#   vet.photo.attach(io: pic, filename: 'user-avatar.jpg', content_type: 'image/jpg')
-#   p "#{vet.name} has been created"
+p "Adding vets to populate lists..."
+15.times do
+  user = User.create!({
+  email: Faker::Internet.email,
+  password: "password",
+  name: Faker::Name.name,
+  address: Faker::Address.full_address,
+  available: true})
 
-# end
+  user.specialties = Specialty.all.sample(2)
 
+  # Add vet photo
+  file = URI.open('https://source.unsplash.com/random/?face-avatar')
+  user.photo.attach(io: file, filename: 'user-avatar.jpg', content_type: 'image/jpg')
+  # Adding 2 specialties to vet
 
+end
+
+p "Additional vets added!"
 
 # ======================
 # Creating clients
@@ -204,24 +182,6 @@ p "Consultations seeded!"
 
 # Creating random vets to populate vets list
 
-p "Adding vets to populate lists..."
-15.times do
-  user = User.create!({
-  email: Faker::Internet.email,
-  password: "password",
-  name: Faker::FunnyName.two_word_name,
-  address: Faker::Address.full_address,
-  available: true})
 
-  user.specialties = Specialty.all.sample(2)
-
-  # Add vet photo
-  file = URI.open('https://source.unsplash.com/random/?face-avatar')
-  user.photo.attach(io: file, filename: 'user-avatar.jpg', content_type: 'image/jpg')
-  # Adding 2 specialties to vet
-
-end
-
-p "Additional vets added!"
 
 p "Seeding is complete."
