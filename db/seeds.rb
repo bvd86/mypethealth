@@ -105,11 +105,11 @@ vet_photos = ["https://img.freepik.com/free-photo/smiling-handsome-young-black-m
 "https://img.freepik.com/free-photo/medium-shot-smiley-doctor-with-coat_23-2148814212.jpg?size=338&ext=jpg"]
 
 
-User.all.each do |i, u|
+User.all.each_with_index do |u, i|
 
   # Add vet photo
-  file = URI.open("#{vet_photos[i]}")
-  user.photo.attach(io: file, filename: 'user-avatar.jpg', content_type: 'image/jpg')
+  file = URI.open(vet_photos[i])
+  u.photo.attach(io: file, filename: 'user-avatar.jpg', content_type: 'image/jpg')
 
   p "#{u.name}'s photo attached"
 end
@@ -161,64 +161,6 @@ p "#{vet_3.name} created"
 
 
 p "Vets added!"
-
-# ======================
-# Creating clients
-# ======================
-
-p "Creating clients..."
-
-# Creating client 1
-client_1 = User.create!({ email: "jeff@ilovecats.com", password: "123456", name: "Jeff Trempe", address: "1940 Jolicoeur Street, Montreal QC" })
-
-# Creating client 2
-client_2 = User.create!({ email: "krystina@ilovedogs.com", password: "123456", name: "Krystina Dierstein", address: "596 Blou Bourg-Neuf, Repentigny, QC" })
-
-# Adding 3 cats for client_1
-3.times do
-  Pet.create!({ user: client_1, name: Faker::Creature::Cat.name, species: "Cat", breed: Faker::Creature::Cat.breed })
-end
-# Adding 2 horses for client_1
-2.times do
-  Pet.create!({ user: client_1, name: Faker::Creature::Horse.name, species: "Horse", breed: Faker::Creature::Horse.breed})
-end
-
-# Adding 4 dogs for client_2
-4.times do
-  Pet.create!({ user: client_2, name: Faker::Creature::Dog.name, species: "Dog", breed: Faker::Creature::Dog.breed})
-end
-
-p "Clients seeded!"
-
-types_of_concern = ["Behavior", "Dental", "End of Life", "Physical Activity", "Medication", "Nutrition", "Welfare"]
-
-p "Seeding consultations..."
-
-# Seeding consultations for vet with client 1
-3.times do
-  Consultation.create!({
-    user: vet_1,
-    vet_id: vet_1.id,
-    pet: client_1.pets.sample,
-    concern_category: Consultation::CONCERN.sample,
-    additional_info: Faker::Marketing.buzzwords
-  })
-end
-
-# Seeding consultations for vet with client 2
-2.times do
-  Consultation.create!({
-    user: vet_1,
-    vet_id: vet_1.id,
-    pet: client_2.pets.sample,
-    concern_category: types_of_concern.sample,
-    additional_info: Faker::Marketing.buzzwords
-  })
-end
-
-p "Consultations seeded!"
-
-# Creating random vets to populate vets list
 
 
 
