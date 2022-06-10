@@ -40,9 +40,9 @@ class ConsultationsController < ApplicationController
     if @consultation.save!
       # Creating and sending notification to the vet attached to the consultation
       notification = Notification.create(recipient: User.find(@consultation.vet_id),
-      user: @consultation.user,
-      action: "requested",
-      notifiable: User.find(@consultation.vet_id))
+                                         user: @consultation.user,
+                                         action: "requested",
+                                         notifiable: User.find(@consultation.vet_id))
       NotificationRelayJob.perform_later(notification)
 
       # Creating a session to process event's payment
