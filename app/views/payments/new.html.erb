@@ -13,7 +13,7 @@
       <p>Consultation for <strong><%= @consultation.pet.name %></strong> <br>
       <p>Total :<strong><%= humanized_money_with_symbol @consultation.price %></strong></p>
 
-      <button id="pay" class="btn btn-primary pay-btn">Pay</button>
+      <button id="pay" class="btn btn-primary pay-btn">Checkout</button>
       <script src="https://js.stripe.com/v3/"></script>
       <script>
         const paymentButton = document.getElementById('pay');

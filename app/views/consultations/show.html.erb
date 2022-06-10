@@ -65,7 +65,7 @@
           <%= f.input :content,
             label: false,
             placeholder: "What's happening with #{@consultation.pet.name}?",
-            wrapper_html: {class: "flex-grow-1"} %>
+            wrapper_html: {class: "flex-grow-1 custom-message-input"} %>
           <%= f.input :photo, label: ('<i class="fa-solid fa-paperclip"></i>').html_safe, as: :file %>
         </div>
       <% end %>

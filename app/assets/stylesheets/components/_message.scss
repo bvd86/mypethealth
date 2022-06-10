@@ -23,13 +23,13 @@
 
 .sender-style .avatar-chat {
   left: auto;
-	right: 10px;
+	right: 2px;
 }
 
 .receiver-style {
   background-color: $darkblue;
   color: $cream;
-  padding: 10px 20px 10px 70px;
+  text-align: end;
 }
 
 .chat-image {
@@ -46,4 +46,12 @@
 	top: -10px;
 	width: 50px;
 	height: 50px;
+}
+
+.chat-message {
+  font-size: 14px;
+}
+
+.receiver-style .avatar-chat {
+  left: 0px;
 }
