@@ -10,10 +10,16 @@
     <div class="col payment-form">
       <h2>Checkout summary</h2>
       <hr>
-      <p>Consultation for <strong><%= @consultation.pet.name %></strong></p>
-      <p>with <strong>Dr. <%= User.find(@consultation.vet_id).name %></p></strong>
-      <p>Total :<strong><%= humanized_money_with_symbol @consultation.price %></strong></p>
-
+      <div class="checkout-pet">
+        <p>Consultation for:</p> <p><strong><%= @consultation.pet.name %></strong></p>
+      </div>
+      <div class="checkout-vet">
+        <p>With:</p> <p><strong>Dr. <%= User.find(@consultation.vet_id).name %></p></strong>
+      </div>
+      <hr>
+      <div class="checkout-price">
+        <p><strong>TOTAL</strong></p> <p><strong><%= humanized_money_with_symbol @consultation.price %></strong></p>
+      </div>
       <button id="pay" class="btn btn-primary pay-btn">Checkout</button>
       <script src="https://js.stripe.com/v3/"></script>
       <script>
