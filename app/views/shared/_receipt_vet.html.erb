@@ -13,7 +13,7 @@
       <% else %>
         <%= image_tag "blank-avatar.png", alt: "Default avatar", class:"avatar avatar-middle" %>
       <% end %>
-      <p class="mt-2">Dr. <%= User.find(@consultation.vet_id).name %></p>
+      <p class="mt-2">Dr. <%= User.find(@consultation.vet_id).name.capitalize %></p>
     </div>
 
     <i class="fa-solid fa-stethoscope fs-3 col-1"></i>
@@ -32,6 +32,10 @@
   <!-- Duration in minutes & Total-->
   <div>
     <table>
+      <tr>
+          <td>Date</td>
+          <td> <%= @consultation.created_at.strftime("%m/%d/%y") %></td>
+      </tr>
       <tr>
         <td>Duration</td>
         <td><%= ((@consultation.updated_at - @consultation.created_at)/(1.minute)).round %> min.</td>
