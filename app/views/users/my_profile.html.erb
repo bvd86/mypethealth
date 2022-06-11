@@ -33,8 +33,12 @@
           <!--Email -->
           <p><%= @user.email %></p>
 
-          <p class="mt-3"><strong>Specialties</strong>
-          <p style="text-shadow: none;"><%= @user.specialties.map { |s| s.name }.to_sentence %></p>
+          <p class="mt-3"><strong>Specialties</strong></p>
+          <% @user.specialties.each do |s| %>
+            <span class="badge-specialties">
+              <%= s.name %>
+            </span>
+          <% end %>
         <% else %>
           <p><strong><%= @user.name %></strong></p>
           <!--Email -->
@@ -55,10 +59,10 @@
 
 </div>
 
+<div id="container-profile-body">
+  <%= render 'shared/my_pets' %>
 
-<%= render 'shared/my_pets' %>
-
-<%= render 'shared/consultation_history' %>
-
+  <%= render 'shared/consultation_history' %>
+</div>
 
 <%= render 'shared/footer' %>

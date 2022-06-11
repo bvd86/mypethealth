@@ -43,15 +43,17 @@ svg {
   box-shadow: none;
 }
 
-
 .navbar-extension {
   // background-color: $tealslate;
+  position: fixed;
+  z-index: 1;
+  top: 98px;
   width: 100vw;
   margin-left: calc(-1 * #{$spacing-containter-left});
   padding-bottom: 56px;
   padding-top: 16px;
   border-radius: 0 0 46px 46px;
-  background: linear-gradient(180deg, $tealslate 0%, rgba(84, 128, 136, 0.697594) 53.43%, rgba(84, 128, 136, 0) 176.68%);
+  background: linear-gradient(180deg, #548088 0%, rgba(84,128,136,1) 53.43%, rgba(255,255,255,1) 176.68%);
 
   #user-information {
     margin-left: 2rem;
@@ -66,4 +68,5 @@ svg {
     color: black;
 
   }
+
 }
