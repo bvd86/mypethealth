@@ -5,9 +5,9 @@
   </div>
 
   <!-- Vet & Pet of the Consultation -->
-  <div class="d-flex justify-content-center align-items-center gap-4" id="card-consult-between">
+  <div class="row align-items-center" id="card-consult-between">
     <!-- vet info -->
-    <div>
+    <div class="col">
       <% if @vet.photo.attached? %>
       <%= cl_image_tag @vet.photo.key, alt: @vet.name, class:"avatar avatar-middle" %>
       <% else %>
@@ -16,10 +16,10 @@
       <p class="mt-2">Dr. <%= User.find(@consultation.vet_id).name %></p>
     </div>
 
-    <i class="fa-solid fa-stethoscope fs-3" style="color: #F2E9D0;"></i>
+    <i class="fa-solid fa-stethoscope fs-3 col-1"></i>
 
     <!-- pet info -->
-    <div>
+    <div class="col"->
       <% if @consultation.pet.photo.attached? %>
       <%= cl_image_tag @consultation.pet.photo.key, alt: @consultation.pet.name, class:"avatar avatar-middle" %>
       <% else %>
