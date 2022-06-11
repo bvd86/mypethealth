@@ -147,12 +147,16 @@ vet_2.specialties = [Specialty.find_by(name:"Equines"), Specialty.find_by(name:"
 
 p "#{vet_2.name} created."
 
+# =============================================
+# Creating DEMO VET account
+# =============================================
+
 vet_3 = User.create!({
   email: "drsmith@mypethealth.ca",
   password: "123456",
   name: "Eric Smith",
   address: "2209 ave du Mont-Royal Est, Montreal QC",
-  available: true})
+  available: false})
 
 # Add vet photo
 file = URI.open('https://img.freepik.com/free-photo/portrait-successful-mid-adult-doctor-with-crossed-arms_1262-12865.jpg?t=st=1654821269~exp=1654821869~hmac=0f098bd9462ad511c7d477a1f1459a2e48d03ae707572e5b09f2ae96c7d36d90&w=1800')
@@ -164,8 +168,20 @@ p "#{vet_3.name} created."
 
 p "Vets added!"
 
+vet_pet = Pet.create!({
+  name: "Abricot",
+  species: "Cat",
+  breed: "Mixed",
+  user: vet_3
+})
+
+vet_pet.photo.attach(io: File.open('app/assets/images/abricot.png'), filename: 'abricot.png', content_type: 'image/png')
+vet_pet.save!
+
+p "Pet #{vet_pet.name} created."
+
 # =============================================
-# Creating client account (who's also a vet)
+# Creating DEMO CLIENT account
 # =============================================
 
 p "Creating User Profile for Demo."
@@ -174,12 +190,10 @@ client = User.create!({
   email: "drveillette@mypethealth.ca",
   password: "123456",
   name: "Billy Veillette-Daigle",
-  address: "2209 ave du Mont-Royal Est, Montreal QC",
-  available: false})
+  address: "2209 ave du Mont-Royal Est, Montreal QC"
+  })
 
 p "#{client.name} created."
-
-client.specialties = [Specialty.find_by(name:"Equines"), Specialty.find_by(name:"Farm Animals")]
 
 pet = Pet.create!({
   name: "Charlie",
@@ -240,9 +254,9 @@ users.each do |u|
       Feedback.create!({
         user: u,
         consultation: consultation,
-        rating: rand(0..5),
-        vet_rating: rand(0..5),
-        friend_rating: rand(0..5),
+        rating: rand(2..5),
+        vet_rating: rand(2..5),
+        friend_rating: rand(3..5),
         comment: Faker::Lorem.paragraph
       })
 
