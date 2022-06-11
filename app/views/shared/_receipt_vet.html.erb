@@ -1,6 +1,6 @@
 <div class="container-small">
   <div class="my-4">
-    <h1>Thank you!</h1>
+    <h1>Thank you for taking care of <%= @consultation.pet.name %> !</h1>
     <h3 style="font-weight: lighter;">Consultation receipt</h3>
   </div>
 
@@ -35,10 +35,6 @@
       <tr>
         <td>Duration</td>
         <td><%= ((@consultation.updated_at - @consultation.created_at)/(1.minute)).round %> min.</td>
-      </tr>
-      <tr>
-          <td>Total</td>
-          <td><%= humanized_money_with_symbol(@consultation.price) %></td>
       </tr>
     </table>
 

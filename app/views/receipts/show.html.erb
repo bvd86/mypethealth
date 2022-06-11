@@ -1,4 +1,9 @@
 <% if @consultation.user == current_user %>
 
-<%= render 'shared/receipt_client' %>
+  <%= render 'shared/receipt_client' %>
+
+<% else %>
+
+  <%=  render 'shared/receipt_vet'%>
+
 <% end %>
