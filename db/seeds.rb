@@ -22,15 +22,17 @@ UserSpecialty.destroy_all
 Specialty.destroy_all
 User.destroy_all
 
-p "Old data cleaned!"
+p "Old data has been cleaned!"
 
 
 p "Starting new seeds..."
 
+# =============================================
+# Seeding vets' specialties in DB
+# =============================================
+
 p "Seeding vets' specialties..."
-# =============================================
-# Seeding vets' specialties
-# =============================================
+
 unless Specialty.any?
   specialties = ["Avians",
     "Equines",
@@ -50,7 +52,7 @@ unless Specialty.any?
   end
 end
 
-p "vets' specialties created!"
+p "vets' specialties created."
 
 # =============================================
 # Creating vet
@@ -68,7 +70,7 @@ p "Seeding vets..."
 
   # Adding 2 specialties to vet
   user.specialties = Specialty.all.sample(2)
-  p "#{user.name} created"
+  p "#{user.name} created."
 end
 
 5.times do
@@ -82,7 +84,7 @@ end
   # Adding 2 specialties to vet
   user.specialties = Specialty.all.sample(2)
 
-  p "#{user.name} created"
+  p "#{user.name} created."
 end
 
 # Random vet photos
@@ -103,18 +105,18 @@ vet_photos = ["https://img.freepik.com/free-photo/smiling-handsome-young-black-m
 "https://img.freepik.com/free-photo/medium-shot-smiley-doctor-with-coat_23-2148814212.jpg?size=338&ext=jpg"]
 
 # Attach vet photos to vet users
-
 User.all.each_with_index do |u, i|
 
   # Add vet photo
   file = URI.open(vet_photos[i])
   u.photo.attach(io: file, filename: 'user-avatar.jpg', content_type: 'image/jpg')
 
-  p "#{u.name}'s photo attached"
+  p "#{u.name}'s photo attached."
 end
 
-# creating specific vets
-
+#-----------------------
+# Creating specific vets
+#-----------------------
 vet_1 = User.create!({
   email: "drbelanger@mypethealth.ca",
   password: "123456",
@@ -128,7 +130,7 @@ vet_1.photo.attach(io: file, filename: 'fannie-avatar.jpg', content_type: 'image
 # Adding 2 specialties to vet
 vet_1.specialties = [Specialty.find_by(name:"Canines"), Specialty.find_by(name:"Felines"), Specialty.find_by(name:"Generalist") ]
 
-p "#{vet_1.name} created"
+p "#{vet_1.name} created."
 
 vet_2 = User.create!({
   email: "drlafontaine@mypethealth.ca",
@@ -143,7 +145,7 @@ vet_2.photo.attach(io: file, filename: 'stephanie-avatar.jpg', content_type: 'im
 # Adding 2 specialties to vet
 vet_2.specialties = [Specialty.find_by(name:"Equines"), Specialty.find_by(name:"Farm Animals")]
 
-p "#{vet_2.name} created"
+p "#{vet_2.name} created."
 
 vet_3 = User.create!({
   email: "drsmith@mypethealth.ca",
@@ -158,8 +160,7 @@ vet_3.photo.attach(io: file, filename: 'eric-avatar.jpg', content_type: 'image/j
 # Adding 2 specialties to vet
 vet_3.specialties = [Specialty.find_by(name:"Felines"), Specialty.find_by(name:"Exotic Mammals")]
 
-p "#{vet_3.name} created"
-
+p "#{vet_3.name} created."
 
 p "Vets added!"
 
@@ -167,7 +168,7 @@ p "Vets added!"
 # Creating client account (who's also a vet)
 # =============================================
 
-p "Creating User Profile for Demo"
+p "Creating User Profile for Demo."
 
 client = User.create!({
   email: "drveillette@mypethealth.ca",
@@ -176,7 +177,7 @@ client = User.create!({
   address: "2209 ave du Mont-Royal Est, Montreal QC",
   available: false})
 
-p "#{client.name} created"
+p "#{client.name} created."
 
 client.specialties = [Specialty.find_by(name:"Equines"), Specialty.find_by(name:"Farm Animals")]
 
@@ -187,33 +188,76 @@ pet = Pet.create!({
   user: client
 })
 
-
 pet.photo.attach(io: File.open('app/assets/images/charlie.jpg'), filename: 'charlie.jpg', content_type: 'image/jpg')
 pet.save!
 
-p "Pet #{pet.name} created"
+p "Pet #{pet.name} created."
 
-consult = Consultation.create!({
+consultation = Consultation.create!({
   user: client,
   pet: pet,
   vet_id: User.find_by(name: "Fannie Belanger").id,
   active: false
 })
 
-p "Consultation created"
+p "Consultation created."
 
-Receipt.create!({
-  consultation: consult
-})
+#---------------------------------------------------
+# Creating previous consulations in DB for all users
+#---------------------------------------------------
 
-p "Receipt created"
+p "Creating consultations history."
+p "This may take a while...."
 
-Feedback.create!({
-  user: User.find_by(name:"Fannie Belanger"),
-  consultation: consult,
-  rating: 5,
-  vet_rating: 5,
-  friend_rating: 5
-})
+users = User.all
+species = ['Dog', 'Cat', 'Bird', 'Horse', 'Rodent', 'Fish', 'Exotic Mammals', 'Farm animals', 'Reptile and Amphibian', 'Other']
+concerns = ["Behavior", "Dental", "End of Life", "Medication", "Nutrition", "Physical Activity", "Welfare", "Other"]
+
+users.each do |u|
+  if u.pets.count == 0
+    pet = Pet.create!({
+      user: u,
+      name: Faker::FunnyName.two_word_name.delete(' '),
+      species: species.sample,
+      breed: Faker::Lorem.word
+    })
+  end
+  if u.consultations.count == 0
+    rand(5..15).times do
+      consultation = Consultation.create!({
+        user: u,
+        pet: pet,
+        concern_category: concerns.sample,
+        additional_info: Faker::Lorem.paragraph,
+        vet_id: 15,
+        active: false,
+        species: pet.species,
+        price_cents: 19,
+        status: 'pending',
+      })
+
+      # Creation feedback for consultation
+      Feedback.create!({
+        user: u,
+        consultation: consultation,
+        rating: rand(0..5),
+        vet_rating: rand(0..5),
+        friend_rating: rand(0..5),
+        comment: Faker::Lorem.paragraph
+      })
+
+      p "Feedback created."
+
+      # Creating receipt for consulation
+      Receipt.create!({
+        consultation: consultation
+      })
+
+      p "Receipt created."
+    end
+  end
+end
+
+p "Consultations history created."
 
 p "Seeding is complete."
