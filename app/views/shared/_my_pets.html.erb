@@ -26,9 +26,9 @@
             </div>
             <div class="flip-card-back">
               <%= link_to user_pet_consultations_path(@user, p.id) do %>
-                 <button type="button" class="btn btn-dark btn-lg pet-button">Consultation</button>
+                 <button type="button" class="btn btn-dark btn-lg pet-button">Consultations</button>
               <% end %>
-              <p><%= link_to edit_user_pet_path(@user, p.id) do %>
+              <p class="back-edit-text"><%= link_to edit_user_pet_path(@user, p.id) do %>
                 <button type="button" class="btn btn-dark btn-lg pet-button">Edit</button>
               <% end %></p>
             </div>
