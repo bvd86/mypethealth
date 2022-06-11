@@ -4,23 +4,11 @@
   <% if current_user.pets.count == 0 %>
     <h3 style="color:#548088;">Please add a pet to consult a veterinarian</h3>
     <div class="new-pet">
-      <%= simple_form_for [ @user, @pet ] do |f| %>
-            <%= f.input :name %>
-            <%= f.input :species, collection: Pet::SPECIES %>
-            <%= f.input :breed %>
-            <%= f.input :photo, as: :file %>
-            <%= f.submit class: "form-control mt-3 btn btn-primary rounded-pill", style: "color: #F2E9D0;" %>
-      <% end %>
+      <%= render 'shared/pet_form' %>
     </div>
   <% else %>
     <div class="new-pet">
-    <%= simple_form_for [ @user, @pet ] do |f| %>
-          <%= f.input :name %>
-          <%= f.input :species, collection: Pet::SPECIES %>
-          <%= f.input :breed %>
-          <%= f.input :photo, as: :file %>
-          <%= f.submit class: "form-control mt-3 btn btn-primary rounded-pill", style: "color: #F2E9D0;" %>
-      <% end %>
+      <%= render 'shared/pet_form' %>
     </div>
   <% end %>
 </div>
