@@ -1,4 +1,4 @@
 <div class="messages notification-bar" id="request-notification" data-redirect="<%= consultation_path(notification.user.consultations.last)%>">
-  <p><%= notification.user.name %> has <%= notification.action %> a chat with you!</p>
+  <p class="notification-message">You have a new request!</p>
   <%= link_to "", consultation_path(notification.user.consultations.last)%>
 </div>
