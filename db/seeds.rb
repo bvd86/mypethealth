@@ -28,8 +28,9 @@ p "Old data cleaned!"
 p "Starting new seeds..."
 
 p "Seeding vets' specialties..."
-
+# =============================================
 # Seeding vets' specialties
+# =============================================
 unless Specialty.any?
   specialties = ["Avians",
     "Equines",
@@ -51,9 +52,9 @@ end
 
 p "vets' specialties created!"
 
-# ========================
+# =============================================
 # Creating vet
-# ========================
+# =============================================
 
 p "Seeding vets..."
 
@@ -65,12 +66,9 @@ p "Seeding vets..."
   address: Faker::Address.full_address,
   available: true})
 
-  p "#{user.name} created"
-
   # Adding 2 specialties to vet
   user.specialties = Specialty.all.sample(2)
-
-  p "#{user.name}'s speciatlies added"
+  p "#{user.name} created"
 end
 
 5.times do
@@ -81,13 +79,13 @@ end
   address: Faker::Address.full_address,
   available: true})
 
-  p "#{user.name} created"
-
   # Adding 2 specialties to vet
   user.specialties = Specialty.all.sample(2)
 
-  p "#{user.name}'s speciatlies added"
+  p "#{user.name} created"
 end
+
+# Random vet photos
 
 vet_photos = ["https://img.freepik.com/free-photo/smiling-handsome-young-black-male-doctor-medicine-concept_1262-12521.jpg?t=st=1654821269~exp=1654821869~hmac=6e8233ff6b4a3f0c1bff87d75fae8ce5dc8cd3f394ca10e7db502744e4fcbe7c&w=1800",
 "https://img.freepik.com/free-photo/healthcare-workers-medicine-covid-19-pandemic-self-quarantine-concept-smiling-attractive-doctor-scrubs-glasses-stethoscope-neck-cross-arms-chest-ready-help-patients_1258-58772.jpg?t=st=1654821269~exp=1654821869~hmac=916e54f72f2cdf268641a34c67adc49f13c4156605a06d03f3b0527b3c1b922d&w=1800",
@@ -104,6 +102,7 @@ vet_photos = ["https://img.freepik.com/free-photo/smiling-handsome-young-black-m
 "https://img.freepik.com/free-photo/content-young-female-doctor-posing-camera_1262-18213.jpg?size=626&ext=jpg",
 "https://img.freepik.com/free-photo/medium-shot-smiley-doctor-with-coat_23-2148814212.jpg?size=338&ext=jpg"]
 
+# Attach vet photos to vet users
 
 User.all.each_with_index do |u, i|
 
@@ -113,6 +112,8 @@ User.all.each_with_index do |u, i|
 
   p "#{u.name}'s photo attached"
 end
+
+# creating specific vets
 
 vet_1 = User.create!({
   email: "drbelanger@mypethealth.ca",
@@ -162,6 +163,57 @@ p "#{vet_3.name} created"
 
 p "Vets added!"
 
+# =============================================
+# Creating client account (who's also a vet)
+# =============================================
 
+p "Creating User Profile for Demo"
+
+client = User.create!({
+  email: "drveillette@mypethealth.ca",
+  password: "123456",
+  name: "Billy Veillette-Daigle",
+  address: "2209 ave du Mont-Royal Est, Montreal QC",
+  available: false})
+
+p "#{client.name} created"
+
+client.specialties = [Specialty.find_by(name:"Equines"), Specialty.find_by(name:"Farm Animals")]
+
+pet = Pet.create!({
+  name: "Charlie",
+  species: "Dog",
+  breed: "Toy Poodle",
+  user: client
+})
+
+
+pet.photo.attach(io: File.open('app/assets/images/charlie.jpg'), filename: 'charlie.jpg', content_type: 'image/jpg')
+pet.save!
+
+p "Pet #{pet.name} created"
+
+consult = Consultation.create!({
+  user: client,
+  pet: pet,
+  vet_id: User.find_by(name: "Fannie Belanger").id,
+  active: false
+})
+
+p "Consultation created"
+
+Receipt.create!({
+  consultation: consult
+})
+
+p "Receipt created"
+
+Feedback.create!({
+  user: User.find_by(name:"Fannie Belanger"),
+  consultation: consult,
+  rating: 5,
+  vet_rating: 5,
+  friend_rating: 5
+})
 
 p "Seeding is complete."
