@@ -15,13 +15,16 @@
             <%= image_tag "blank-avatar", alt: "default avatar photo", class:"img-fluid card-vet-img" %>
           <% end %>
         <div class="container__text">
-            <h5 class="card-title">Dr. <%= vet.name %></h5>
-            <p class="card-text">Specialties </p>
-            <span class="rounded-pill">
-              <% vet.specialties.each do |s| %>
-                <%= s.name %>
-              <% end %>
-            </span>
+            <h5 class="card-title" style="font-weight: bold;">Dr. <%= vet.name %></h5>
+            <div class="mb-3">
+              <p class="card-text mb-1" style="font-size: 0.8rem">Specialties </p>
+
+                <% vet.specialties.each do |s| %>
+                  <span class="badge-specialties">
+                    <%= s.name %>
+                  </span>
+                <% end %>
+            </div>
               <% if vet.feedbacks.count == 0 %>
                 No ratings yet
               <% else %>
