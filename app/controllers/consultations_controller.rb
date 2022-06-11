@@ -78,7 +78,13 @@ class ConsultationsController < ApplicationController
   def end_consultation
     @consultation = Consultation.find(params[:consultation][:id])
     @consultation.update!(active: false)
-    redirect_to new_consultation_feedback_path(@consultation)
+
+    if current_user.id == @consultation.vet_id
+      create_receipt
+      redirect_to consultation_receipt_path(@consultation, @consultation.receipt)
+    else
+      redirect_to new_consultation_feedback_path(@consultation)
+    end
   end
 
   private
