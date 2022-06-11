@@ -22,10 +22,10 @@
               <% else %>
                   <% stars = vet.feedbacks.map(&:rating).sum.fdiv(vet.feedbacks.count).round %>
                   <% stars.times do %>
-                    <span class="fa fa-star star-checked"></span>
+                    <span class="fa fa-star star-checked stars-shadow "></span>
                   <% end %>
                   <% (5-stars).times do %>
-                    <span class="fa fa-star star-unchecked"></span>
+                    <span class="fa fa-star star-unchecked stars-shadow "></span>
                   <% end %>
                   (<%= vet.feedbacks.count %>)
               <% end %>
