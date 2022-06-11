@@ -1,0 +1,5 @@
+meta_product_name: "My Pet Health"
+meta_title: "Mypethealth - Your favourite veterinary clinic at your fingertips!"
+meta_description: "We connect you with a vetenarian wherever and whenever you need one."
+meta_image: "banner_mypethealth.png" # should exist in `app/assets/images/`
+twitter_account: "@BarackObama"   # required for Twitter Cards
