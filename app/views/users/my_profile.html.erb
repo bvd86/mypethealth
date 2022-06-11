@@ -23,9 +23,6 @@
         </div>
       </div>
 
-
-
-
       <div>
         <!-- Name & Specialties -->
         <% if @user.specialties.count > 0 %>
@@ -44,7 +41,6 @@
         <!-- Address -->
         <!--p><%#= @user.address %></p-->
 
-
       </div>
 
       <%= link_to edit_user_path(@user) do%>
@@ -55,10 +51,8 @@
 
 </div>
 
-
 <%= render 'shared/my_pets' %>
 
 <%= render 'shared/consultation_history' %>
-
 
 <%= render 'shared/footer' %>

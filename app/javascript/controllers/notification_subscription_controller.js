@@ -15,21 +15,29 @@ export default class extends Controller {
         disconnected: function () {
           // Called when the subscription has been terminated by the server
           this.channel.unsubscribe()
+          console.log('Notifications channel disconnected!')
         },
 
         received: (data) => {
           // Called when there's incoming data on the websocket for this channel
           this.#insertNotification(data.html)
+          // console.log('Notifications received!')
         },
       }
     )
   }
 
   #insertNotification(message) {
-    this.notificationTarget.insertAdjacentHTML("beforeend", message)
-    const reqNotification = document.getElementById("request-notification")
-    reqNotification.addEventListener("click", ()=> {
+    if (!document.getElementById("request-notification")) {
+      this.notificationTarget.insertAdjacentHTML("beforeend", message)
+    }
+
+    // Making sure the script is run after all DOM items are loaded
+    setTimeout(() => {
+      const reqNotification = document.getElementById("request-notification")
+      reqNotification.addEventListener("click", ()=> {
       window.location.href = reqNotification.dataset.redirect
-    } )
+      })
+    })
   }
 }
