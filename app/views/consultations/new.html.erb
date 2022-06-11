@@ -12,12 +12,12 @@
           <%= f.association :pet, collection: @pets, label: 'Which pet is this for?' %>
           <%= f.input :concern_category, collection: Consultation::CONCERN, label: 'What type of concern do you have?' %>
           <%= f.input :additional_info, label: 'Additional Information' %>
-          <%= f.submit class: "form-control mt-3 btn btn-primary rounded-pill", style: "color: #F2E9D0;" %>
+          <%= f.button :submit, "FIND A VETERINARIAN", class: "form-control mt-3 btn btn-primary rounded-pill", style: "color: #F2E9D0;" %>
         <% else %>
           <%= f.input :species, collection: Pet::SPECIES, label: 'What kind of animal is it?' %>
           <%= f.input :concern_category, collection: Consultation::CONCERN, label: 'What type of concern do you have?' %>
           <%= f.input :additional_info, label: 'Additional Information' %>
-          <%= f.submit class: "form-control mt-3 btn btn-primary rounded-pill", style: "color: #F2E9D0;" %>
+          <%= f.button :submit, "FIND A VETERINARIAN", class: "form-control mt-3 btn btn-primary rounded-pill", style: "color: #F2E9D0;" %>
         <% end %>
     <% end %>
   </div>

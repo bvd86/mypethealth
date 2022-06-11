@@ -1,11 +1,17 @@
 .notification-bar {
-  display: flex;
   justify-content: center;
-  background-color: rgb(136, 29, 29);
-  border-radius: 25px;
+  background-color: #AEDBCD;
+  border-radius: 8px;
   cursor: pointer;
+  color: #5d5d5d;
+  padding: 1px;
 }
 
 .text-notification {
   margin: 0 auto;
+}
+
+.notification-message{
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }

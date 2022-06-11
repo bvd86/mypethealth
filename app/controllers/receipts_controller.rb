@@ -9,7 +9,7 @@ class ReceiptsController < ApplicationController
   end
 
   def create
-    @consultation = Consultation.find(params[:consultation_id])
+    @consultation = Consultation.find((params[:consultation_id]) || (params[:consultation][:id]))
     @receipt = Receipt.new(consultation: @consultation)
     @receipt.price_cents = @consultation.price_cents
     @receipt.save!

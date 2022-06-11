@@ -27,6 +27,7 @@
                   <% (5-stars).times do %>
                     <span class="fa fa-star star-unchecked"></span>
                   <% end %>
+                  (<%= vet.feedbacks.count %>)
               <% end %>
             <%= link_to "Connect", start_consultation_path(vet_id: vet), class: "btn-sm btn-primary card-btn-connect consult-now", style:"color:#F2E9D0;"  %>
         </div>

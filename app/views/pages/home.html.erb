@@ -3,16 +3,16 @@
   <div class="container-fluid landing-extension">
     <div class="row">
       <div class="col-lg-6 banner-text">
-        <h1 class="title-text">Find a vet within few minutes</h1>
+        <h1 class="title-text">Your favourite veterinary clinic at your fingertips!</h1>
         <button type="button" class="btn btn-dark btn-lg action-button">
         <% if user_signed_in? %>
           <% if @user.pets.count == 0 %>
-            <%= link_to "Consult a veterinarian now", new_user_pet_path(@user), class: "banner-button" %>
+            <%= link_to "CONSULT NOW", new_user_pet_path(@user), class: "banner-button" %>
           <% else %>
-            <%= link_to 'Consult a veterinarian now', new_consultation_path, class: "banner-button"  %>
+            <%= link_to 'CONSULT NOW', new_consultation_path, class: "banner-button"  %>
           <% end %>
         <% else %>
-        <%= link_to 'Consult a veterinarian now', new_user_session_path, class: "banner-button" %>
+        <%= link_to 'CONSULT NOW', new_user_session_path, class: "banner-button" %>
         <% end %>
       </button>
       </div>
