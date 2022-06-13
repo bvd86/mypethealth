@@ -11,7 +11,6 @@
       <% @user.consultations.reverse.first(5).each do |c| %>
         <% if !c.vet_id.nil? && c.pet.user == @user && !c.receipt.nil?%>
 
-
           <div class="d-flex gap-2 my-2">
             <% if c.pet.photo.attached? %>
             <%= cl_image_tag c.pet.photo.key, alt: c.pet.name, class:"avatar", style:"height: 50px" %>
