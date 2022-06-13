@@ -187,7 +187,7 @@ p "Pet #{vet_pet.name} created."
 p "Creating User Profile for Demo."
 
 client = User.create!({
-  email: "drveillette@mypethealth.ca",
+  email: "billy@mypethealth.ca",
   password: "123456",
   name: "Billy Veillette-Daigle",
   address: "2209 ave du Mont-Royal Est, Montreal QC"
@@ -224,15 +224,13 @@ p "Creating consultations history."
 p "This may take a while...."
 
 users = User.all
-species = ['Dog', 'Cat', 'Bird', 'Horse', 'Rodent', 'Fish', 'Exotic Mammals', 'Farm animals', 'Reptile and Amphibian', 'Other']
-concerns = ["Behavior", "Dental", "End of Life", "Medication", "Nutrition", "Physical Activity", "Welfare", "Other"]
 
 users.each do |u|
   if u.pets.count == 0
     pet = Pet.create!({
       user: u,
       name: Faker::FunnyName.two_word_name.delete(' '),
-      species: species.sample,
+      species: Pet::SPECIES.sample,
       breed: Faker::Lorem.word
     })
   end
@@ -241,9 +239,9 @@ users.each do |u|
       consultation = Consultation.create!({
         user: u,
         pet: pet,
-        concern_category: concerns.sample,
+        concern_category: Consultation::CONCERN.sample,
         additional_info: Faker::Lorem.paragraph,
-        vet_id: 15,
+        vet_id: User.where(available: true).sample.id,
         active: false,
         species: pet.species,
         price_cents: 19,
