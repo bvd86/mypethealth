@@ -162,7 +162,7 @@ vet_3 = User.create!({
 file = URI.open('https://img.freepik.com/free-photo/portrait-successful-mid-adult-doctor-with-crossed-arms_1262-12865.jpg?t=st=1654821269~exp=1654821869~hmac=0f098bd9462ad511c7d477a1f1459a2e48d03ae707572e5b09f2ae96c7d36d90&w=1800')
 vet_3.photo.attach(io: file, filename: 'eric-avatar.jpg', content_type: 'image/jpg')
 # Adding 2 specialties to vet
-vet_3.specialties = [Specialty.find_by(name:"Felines"), Specialty.find_by(name:"Exotic Mammals")]
+vet_3.specialties = [Specialty.find_by(name:"Felines"), Specialty.find_by(name:"Canines")]
 
 p "#{vet_3.name} created."
 
@@ -179,6 +179,34 @@ vet_pet.photo.attach(io: File.open('app/assets/images/abricot.png'), filename: '
 vet_pet.save!
 
 p "Pet #{vet_pet.name} created."
+
+consultation = Consultation.create!({
+  user: vet_3,
+  pet: vet_pet,
+  vet_id: User.find_by(name: "Fannie Belanger").id,
+  active: false,
+  species: vet_pet.species,
+  price_cents: 19,
+  status: 'pending'
+})
+
+Feedback.create!({
+  user: User.find(consultation.vet_id),
+  consultation: consultation,
+  rating: 5,
+  vet_rating: 5,
+  friend_rating: 5,
+  comment: Faker::Lorem.paragraph
+})
+
+p "Feedback created."
+
+# Creating receipt for consulation
+Receipt.create!({
+  consultation: consultation
+})
+
+p "Receipt created."
 
 # =============================================
 # Creating DEMO CLIENT account
@@ -211,10 +239,70 @@ consultation = Consultation.create!({
   user: client,
   pet: pet,
   vet_id: User.find_by(name: "Fannie Belanger").id,
-  active: false
+  active: false,
+  species: pet.species,
+  price_cents: 19,
+  status: 'pending'
 })
 
 p "Consultation created."
+vet_fannie = User.find(consultation.vet_id)
+
+Message.create!({
+  user: vet_fannie,
+  consultation: consultation,
+  content: "Hello Billy, how can I help you and Charlie today?",
+})
+
+Message.create!({
+  user: client,
+  consultation: consultation,
+  content: "Hi Dr Belanger, when should I have Charlie neutered?",
+})
+
+Message.create!({
+  user: vet_fannie,
+  consultation: consultation,
+  content: "Since he is a small dog, he should be neutered between 6-9 months." ,
+})
+
+Message.create!({
+  user: client,
+  consultation: consultation,
+  content: "Great! That's exactly what I wanted to know." ,
+})
+
+Message.create!({
+  user: client,
+  consultation: consultation,
+  content: "Thank you, Dr Belanger! Have a good one :)" ,
+})
+
+Message.create!({
+  user: vet_fannie,
+  consultation: consultation,
+  content: "You are most welcome. Have a good one too !" ,
+})
+
+p "messages created"
+
+Feedback.create!({
+  user: User.find(consultation.vet_id),
+  consultation: consultation,
+  rating: 5,
+  vet_rating: 5,
+  friend_rating: 5,
+  comment: Faker::Lorem.paragraph
+})
+
+p "Feedback created."
+
+# Creating receipt for consulation
+Receipt.create!({
+  consultation: consultation
+})
+
+p "Receipt created."
 
 #---------------------------------------------------
 # Creating previous consulations in DB for all users
@@ -229,7 +317,7 @@ users.each do |u|
   if u.pets.count == 0
     pet = Pet.create!({
       user: u,
-      name: Faker::FunnyName.two_word_name.delete(' '),
+      name: Faker::Name.first_name,
       species: Pet::SPECIES.sample,
       breed: Faker::Lorem.word
     })
@@ -245,15 +333,16 @@ users.each do |u|
         active: false,
         species: pet.species,
         price_cents: 19,
-        status: 'pending',
+        status: 'pending'
       })
 
       # Creation feedback for consultation
+
       Feedback.create!({
-        user: u,
+        user: User.find(consultation.vet_id),
         consultation: consultation,
-        rating: rand(2..5),
-        vet_rating: rand(2..5),
+        rating: 4,
+        vet_rating: 5,
         friend_rating: rand(3..5),
         comment: Faker::Lorem.paragraph
       })
