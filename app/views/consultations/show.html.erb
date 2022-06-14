@@ -7,9 +7,17 @@
 
   <div class="chat-header mb-2">
     <div>
-      <h2 class="mb-1">Dr. <%= User.find(@consultation.vet_id).name %></h2>
-      <%if @consultation.active? %>
-        <p class="online"><i class="fa-solid fa-circle text-success"></i> Online</p>
+      <% if @consultation.user == @user %>
+
+        <h2 class="mb-1">Dr. <%= User.find(@consultation.vet_id).name %></h2>
+        <%if @consultation.active? %>
+          <p class="online"><i class="fa-solid fa-circle text-success"></i> Online</p>
+        <% end %>
+
+      <% else %>
+
+       <h2 class="mb-1"><%= @consultation.user.name %></h2>
+
       <% end %>
     </div>
     <% if @consultation.active? %>

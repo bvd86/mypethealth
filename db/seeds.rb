@@ -147,39 +147,81 @@ vet_2.specialties = [Specialty.find_by(name:"Equines"), Specialty.find_by(name:"
 
 p "#{vet_2.name} created."
 
+# =============================================
+# Creating DEMO VET account
+# =============================================
+
 vet_3 = User.create!({
   email: "drsmith@mypethealth.ca",
   password: "123456",
   name: "Eric Smith",
   address: "2209 ave du Mont-Royal Est, Montreal QC",
-  available: true})
+  available: false})
 
 # Add vet photo
 file = URI.open('https://img.freepik.com/free-photo/portrait-successful-mid-adult-doctor-with-crossed-arms_1262-12865.jpg?t=st=1654821269~exp=1654821869~hmac=0f098bd9462ad511c7d477a1f1459a2e48d03ae707572e5b09f2ae96c7d36d90&w=1800')
 vet_3.photo.attach(io: file, filename: 'eric-avatar.jpg', content_type: 'image/jpg')
 # Adding 2 specialties to vet
-vet_3.specialties = [Specialty.find_by(name:"Felines"), Specialty.find_by(name:"Exotic Mammals")]
+vet_3.specialties = [Specialty.find_by(name:"Felines"), Specialty.find_by(name:"Canines")]
 
 p "#{vet_3.name} created."
 
 p "Vets added!"
 
+vet_pet = Pet.create!({
+  name: "Abricot",
+  species: "Cat",
+  breed: "Mixed",
+  user: vet_3
+})
+
+vet_pet.photo.attach(io: File.open('app/assets/images/abricot.png'), filename: 'abricot.png', content_type: 'image/png')
+vet_pet.save!
+
+p "Pet #{vet_pet.name} created."
+
+consultation = Consultation.create!({
+  user: vet_3,
+  pet: vet_pet,
+  vet_id: User.find_by(name: "Fannie Belanger").id,
+  active: false,
+  species: vet_pet.species,
+  price_cents: 19,
+  status: 'pending'
+})
+
+Feedback.create!({
+  user: User.find(consultation.vet_id),
+  consultation: consultation,
+  rating: 5,
+  vet_rating: 5,
+  friend_rating: 5,
+  comment: Faker::Lorem.paragraph
+})
+
+p "Feedback created."
+
+# Creating receipt for consulation
+Receipt.create!({
+  consultation: consultation
+})
+
+p "Receipt created."
+
 # =============================================
-# Creating client account (who's also a vet)
+# Creating DEMO CLIENT account
 # =============================================
 
 p "Creating User Profile for Demo."
 
 client = User.create!({
-  email: "drveillette@mypethealth.ca",
+  email: "billy@mypethealth.ca",
   password: "123456",
   name: "Billy Veillette-Daigle",
-  address: "2209 ave du Mont-Royal Est, Montreal QC",
-  available: false})
+  address: "2209 ave du Mont-Royal Est, Montreal QC"
+  })
 
 p "#{client.name} created."
-
-client.specialties = [Specialty.find_by(name:"Equines"), Specialty.find_by(name:"Farm Animals")]
 
 pet = Pet.create!({
   name: "Charlie",
@@ -197,10 +239,70 @@ consultation = Consultation.create!({
   user: client,
   pet: pet,
   vet_id: User.find_by(name: "Fannie Belanger").id,
-  active: false
+  active: false,
+  species: pet.species,
+  price_cents: 19,
+  status: 'pending'
 })
 
 p "Consultation created."
+vet_fannie = User.find(consultation.vet_id)
+
+Message.create!({
+  user: vet_fannie,
+  consultation: consultation,
+  content: "Hello Billy, how can I help you and Charlie today?",
+})
+
+Message.create!({
+  user: client,
+  consultation: consultation,
+  content: "Hi Dr Belanger, when should I have Charlie neutered?",
+})
+
+Message.create!({
+  user: vet_fannie,
+  consultation: consultation,
+  content: "Since he is a small dog, he should be neutered between 6-9 months." ,
+})
+
+Message.create!({
+  user: client,
+  consultation: consultation,
+  content: "Great! That's exactly what I wanted to know." ,
+})
+
+Message.create!({
+  user: client,
+  consultation: consultation,
+  content: "Thank you, Dr Belanger! Have a good one :)" ,
+})
+
+Message.create!({
+  user: vet_fannie,
+  consultation: consultation,
+  content: "You are most welcome. Have a good one too !" ,
+})
+
+p "messages created"
+
+Feedback.create!({
+  user: User.find(consultation.vet_id),
+  consultation: consultation,
+  rating: 5,
+  vet_rating: 5,
+  friend_rating: 5,
+  comment: Faker::Lorem.paragraph
+})
+
+p "Feedback created."
+
+# Creating receipt for consulation
+Receipt.create!({
+  consultation: consultation
+})
+
+p "Receipt created."
 
 #---------------------------------------------------
 # Creating previous consulations in DB for all users
@@ -210,15 +312,13 @@ p "Creating consultations history."
 p "This may take a while...."
 
 users = User.all
-species = ['Dog', 'Cat', 'Bird', 'Horse', 'Rodent', 'Fish', 'Exotic Mammals', 'Farm animals', 'Reptile and Amphibian', 'Other']
-concerns = ["Behavior", "Dental", "End of Life", "Medication", "Nutrition", "Physical Activity", "Welfare", "Other"]
 
 users.each do |u|
   if u.pets.count == 0
     pet = Pet.create!({
       user: u,
-      name: Faker::FunnyName.two_word_name.delete(' '),
-      species: species.sample,
+      name: Faker::Name.first_name,
+      species: Pet::SPECIES.sample,
       breed: Faker::Lorem.word
     })
   end
@@ -227,22 +327,23 @@ users.each do |u|
       consultation = Consultation.create!({
         user: u,
         pet: pet,
-        concern_category: concerns.sample,
+        concern_category: Consultation::CONCERN.sample,
         additional_info: Faker::Lorem.paragraph,
-        vet_id: 15,
+        vet_id: User.where(available: true).sample.id,
         active: false,
         species: pet.species,
         price_cents: 19,
-        status: 'pending',
+        status: 'pending'
       })
 
       # Creation feedback for consultation
+
       Feedback.create!({
-        user: u,
+        user: User.find(consultation.vet_id),
         consultation: consultation,
-        rating: rand(0..5),
-        vet_rating: rand(0..5),
-        friend_rating: rand(0..5),
+        rating: 4,
+        vet_rating: 5,
+        friend_rating: rand(3..5),
         comment: Faker::Lorem.paragraph
       })
 
