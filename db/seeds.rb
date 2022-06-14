@@ -181,6 +181,9 @@ client = User.create!({
   address: "2209 ave du Mont-Royal Est, Montreal QC"
   })
 
+client.photo.attach(io: file, filename: 'billy-avatar.jpg', content_type: 'image/jpg')
+client.save!
+
 p "#{client.name} created."
 
 pet = Pet.create!({
@@ -190,7 +193,7 @@ pet = Pet.create!({
   user: client
 })
 
-pet.photo.attach(io: File.open('app/assets/images/apricot.png'), filename: 'apricot.png', content_type: 'image/png')
+pet.photo.attach(io: File.open('app/assets/images/abricot.png'), filename: 'abricot.png', content_type: 'image/png')
 pet.save!
 
 p "Pet #{pet.name} created."
@@ -211,13 +214,13 @@ vet_fannie = User.find(consultation.vet_id)
 Message.create!({
   user: vet_fannie,
   consultation: consultation,
-  content: "Hello Billy, how can I help you and Apricot today?",
+  content: "Hello Billy, how can I help you and Abricot today?",
 })
 
 Message.create!({
   user: client,
   consultation: consultation,
-  content: "Hi Dr Belanger, Apricot doesn't seem to feel well today. He is prone to urinary infections"
+  content: "Hi Dr Belanger, Abricot doesn't seem to feel well today. He is prone to urinary infections"
 })
 
 Message.create!({
