@@ -168,46 +168,6 @@ p "#{vet_3.name} created."
 
 p "Vets added!"
 
-vet_pet = Pet.create!({
-  name: "Abricot",
-  species: "Cat",
-  breed: "Mixed",
-  user: vet_3
-})
-
-vet_pet.photo.attach(io: File.open('app/assets/images/abricot.png'), filename: 'abricot.png', content_type: 'image/png')
-vet_pet.save!
-
-p "Pet #{vet_pet.name} created."
-
-consultation = Consultation.create!({
-  user: vet_3,
-  pet: vet_pet,
-  vet_id: User.find_by(name: "Fannie Belanger").id,
-  active: false,
-  species: vet_pet.species,
-  price_cents: 19,
-  status: 'pending'
-})
-
-Feedback.create!({
-  user: User.find(consultation.vet_id),
-  consultation: consultation,
-  rating: 5,
-  vet_rating: 5,
-  friend_rating: 5,
-  comment: Faker::Lorem.paragraph
-})
-
-p "Feedback created."
-
-# Creating receipt for consulation
-Receipt.create!({
-  consultation: consultation
-})
-
-p "Receipt created."
-
 # =============================================
 # Creating DEMO CLIENT account
 # =============================================
@@ -224,13 +184,13 @@ client = User.create!({
 p "#{client.name} created."
 
 pet = Pet.create!({
-  name: "Charlie",
-  species: "Dog",
-  breed: "Toy Poodle",
+  name: "Abricot",
+  species: "Cat",
+  breed: "Mixed",
   user: client
 })
 
-pet.photo.attach(io: File.open('app/assets/images/charlie.jpg'), filename: 'charlie.jpg', content_type: 'image/jpg')
+pet.photo.attach(io: File.open('app/assets/images/apricot.png'), filename: 'apricot.png', content_type: 'image/png')
 pet.save!
 
 p "Pet #{pet.name} created."
@@ -251,37 +211,37 @@ vet_fannie = User.find(consultation.vet_id)
 Message.create!({
   user: vet_fannie,
   consultation: consultation,
-  content: "Hello Billy, how can I help you and Charlie today?",
+  content: "Hello Billy, how can I help you and Apricot today?",
 })
 
 Message.create!({
   user: client,
   consultation: consultation,
-  content: "Hi Dr Belanger, when should I have Charlie neutered?",
+  content: "Hi Dr Belanger, Apricot doesn't seem to feel well today. He is prone to urinary infections"
 })
 
 Message.create!({
   user: vet_fannie,
   consultation: consultation,
-  content: "Since he is a small dog, he should be neutered between 6-9 months." ,
+  content: "As you know, this is quite an emergency! You should go to the closest clinic as soon as possible!"
 })
 
 Message.create!({
   user: client,
   consultation: consultation,
-  content: "Great! That's exactly what I wanted to know." ,
+  content: "Great! That's exactly what I thought, I'm running there right now."
 })
 
 Message.create!({
   user: client,
   consultation: consultation,
-  content: "Thank you, Dr Belanger! Have a good one :)" ,
+  content: "Thank you, Dr Belanger! Have a good one :)"
 })
 
 Message.create!({
   user: vet_fannie,
   consultation: consultation,
-  content: "You are most welcome. Have a good one too !" ,
+  content: "You are most welcome. Good luck!"
 })
 
 p "messages created"
