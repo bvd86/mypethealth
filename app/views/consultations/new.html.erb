@@ -9,12 +9,13 @@
 
         <% if user_signed_in? %>
           <!-- User can select their own pet-->
-          <div>
-            <%= link_to new_user_pet_path(@user) do %>
+          <div class="line-button-add">
+           <%= link_to new_user_pet_path(@user) do %>
               <i class="fa-solid fa-circle-plus icon-add" style="font-size: 1rem;">Add a pet</i>
             <% end %>
+           </div>
             <%= f.association :pet, collection: @pets, label: 'Which pet is this for?' %>
-          </div>
+
           <%= f.input :concern_category, collection: Consultation::CONCERN, label: 'What type of concern do you have?' %>
           <%= f.input :additional_info, label: 'Additional Information' %>
           <%= f.button :submit, "FIND A VETERINARIAN", class: "form-control mt-3 btn btn-primary rounded-pill", style: "color: #F2E9D0;" %>
