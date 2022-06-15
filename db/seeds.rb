@@ -169,7 +169,7 @@ p "#{vet_3.name} created."
 p "Vets added!"
 
 # =============================================
-# Creating DEMO CLIENT account
+# Creating DEMO CLIENT accounts
 # =============================================
 
 p "Creating User Profile for Demo."
@@ -181,7 +181,7 @@ client = User.create!({
   address: "2209 ave du Mont-Royal Est, Montreal QC"
   })
 
-client.photo.attach(io: file, filename: 'billy-avatar.jpg', content_type: 'image/jpg')
+client.photo.attach(io: File.open('app/assets/images/billy-avatar.jpg'), filename: 'billy-avatar.jpg', content_type: 'image/jpg')
 client.save!
 
 p "#{client.name} created."
@@ -195,6 +195,30 @@ pet = Pet.create!({
 
 pet.photo.attach(io: File.open('app/assets/images/abricot.png'), filename: 'abricot.png', content_type: 'image/png')
 pet.save!
+
+p "Pet #{pet.name} created."
+
+client_2 = User.create!({
+  email: "paul@paulisse.com",
+  password: "111111",
+  name: "Paul Lisse",
+  address: "2219 ave du Mont-Royal Est, Montreal QC"
+  })
+
+client_2.photo.attach(io: File.open('app/assets/images/paul.jpeg'), filename: 'paul.jpeg', content_type: 'image/jpg')
+client_2.save!
+
+p "#{client_2.name} created."
+
+pet_2 = Pet.create!({
+  name: "Daisy",
+  species: "Dog",
+  breed: "Border Collie",
+  user: client_2
+})
+
+pet_2.photo.attach(io: File.open('app/assets/images/daisy.jpeg'), filename: 'daisy.jpeg', content_type: 'image/jpg')
+pet_2.save!
 
 p "Pet #{pet.name} created."
 
