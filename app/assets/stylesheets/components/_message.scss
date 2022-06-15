@@ -14,6 +14,7 @@
   margin-bottom: 15px;
   padding: 1px 20px;
   padding-top: 10px;
+  word-break: break-word;
 }
 
 .sender-style {
@@ -54,4 +55,12 @@
 
 .receiver-style .avatar-chat {
   left: 0px;
+}
+
+.sender-style .message-bubble {
+  padding-right: 25px;
+}
+
+.receiver-style .message-bubble {
+  padding-left: 25px;
 }
