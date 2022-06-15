@@ -16,7 +16,7 @@
 
       <% else %>
 
-       <h2 class="mb-1"><%= @consultation.user.name %> for <%= @consultation.pet.name %></h2>
+       <h2 class="mb-1"><%= @consultation.user.name %></h2>
 
       <% end %>
     </div>
@@ -39,6 +39,8 @@
         </p>
 
         <p class="dropdown-content" id="add-info" data-dropdown-target="content">
+          Pet name: <%= @consultation.pet.name %>
+          Pet species: <%= @consultation.pet.species %>
           Concern: <%= @consultation.concern_category %> <br>
           Addtitional information : <%= @consultation.additional_info %>
         </p>
