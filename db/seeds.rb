@@ -193,6 +193,30 @@ pet.save!
 
 p "Pet #{pet.name} created."
 
+client_2 = User.create!({
+  email: "paul@me.com",
+  password: "111111",
+  name: "Paul Romero",
+  address: "2219 ave du Mont-Royal Est, Montreal QC"
+  })
+
+client_2.photo.attach(io: File.open('app/assets/images/paul.jpeg'), filename: 'paul.jpeg', content_type: 'image/jpg')
+client_2.save!
+
+p "#{client_2.name} created."
+
+pet_2 = Pet.create!({
+  name: "Daisy",
+  species: "Dog",
+  breed: "Border Collie",
+  user: client_2
+})
+
+pet_2.photo.attach(io: File.open('app/assets/images/daisy.jpeg'), filename: 'daisy.jpeg', content_type: 'image/jpg')
+pet_2.save!
+
+p "Pet #{pet_2.name} created."
+
 consultation = Consultation.create!({
   user: client,
   pet: pet,
