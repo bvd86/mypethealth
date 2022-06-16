@@ -1,7 +1,7 @@
-<div class="mt-4 mb-3 d-flex gap-2 align-items-end">
+<div class="mt-4 mb-2 d-flex gap-2 align-items-end">
   <h3 class="mb-0">My pets</h3>
   <%= link_to new_user_pet_path(@user) do %>
-    <i class="fa-solid fa-circle-plus icon-add"></i>
+    <i class="fa-solid fa-circle-plus icon-add" style="font-size: 1.2rem;"></i>
   <% end %>
 </div>
 
@@ -26,9 +26,9 @@
             </div>
             <div class="flip-card-back">
               <%= link_to user_pet_consultations_path(@user, p.id) do %>
-                 <button type="button" class="btn btn-dark btn-lg pet-button">Consultation</button>
+                 <button type="button" class="btn btn-dark btn-lg pet-button">Consultations</button>
               <% end %>
-              <p><%= link_to edit_user_pet_path(@user, p.id) do %>
+              <p class="back-edit-text"><%= link_to edit_user_pet_path(@user, p.id) do %>
                 <button type="button" class="btn btn-dark btn-lg pet-button">Edit</button>
               <% end %></p>
             </div>

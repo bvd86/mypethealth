@@ -4,12 +4,18 @@
       <h3 class="font-light">How can we help you today?</h3>
     </div>
 
-  <div class="new-consultation">
+  <div class="new-consultation row">
     <%= simple_form_for  @consultation do |f| %>
 
         <% if user_signed_in? %>
           <!-- User can select their own pet-->
-          <%= f.association :pet, collection: @pets, label: 'Which pet is this for?' %>
+          <div class="line-button-add">
+           <%= link_to new_user_pet_path(@user) do %>
+              <i class="fa-solid fa-circle-plus icon-add" style="font-size: 1rem;">Add a pet</i>
+            <% end %>
+           </div>
+            <%= f.association :pet, collection: @pets, label: 'Which pet is this for?' %>
+
           <%= f.input :concern_category, collection: Consultation::CONCERN, label: 'What type of concern do you have?' %>
           <%= f.input :additional_info, label: 'Additional Information' %>
           <%= f.button :submit, "FIND A VETERINARIAN", class: "form-control mt-3 btn btn-primary rounded-pill", style: "color: #F2E9D0;" %>

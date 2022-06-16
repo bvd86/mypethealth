@@ -1,7 +1,7 @@
 <div id="recent-consultations-container">
   <h3 class="mt-4 mb-3">Recent Consultations</h3>
 
-  <% if @user.consultations.empty? %>
+  <% if @user.consultations.empty? || @user.consultations.any? { |c| c.vet_id.nil? && c.receipt.nil?} %>
 
     <p class="small-font">You have no previous consultations.</p>
 
@@ -10,7 +10,6 @@
     <div>
       <% @user.consultations.reverse.first(5).each do |c| %>
         <% if !c.vet_id.nil? && c.pet.user == @user && !c.receipt.nil?%>
-
 
           <div class="d-flex gap-2 my-2">
             <% if c.pet.photo.attached? %>

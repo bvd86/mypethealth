@@ -7,9 +7,17 @@
 
   <div class="chat-header mb-2">
     <div>
-      <h2 class="mb-1">Dr. <%= User.find(@consultation.vet_id).name %></h2>
-      <%if @consultation.active? %>
-        <p class="online"><i class="fa-solid fa-circle text-success"></i> Online</p>
+      <% if @consultation.user == @user %>
+
+        <h2 class="mb-1">Dr. <%= User.find(@consultation.vet_id).name %></h2>
+        <%if @consultation.active? %>
+          <p class="online"><i class="fa-solid fa-circle text-success"></i> Online</p>
+        <% end %>
+
+      <% else %>
+
+       <h2 class="mb-1"><%= @consultation.user.name %></h2>
+
       <% end %>
     </div>
     <% if @consultation.active? %>
@@ -27,11 +35,15 @@
       <div class="dropdown-consult" data-controller="dropdown" data-action="click->dropdown#showContent">
         <p class="dropmenu mb-0 d-flex justify-content-between align-items-center" data-dropdown-target="menu"
                                                                                   >
-          Concern: <%= @consultation.concern_category %>
-          <i class="fa-solid fa-angle-down"></i>
+          View initial concern for this consultation ...
         </p>
 
-        <p class="dropdown-content" id="add-info" data-dropdown-target="content">Addtitional information : <%= @consultation.additional_info %></p>
+        <p class="dropdown-content" id="add-info" data-dropdown-target="content">
+          Pet name: <%= @consultation.pet.name %> <br>
+          Pet species: <%= @consultation.pet.species %> <br>
+          Concern: <%= @consultation.concern_category %> <br>
+          Addtitional information : <%= @consultation.additional_info %>
+        </p>
       </div>
     <% end %>
 
