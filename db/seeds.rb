@@ -199,9 +199,9 @@ pet.save!
 p "Pet #{pet.name} created."
 
 client_2 = User.create!({
-  email: "paul@paulisse.com",
+  email: "paul@me.com",
   password: "111111",
-  name: "Paul Lisse",
+  name: "Paul Romero",
   address: "2219 ave du Mont-Royal Est, Montreal QC"
   })
 
@@ -220,7 +220,7 @@ pet_2 = Pet.create!({
 pet_2.photo.attach(io: File.open('app/assets/images/daisy.jpeg'), filename: 'daisy.jpeg', content_type: 'image/jpg')
 pet_2.save!
 
-p "Pet #{pet.name} created."
+p "Pet #{pet_2.name} created."
 
 consultation = Consultation.create!({
   user: client,
