@@ -163,17 +163,7 @@ file = URI.open('https://img.freepik.com/free-photo/portrait-successful-mid-adul
 vet_3.photo.attach(io: file, filename: 'eric-avatar.jpg', content_type: 'image/jpg')
 # Adding 2 specialties to vet
 vet_3.specialties = [Specialty.find_by(name:"Felines"), Specialty.find_by(name:"Canines")]
-# Adding rating
-5.times do
-  Feedback.create!({
-    user: User.find(vet_3.id),
-    consultation: Consultation.new,
-    rating: rand(1..5),
-    vet_rating: rand(1..5),
-    friend_rating: rand(1..5),
-    comment: Faker::Lorem.paragraph
-  })
-end
+
 p "#{vet_3.name} created."
 
 p "Vets added!"
