@@ -187,13 +187,13 @@ client.save!
 p "#{client.name} created."
 
 pet = Pet.create!({
-  name: "Abricot",
-  species: "Cat",
-  breed: "Mixed",
+  name: "Charlie",
+  species: "Dog",
+  breed: "Toy Poodle",
   user: client
 })
 
-pet.photo.attach(io: File.open('app/assets/images/abricot.png'), filename: 'abricot.png', content_type: 'image/png')
+pet.photo.attach(io: File.open('app/assets/images/charlie.jpg'), filename: 'charlie.jpg', content_type: 'image/jpg')
 pet.save!
 
 p "Pet #{pet.name} created."
