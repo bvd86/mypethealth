@@ -186,18 +186,6 @@ client.save!
 
 p "#{client.name} created."
 
-pet = Pet.create!({
-  name: "Abricot",
-  species: "Cat",
-  breed: "Mixed",
-  user: client
-})
-
-pet.photo.attach(io: File.open('app/assets/images/abricot.png'), filename: 'abricot.png', content_type: 'image/png')
-pet.save!
-
-p "Pet #{pet.name} created."
-
 client_2 = User.create!({
   email: "paul@me.com",
   password: "111111",
