@@ -210,74 +210,6 @@ pet_2.save!
 
 p "Pet #{pet_2.name} created."
 
-consultation = Consultation.create!({
-  user: client,
-  pet: pet,
-  vet_id: User.find_by(name: "Fannie Belanger").id,
-  active: false,
-  species: pet.species,
-  price_cents: 19,
-  status: 'pending'
-})
-
-p "Consultation created."
-vet_fannie = User.find(consultation.vet_id)
-
-Message.create!({
-  user: vet_fannie,
-  consultation: consultation,
-  content: "Hello Billy, how can I help you and Abricot today?",
-})
-
-Message.create!({
-  user: client,
-  consultation: consultation,
-  content: "Hi Dr Belanger, Abricot doesn't seem to feel well today. He is prone to urinary infections"
-})
-
-Message.create!({
-  user: vet_fannie,
-  consultation: consultation,
-  content: "As you know, this is quite an emergency! You should go to the closest clinic as soon as possible!"
-})
-
-Message.create!({
-  user: client,
-  consultation: consultation,
-  content: "Great! That's exactly what I thought, I'm running there right now."
-})
-
-Message.create!({
-  user: client,
-  consultation: consultation,
-  content: "Thank you, Dr Belanger! Have a good one :)"
-})
-
-Message.create!({
-  user: vet_fannie,
-  consultation: consultation,
-  content: "You are most welcome. Good luck!"
-})
-
-p "messages created"
-
-Feedback.create!({
-  user: User.find(consultation.vet_id),
-  consultation: consultation,
-  rating: 5,
-  vet_rating: 5,
-  friend_rating: 5,
-  comment: Faker::Lorem.paragraph
-})
-
-p "Feedback created."
-
-# Creating receipt for consulation
-Receipt.create!({
-  consultation: consultation
-})
-
-p "Receipt created."
 
 #---------------------------------------------------
 # Creating previous consulations in DB for all users
@@ -289,47 +221,51 @@ p "This may take a while...."
 users = User.all
 
 users.each do |u|
-  if u.pets.count == 0
-    pet = Pet.create!({
-      user: u,
-      name: Faker::Name.first_name,
-      species: Pet::SPECIES.sample,
-      breed: Faker::Lorem.word
-    })
-  end
-  if u.consultations.count == 0
-    rand(5..15).times do
-      consultation = Consultation.create!({
+  unless u == User.find_by(name: "Billy Veillette-Daigle") || u == User.find_by(name: "Paul Romero")
+    if u.pets.count == 0
+      pet = Pet.create!({
         user: u,
-        pet: pet,
-        concern_category: Consultation::CONCERN.sample,
-        additional_info: Faker::Lorem.paragraph,
-        vet_id: User.where(available: true).sample.id,
-        active: false,
-        species: pet.species,
-        price_cents: 19,
-        status: 'pending'
+        name: Faker::Name.first_name,
+        species: Pet::SPECIES.sample,
+        breed: Faker::Lorem.word
       })
+    end
+    if u.consultations.count == 0
+      rand(5..15).times do
+        consultation = Consultation.create!({
+          user: u,
+          pet: pet,
+          concern_category: Consultation::CONCERN.sample,
+          additional_info: Faker::Lorem.paragraph,
+          vet_id: User.where(available: true).sample.id,
+          active: false,
+          species: pet.species,
+          price_cents: 19,
+          status: 'pending'
+        })
 
-      # Creation feedback for consultation
+        p "Consultation created"
 
-      Feedback.create!({
-        user: User.find(consultation.vet_id),
-        consultation: consultation,
-        rating: 4,
-        vet_rating: 5,
-        friend_rating: rand(3..5),
-        comment: Faker::Lorem.paragraph
-      })
+        # Creation feedback for consultation
 
-      p "Feedback created."
+        Feedback.create!({
+          user: User.find(consultation.vet_id),
+          consultation: consultation,
+          rating: 4,
+          vet_rating: 5,
+          friend_rating: rand(3..5),
+          comment: Faker::Lorem.paragraph
+        })
 
-      # Creating receipt for consulation
-      Receipt.create!({
-        consultation: consultation
-      })
+        p "Feedback created."
 
-      p "Receipt created."
+        # Creating receipt for consulation
+        Receipt.create!({
+          consultation: consultation
+        })
+
+        p "Receipt created."
+      end
     end
   end
 end
