@@ -221,7 +221,7 @@ p "This may take a while...."
 users = User.all
 
 users.each do |u|
-  unless u == User.find_by(name: "Billy Veillette-Daigle") || u == User.find_by(name: "Paul Romero")
+  unless u == User.find_by(name: "Billy Veillette-Daigle") || u == User.find_by(name: "Paul Romero") || u == User.find_by(name: "Eric Smith")
     if u.pets.count == 0
       pet = Pet.create!({
         user: u,
