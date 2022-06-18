@@ -159,8 +159,8 @@ vet_3 = User.create!({
   available: false})
 
 # Add vet photo
-file = URI.open('https://img.freepik.com/free-photo/portrait-successful-mid-adult-doctor-with-crossed-arms_1262-12865.jpg?t=st=1654821269~exp=1654821869~hmac=0f098bd9462ad511c7d477a1f1459a2e48d03ae707572e5b09f2ae96c7d36d90&w=1800')
-vet_3.photo.attach(io: file, filename: 'eric-avatar.jpg', content_type: 'image/jpg')
+vet_3.photo.attach(io: File.open('app/assets/images/billy.jpg'), filename: 'billy.jpg', content_type: 'image/jpg')
+vet_3.save!
 # Adding 2 specialties to vet
 vet_3.specialties = [Specialty.find_by(name:"Felines"), Specialty.find_by(name:"Canines")]
 
